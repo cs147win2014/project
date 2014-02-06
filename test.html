@@ -41,22 +41,76 @@
 		            <li><a href="#">Something else here</a></li>
 		            <li class="divider"></li>
 		            <li><a href="#">Separated link</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">One more separated link</a></li>
+		            
 		          </ul>
 		        </li>
 		        
 		      </ul>
 		
 	    	<ul class="nav navbar-nav navbar-right">
-		       	<li class="navbar-right" align="right"><a href="#" onclick="alert('No sign-in page yet, sorry!');">Sign in!</a></li>
+		       	<li class="navbar-right" align="right"><a href="#" onclick="alert('No sign-in page yet, sorry!');">Settings</a></li>
 		     </ul>
       
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div>
-		Welcome!
+		Welcome! Here is a list of things I think might be useful for our website:<br>
+		<ul>
+			<li>Building off of lab5 so that we have all the node.js stuff in place/server queries</li>
+			<li>Adding things to a table eek</li>
+			<li>using php to generate the navbar</li>
+		</ul>
+		<br><br>
+		Feature creep:
+		<ul>
+			<li>filter assignments by type</li>
+			<li>customizable types of assignments (pset, lab, exam)</li>
+			<li>count some assignments instead of others (without midterm, you're at...)</li>
+		</ul>
+
+		<br><br>
+
+		<!-- THIS IS WHERE THE PANEL LIST GROUP IS -->
+		<div class="panel panel-default">
+  		<!-- Default panel contents -->
+  			<div class="panel-heading">My Classes</div>
+  			<!-- List group -->
+  			<ul class="list-group">
+			    <li class="list-group-item"><a href="#" onclick="alert('view grades for just cs 109');">CS 109</a></li>
+			    <li class="list-group-item">CS 147</li>
+			    <li class="list-group-item">EE 102A</li>
+			    <li class="list-group-item">EE 101A</li>
+  			</ul>
+		</div>
+
+		<!-- THE ASSIGNMENT TABLE [START] -->
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">All assignments</div>
+
+		  <!-- Table -->
+		  <table class="table">
+		    <tr>
+		    	<th></th>
+		    	<th>#</th>
+		    	<th>Name</th>
+		    	<th>Score</th>
+		    	<th>Out of</th>
+		    </tr>
+		    <tr>
+		    	<td><input type="checkbox"></input></td>
+		    	<td>1</td>
+		    	<td>HW1</td>
+		    	<td>40</td>
+		    	<td>45</td>
+		    </tr>
+		  </table>
+		</div>
+		<!-- assignment table [end] -->
+
+
+
 	</div>
 	
 
