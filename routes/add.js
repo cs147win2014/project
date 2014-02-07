@@ -1,14 +1,15 @@
 var data = require("../data.json");
 
-exports.addFriend = function(req, res) {    
+exports.addAssignment = function(req, res) {    
 	// Your code goes here%
-	var newFriend = {name: req.query.name, 
-					 description: req.query.description, 
-					 imageURL: "http://lorempixel.com/400/400/people"};
+	var newAssignment = {name: req.query.name, 
+					 type: req.query.type, 
+					 score: req.query.score,
+					 total: req.query.total};
 
-	data["friends"].push(newFriend);
+	data["assignments"].push(newAssignment);
 	
-	console.log(newFriend);
+	console.log(newAssignment);
 	// instead of rendering add screen, rendered data screen
 	res.render('add',data);
  }
