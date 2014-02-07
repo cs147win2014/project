@@ -19,16 +19,17 @@
 
 <body>
 	<div class="container">
-		<h1><a href="viewAssignments">My HCI Friends</a></h1>
+		<h1><a href="viewAssignments">Grade calculator</a></h1>
 		<hr>
 
 		<table class="table">
-			<th>Name</th><th>Description</th><th>Image URL</th>
+			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 		{{#each friends}}
 			<tr id="{{name}}" class="hci-friend">
 				<td>{{name}}</td>
-				<td>{{description}}</td>
-				<td>{{imageURL}}</td>
+				<td>{{type}}</td>
+				<td>{{score}}</td>
+				<td>{{total}}</td>
 			</tr>
 		{{/each}}
 	</table>
