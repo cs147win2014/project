@@ -1,10 +1,20 @@
 {
-	"friends": [
+	"assignments": [
 		{
 			"name": "Pset 1",
 			"type": "Homework",
 			"score": "40",
 			"total": "45"
+		}
+	],
+	"classes": [
+		{
+			"department": "CS",
+			"number": "109",
+			"title": "Something",
+			"professor": "Mehran Sahami",
+			"quarter": "Win",
+			"year": "2014"
 		}
 	]
 }
