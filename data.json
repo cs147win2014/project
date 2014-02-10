@@ -5,16 +5,80 @@
 			"type": "Homework",
 			"score": "40",
 			"total": "45"
+		},
+		{
+			"name": "Pset 2",
+			"type": "Homework",
+			"score": "57",
+			"total": "70"
+		},
+		{
+			"name": "Pset 3",
+			"type": "Homework",
+			"score": "50",
+			"total": "50"
+		},
+		{
+			"name": "Lab 1",
+			"type": "Lab",
+			"score": "50",
+			"total": "50"
+		},
+		{
+			"name": "Lab 2",
+			"type": "Lab",
+			"score": "50",
+			"total": "50"
+		},
+		{
+			"name": "Lab 3: full wave diode rectifier",
+			"type": "Lab",
+			"score": "50",
+			"total": "50"
+		},
+		{
+			"name": "Lab 4: adding zener diode",
+			"type": "Lab",
+			"score": "50",
+			"total": "50"
+		},
+		{
+			"name": "Pset 4",
+			"type": "Homework",
+			"score": "40",
+			"total": "42"
+		},
+		{
+			"name": "Midterm",
+			"type": "Midterm",
+			"score": "79",
+			"total": "100"
 		}
 	],
 	"courses": [
 		{
 			"department": "CS",
 			"number": "109",
-			"title": "Something",
+			"title": "Introduction to Probability for Computer Scientists",
 			"professor": "Mehran Sahami",
 			"quarter": "Win",
 			"year": "2014"
-		}
+		},
+		{
+			"department": "EE",
+			"number": "101A",
+			"title": "Circuits I",
+			"professor": "Simon Wong",
+			"quarter": "Win",
+			"year": "2014"
+		},
+		{
+			"department": "CS",
+			"number": "147",
+			"title": "Introduction to Human-Computer Interaction",
+			"professor": "Michael Bernstein",
+			"quarter": "Win",
+			"year": "2014"
+		},
 	]
 }
