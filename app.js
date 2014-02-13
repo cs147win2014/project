@@ -13,6 +13,7 @@ var add = require ('./routes/add');
 var viewAssignments = require('./routes/viewAssignments');
 var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
+var editCourse = require ('./routes/editCourse');
 // Example route
 // var user = require('./routes/user');
 
@@ -44,6 +45,7 @@ app.get('/add',add.addAssignment);
 app.get('/viewAssignments',viewAssignments.view);
 app.get('/viewCourses',viewCourses.view);
 app.get('/addCourse',addCourse.add);
+app.get('/editCourse',editCourse.view)
 // Example route
 // app.get('/users', user.list);
 

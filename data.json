@@ -4,55 +4,64 @@
 			"name": "Pset 1",
 			"type": "Homework",
 			"score": "40",
-			"total": "45"
+			"total": "45",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Pset 2",
 			"type": "Homework",
 			"score": "57",
-			"total": "70"
+			"total": "70",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Pset 3",
 			"type": "Homework",
 			"score": "50",
-			"total": "50"
+			"total": "50",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Lab 1",
 			"type": "Lab",
 			"score": "50",
-			"total": "50"
+			"total": "50",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Lab 2",
 			"type": "Lab",
 			"score": "50",
-			"total": "50"
+			"total": "50",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Lab 3: full wave diode rectifier",
 			"type": "Lab",
 			"score": "50",
-			"total": "50"
+			"total": "50",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Lab 4: adding zener diode",
 			"type": "Lab",
 			"score": "50",
-			"total": "50"
+			"total": "50",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Pset 4",
 			"type": "Homework",
 			"score": "40",
-			"total": "42"
+			"total": "42",
+			"course": "EE 101A"
 		},
 		{
 			"name": "Midterm",
 			"type": "Midterm",
 			"score": "79",
-			"total": "100"
+			"total": "100",
+			"course": "EE 101A"
 		}
 	],
 	"courses": [
