@@ -71,7 +71,15 @@
 			"title": "Introduction to Probability for Computer Scientists",
 			"professor": "Mehran Sahami",
 			"quarter": "Win",
-			"year": "2014"
+			"year": "2014",
+			"units": 5, 
+			"syllabus": [
+				{
+					"problem set": 0.25,
+					"midterm": 0.25,
+					"final": 0.5
+				}
+			]
 		},
 		{
 			"department": "EE",
@@ -79,7 +87,16 @@
 			"title": "Circuits I",
 			"professor": "Simon Wong",
 			"quarter": "Win",
-			"year": "2014"
+			"year": "2014",
+			"units": 4, 
+			"syllabus": [
+				{
+					"homework": 0.20,
+					"lab": 0.2,
+					"midterm": 0.25,
+					"final": 0.35
+				}
+			]
 		},
 		{
 			"department": "CS",
@@ -87,7 +104,21 @@
 			"title": "Introduction to Human-Computer Interaction",
 			"professor": "Michael Bernstein",
 			"quarter": "Win",
-			"year": "2014"
+			"year": "2014",
+			"units": 3, 
+			"syllabus": [
+				{
+					"assignments": 0.7,
+					"quiz1": 0.032,
+					"quiz2": 0.032,
+					"quiz3": 0.032,
+					"selfassessment": 0.08,
+					"endquarterselfassessment": 0.012,
+					"labparticipation": 0.04,
+					"studioparticipation": 0.04,
+					"classparticipation": 0.02
+				}
+			]
 		},
 	]
 }
