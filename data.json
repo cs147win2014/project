@@ -62,6 +62,13 @@
 			"score": "79",
 			"total": "100",
 			"course": "EE 101A"
+		},
+		{
+			"name": "Total",
+			"type": "",
+			"score": "calculated sum",
+			"total": "calculated sum",
+			"course": "EE 101A"
 		}
 	],
 	"courses": [
