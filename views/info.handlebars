@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Quick Calc</title>	
+	<title>Assignments</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -19,9 +19,8 @@
 
 <body>
 	<div class="container">
-		<h1>Grade calculator</h1>
+		<h1>Information</h1>
 		<hr>
-
 		<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -40,7 +39,6 @@
 		      <ul class="nav navbar-nav">
 		        <li><a href="viewCourses">Add Class</a></li>
 		        <li><a href="viewAssignments">View Assignments</a></li>
-		        <li><a href="info">Information</a></li>
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
@@ -49,53 +47,44 @@
 		            <li><a href="#">Something else here</a></li>
 		            <li class="divider"></li>
 		            <li><a href="#">Separated link</a></li>
+		            
 		          </ul>
 		        </li>
+		        
 		      </ul>
+		
 	    	<ul class="nav navbar-nav navbar-right">
 		       	<li class="navbar-right" align="right"><a href="#" onclick="alert('No settings page yet, sorry!');">Settings</a></li>
 		     </ul>
+      
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div>
-		
+		Welcome! Here is a list of things I think might be useful for our website:<br>
+		<ul>
+			<li>when you click on a class, it brings you to the pie chart representing how you're doing and stuff. </li>
+			<li>how do you add a grade? change settings? where on the page?</li>
+			<li>for midterms have option next to assignment list to like add curve or something</li>
+			<li>Adding things to a table eek</li>
+			<li>generate navbar</li>
+			<li>Fix the text on the navbar</li>
+			<li>have clicking on the courses take you to the info page</li>
+			<li>have a better way of adding classes and courses</li>
+			<li>format the input of hte course. shouldn't have to input the title/prof if you don't want</li>
+			<li>nav dropdown for all the courses you're in</li>
+		</ul>
+		<br><br>
+		Feature creep:
+		<ul>
+			<li>filter assignments by type</li>
+			<li>customizable types of assignments (pset, lab, exam)</li>
+			<li>count some assignments instead of others (without midterm, you're at...)</li>
+		</ul>
 
-		<!-- THIS IS WHERE THE PANEL LIST GROUP IS -->
-		<div class="panel panel-default">
-  		<!-- Default panel contents -->
-  			<div class="panel-heading">Courses</div>
-  			<!-- List group -->
-  			<ul class="list-group">
-				{{#each courses}}
-					<li id="{{name}}" class="list-group-item">{{department}} {{number}}: {{title}}
-						({{professor}}, {{quarter}} {{year}})</li>
-				{{/each}}
-  			</ul>
-		</div>
-
-		<!-- THE ASSIGNMENT TABLE [START] -->
-		<div class="panel panel-default">
-		  <!-- Default panel contents -->
-		  <div class="panel-heading">Assignments</div>
-
-		  <!-- Table -->
-		  <table class="table">
-		    <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-		{{#each assignments}}
-			<tr id="{{name}}" class="hci-friend">
-				<td>{{name}}</td>
-				<td>{{type}}</td>
-				<td>{{score}}</td>
-				<td>{{total}}</td>
-			</tr>
-		{{/each}}
-		  </table>
-		</div>
-		<!-- assignment table [end] -->
-
-		<hr>
+		<br><br>
 	</div>
+		
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/hci-friends.js"></script>

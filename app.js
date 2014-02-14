@@ -11,6 +11,7 @@ var handlebars = require('express3-handlebars')
 var index = require('./routes/index');
 var add = require ('./routes/add');
 var viewAssignments = require('./routes/viewAssignments');
+var info = require('./routes/info');
 var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
@@ -43,6 +44,7 @@ if ('development' == app.get('env')) {
 app.get('/', index.view);
 app.get('/add',add.addAssignment);
 app.get('/viewAssignments',viewAssignments.view);
+app.get('/info',info.view);
 app.get('/viewCourses',viewCourses.view);
 app.get('/addCourse',addCourse.add);
 app.get('/editCourse',editCourse.view)
