@@ -42,14 +42,14 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', index.view);
+app.get('/',login.view);
 app.get('/add',add.addAssignment);
 app.get('/viewAssignments',viewAssignments.view);
 app.get('/info',info.view);
 app.get('/viewCourses',viewCourses.view);
 app.get('/addCourse',addCourse.add);
 app.get('/editCourse',editCourse.view);
-app.get('/login',login.view)
+app.get('/index',index.view)
 // Example route
 // app.get('/users', user.list);
 
