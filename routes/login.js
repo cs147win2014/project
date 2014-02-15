@@ -25,4 +25,5 @@ exports.checkUsername = function(req, res) { 
 	}
 	console.log("Username or password incorrect");
 	res.render('login',data);
+	
  };
