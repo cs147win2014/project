@@ -16,6 +16,7 @@ var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
+var signup = require('./routes/signup');
 // Example route
 // var user = require('./routes/user');
 
@@ -50,7 +51,39 @@ app.get('/viewCourses',viewCourses.view);
 app.get('/addCourse',addCourse.add);
 app.get('/editCourse',editCourse.view);
 app.get('/index',index.view)
-app.get('/login',login.checkUsername);
+app.post('/login',login.checkUsername);
+app.get('/signup',function(req, res) {
+	res.render('signup');
+});
+
+app.post('/signup',signup.signIn);
+
+app.post('/signup/check/username', function(req, res) {
+  var username = req.body.username;
+  // check if username contains non-url-safe characters
+  if (username !== encodeURIComponent(username)) {
+    res.json(403, {
+      invalidChars: true
+    });
+    return;
+  }
+  // check if username is already taken - query your db here
+  var usernameTaken = false;
+  for (var i = 0; i < dummyDb.length; i++) {
+    if (dummyDb[i].username === username) {
+      usernameTaken = true;
+      break;
+    }
+  }
+  if (usernameTaken) {
+    res.json(403, {
+      isTaken: true
+    });
+    return
+  }
+  // looks like everything is fine
+  res.send(200);
+});
 // Example route
 // app.get('/users', user.list);
 

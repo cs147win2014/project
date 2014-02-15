@@ -3,27 +3,39 @@ var data = require('../data.json');
 
 exports.view = function(req, res){
 	//console.log(data);
-	res.render('login',data);
+	res.render('login');
 };
 
 exports.checkUsername = function(req, res) {    
 	// Your code goes here%
 	
-	var username = req.query.username; 
-	var password = req.query.password; 
+	var username = req.body.username; 
+	var password = req.body.password; 
 	
 	
 	var foundUsername = false;
-	for (var key in data["users"][0]) {
-   		if (data["users"][0].hasOwnProperty(key) ){
-   			if(key==username && data["users"][0][key] == password) {
-	       		console.log( "key:"+key+", val:"+data["users"][0][key] );
-	       		res.render('index',data);
-	       		return;
-	       	}
-   		}
+	var userDb = data["users"];
+	var error = "";
+
+	// check if username is already taken
+	for (var i = 0; i < userDb.length; i++) {
+	 	if (userDb[i].username === username) {
+	 		foundUsername = true;
+	 		if(userDb[i].password === password) {
+	 			res.render('index',data);
+	 			return;
+	 		} else {
+	 			error = "Password incorrect";
+	 			break;
+	 		}
+	 	}
 	}
+
+	if(!foundUsername) {
+		error = "Username not found";
+	}
+
 	console.log("Username or password incorrect");
-	res.render('login',data);
+	res.render('login',{error:error});
 	
  };
