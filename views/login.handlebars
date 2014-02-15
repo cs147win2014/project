@@ -18,8 +18,14 @@
 <body>
 
 <div class="container">
+    {{>navbar}}
     <div class="row">
+        <h1 class="container-fluid"><b>Welcome to Quick Calc!</b></h1>
+
+
+
         <div class="col-md-4 col-md-offset-7">
+            <div class="panel panel-default">INFO. I want this next to the login, not above it use grid layout -meredith</div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> Login</div>
@@ -29,7 +35,7 @@
                         <label for="inputEmail3" class="col-sm-3 control-label">
                             Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
+                            <input type="username" class="form-control" id="inputEmail3" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="form-group">

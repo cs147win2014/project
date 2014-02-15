@@ -121,5 +121,10 @@
 					"classparticipation": 0.02
 			}
 		}
+	],
+	"users": [
+		{
+			"meredith": "password"
+		}
 	]
 }
