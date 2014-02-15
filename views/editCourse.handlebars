@@ -19,9 +19,10 @@
 
 <body>
 	<div class="container">
+		{{>navbar}}
 		<h1>EDIT COURSE</h1>
 		<hr>
-		{{>navbar}}
+		
 
 		
 
@@ -47,22 +48,6 @@
 		    <div class="form-group">
 		      <label for="number">Number:</label>
 		      <input type="text" class="form-control" id="number" placeholder="Ex: 106A" name="number">
-		    </div>
-		    <div class="form-group">
-		      <label for="title">Title:</label>
-		      <input type="text" class="form-control" id="title" placeholder="Ex: karel" name="title">
-		    </div>
-		    <div class="form-group">
-		      <label for="professor">Professor:</label>
-		      <input type="text" class="form-control" id="professor" placeholder="Ex: Sahami" name="professor">
-		    </div>
-		    <div class="form-group">
-		      <label for="quarter">Quarter:</label>
-		      <input type="text" class="form-control" id="quarter" placeholder="Ex: Aut" name="quarter">
-		    </div>
-		    <div class="form-group">
-		      <label for="year">Year:</label>
-		      <input type="text" class="form-control" id="year" placeholder="Ex: 2013" name="year">
 		    </div>
 		    <input type="submit" id="submitBtn" class="btn btn-default" value="Add"></input>
 		</form>

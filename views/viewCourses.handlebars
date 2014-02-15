@@ -19,9 +19,10 @@
 
 <body>
 	<div class="container">
+		{{>navbar}}
 		<h1>Courses</h1>
 		<hr>
-		{{>navbar}}
+		
 		
 		<!-- THIS IS WHERE THE PANEL LIST GROUP IS -->
 		<div class="panel panel-default">
@@ -30,41 +31,25 @@
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each courses}}
-					<li id="{{name}}" class="list-group-item">{{department}} {{number}}: {{title}}
-						({{professor}}, {{quarter}} {{year}})</li>
+					<li id="{{name}}" class="list-group-item">{{department}} {{number}}</li>
 				{{/each}}
   			</ul>
 		</div>
 
-
-		<form id="addCourseForm" role="form" method="get" action="/addCourse">
-			<h3>Add a course</h3>
-		    <div class="form-group">
-		      <label for="department">Department:</label>
-		      <input type="text" class="form-control" id="department" placeholder="Ex: CS" name="department">
-		    </div>
-		    <div class="form-group">
-		      <label for="number">Number:</label>
-		      <input type="text" class="form-control" id="number" placeholder="Ex: 106A" name="number">
-		    </div>
-		    <div class="form-group">
-		      <label for="title">Title:</label>
-		      <input type="text" class="form-control" id="title" placeholder="Ex: karel" name="title">
-		    </div>
-		    <div class="form-group">
-		      <label for="professor">Professor:</label>
-		      <input type="text" class="form-control" id="professor" placeholder="Ex: Sahami" name="professor">
-		    </div>
-		    <div class="form-group">
-		      <label for="quarter">Quarter:</label>
-		      <input type="text" class="form-control" id="quarter" placeholder="Ex: Aut" name="quarter">
-		    </div>
-		    <div class="form-group">
-		      <label for="year">Year:</label>
-		      <input type="text" class="form-control" id="year" placeholder="Ex: 2013" name="year">
-		    </div>
-		    <input type="submit" id="submitBtn" class="btn btn-default" value="Add"></input>
-		</form>
+		<div class="row container-fluid">
+			<form id="addCourseForm" role="form" method="get" action="/addCourse">
+				<h3>Add a course</h3>
+			    <div class="form-group col-md-6">
+			      <label for="department">Department:</label>
+			      <input type="text" class="form-control" id="department" placeholder="Ex: CS" name="department" required>
+			    </div>
+			    <div class="form-group col-md-6">
+			      <label for="number">Number:</label>
+			      <input type="text" class="form-control" id="number" placeholder="Ex: 106A" name="number" required>
+			    </div>
+			    <div class="form-group col-md-6"><input type="submit" id="submitBtn" class="btn btn-default form-group col-md-2" value="Next"></input></div>
+			</form>
+		</div>
 		<hr>
 	</div>
 	<script src="js/jquery-1.11.0.js"></script>

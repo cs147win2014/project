@@ -18,10 +18,11 @@
 
 <body>
 	<div class="container">
+		{{>navbar}}
 		<h1>Quick Calc</h1>
 		<hr>
 
-		{{>navbar}}
+		
 	<div>
 		
 
@@ -32,8 +33,7 @@
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each courses}}
-					<li id="{{name}}" class="list-group-item">{{department}} {{number}}: {{title}}
-						({{professor}}, {{quarter}} {{year}})</li>
+					<li id="{{name}}" class="list-group-item">{{department}} {{number}}</li>
 				{{/each}}
   			</ul>
 		</div>
