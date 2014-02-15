@@ -1,17 +1,19 @@
-var data = require("../data.json");
+'use strict';
 
-exports.add = function(req, res) {    
-	// Your code goes here%
-	var newCourse = {department: req.query.department, 
-					 number: req.query.number, 
-					 title: req.query.title,
-					 professor: req.query.professor,
-					 quarter: req.query.quarter,
-					 year: req.query.year};
+// Call this function when the page loads (the "ready" event)
+$(document).ready(function() {
 
-	data["courses"].push(newCourse);
-	
-	console.log(newCourse);
-	// instead of rendering add screen, rendered data screen
-	res.render('addCourse',data);
- }
+	initializePage();
+})
+
+/*
+ * Function that is called when the document is ready.
+ */
+function initializePage() {
+	$('#submitBtn').click(login);
+}
+
+function login() {
+	alert('at this point, do not actually submit. instead just go to the next thing.');
+	alert('make certain inputs in the form visible at this point');
+}
