@@ -75,11 +75,6 @@
 		{
 			"department": "CS",
 			"number": "109",
-			"title": "Introduction to Probability for Computer Scientists",
-			"professor": "Mehran Sahami",
-			"quarter": "Win",
-			"year": "2014",
-			"units": 5, 
 			"syllabus": {
 				"problem set": 0.25,
 				"midterm": 0.25,
@@ -89,11 +84,6 @@
 		{
 			"department": "EE",
 			"number": "101A",
-			"title": "Circuits I",
-			"professor": "Simon Wong",
-			"quarter": "Win",
-			"year": "2014",
-			"units": 4, 
 			"syllabus": {
 					"homework": 0.20,
 					"lab": 0.2,
@@ -104,11 +94,6 @@
 		{
 			"department": "CS",
 			"number": "147",
-			"title": "Introduction to Human-Computer Interaction",
-			"professor": "Michael Bernstein",
-			"quarter": "Win",
-			"year": "2014",
-			"units": 3, 
 			"syllabus": {
 					"assignments": 0.7,
 					"quiz1": 0.032,
