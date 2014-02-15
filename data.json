@@ -109,9 +109,17 @@
 	],
 	"users": [
 		{
-			"m": "a",
-			"i": "b",
-			"w": "c"
+			"username": "m",
+			"password": "a"
+		},
+		{
+			"username": "i",
+			"password": "b"
+		},
+		{
+			"username": "w",
+			"password": "c"
 		}
-	]
+	],
+	"currentUser": "username"
 }
