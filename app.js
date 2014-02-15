@@ -50,6 +50,7 @@ app.get('/viewCourses',viewCourses.view);
 app.get('/addCourse',addCourse.add);
 app.get('/editCourse',editCourse.view);
 app.get('/index',index.view)
+app.get('/login',login.checkUsername);
 // Example route
 // app.get('/users', user.list);
 

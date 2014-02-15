@@ -124,7 +124,9 @@
 	],
 	"users": [
 		{
-			"meredith": "password"
+			"m": "a",
+			"i": "b",
+			"w": "c"
 		}
 	]
 }
