@@ -19,8 +19,7 @@
 <body>
 	<div class="container">
 		{{>navbar}}
-		<h1>Quick Calc</h1>
-		<h2>Welcome back, {{currentUser}}!</h2>
+		<h1><b>Quarter Overview</b></h1>
 		<hr>
 
 		
@@ -48,7 +47,7 @@
 		  <table class="table">
 		    <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 		{{#each assignments}}
-			<tr id="{{name}}" class="hci-friend">
+			<tr id="{{name}}">
 				<td>{{name}}</td>
 				<td>{{type}}</td>
 				<td>{{score}}</td>
