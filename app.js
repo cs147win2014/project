@@ -48,7 +48,7 @@ app.get('/add',add.addAssignment);
 app.get('/viewAssignments',viewAssignments.view);
 app.get('/info',info.view);
 app.get('/viewCourses',viewCourses.view);
-app.get('/addCourse',addCourse.add);
+app.post('/addCourse',addCourse.add);
 app.get('/editCourse',editCourse.view);
 app.get('/index',index.view)
 app.post('/login',login.checkUsername);
@@ -57,6 +57,7 @@ app.get('/signup',function(req, res) {
 });
 
 app.post('/signup',signup.signIn);
+app.post('/editCourse',editCourse.addSyllabusFields)
 
 app.post('/signup/check/username', function(req, res) {
   var username = req.body.username;
