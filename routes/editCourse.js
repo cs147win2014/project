@@ -19,3 +19,16 @@ exports.view = function(req, res){
 	console.log(data);
 	res.render('viewCourses',data);
 };
+
+exports.addSyllabusFields = function(req, res) {
+	allFields = req.body;
+
+	console.log(allFields);
+	for (var i = 0; i < req.body.length; i++) {
+		console.log("HELLO"+i);
+	}
+
+
+	res.render('editCourse',data);
+	return;
+};

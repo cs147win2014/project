@@ -19,12 +19,38 @@
 <body>
 	<div class="container">
 		{{>navbar}}
-		<h1>EDIT COURSE</h1>
+		<h1><b>Configure Course Syllabus</b></h1>
 		<hr>
 		
+		<div class="panel panel-default">
+			<div class="panel panel-body" id="allFields">
+				<p>so this is where you should add types of homework and stuff!</p>
+				<small>Press + to add more</small>
 
+            	<div class="row" id="profs"> 
+	                <form class="input-append" role="form" method="post" action="/editCourse">
+	                    <div id="field" class="input-append col-md-4">
+	                    	<input autocomplete="off" class="form-control" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8" required/>
+
+	                    	<button id="b1" class="btn btn-default add-more input-group-button col-md-2" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+	                    </div>
+
+
+	                    <input autocomplete="off" class="form-control hidden" id="numFields" name="numFields" type="hidden" value="1" placeholder="Type something"/>
+	                    <div class="row">
+			    			<button type="submit" id="submitBtn" class="btn btn-default " >Add types <i class="glyphicon glyphicon-plus"></i></button>
+			    		</div>
+
+	                </form>
+
+        		</div>
+        		
+    </div>
+		</div>
 		
-
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">Assignments</div>
 		<table class="table">
 			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 		{{#each assignments}}
@@ -36,6 +62,7 @@
 			</tr>
 		{{/each}}
 	</table>
+</div>
 
 
 		<form id="addCourseForm" role="form" method="get" action="/addCourse">
@@ -54,6 +81,7 @@
 	</div>
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="js/editSyllabus.js"></script>
 
 
 </body>
