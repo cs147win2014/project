@@ -1,9 +1,11 @@
 body { 
-  background: url(http://structure.stanford.edu/workshop/images/Stanford1.jpg) no-repeat center center fixed; 
+  background: url('../img/retina_wood.png') center center;
+
+   /*background: url(retina_wood.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 .panel-default {

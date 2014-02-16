@@ -22,17 +22,18 @@ exports.checkUsername = function(req, res) { 
 	 	if (userDb[i].username === username) {
 	 		foundUsername = true;
 	 		if(userDb[i].password === password) {
+	 			data["currentUser"] = username;
 	 			res.render('index',data);
 	 			return;
 	 		} else {
-	 			error = "Password incorrect";
+	 			error = "Password incorrect!";
 	 			break;
 	 		}
 	 	}
 	}
 
 	if(!foundUsername) {
-		error = "Username not found";
+		error = "Username not found!";
 	}
 
 	console.log("Username or password incorrect");
