@@ -9,23 +9,23 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-	$('#submitBtn').click(addCourse);
+	$('#courseSubmitBtn').click(addCourse);
 
 
 	function addCourse() {
 		console.log('clicked');
-		var title = $('#new-project-form #title').val();
-		var image_url = $('#new-project-form #image_url').val();
-		var date = $('#new-project-form #date').val();
-		var summary = $('#new-project-form #summary').val();
+		var name = $('#new-course-form #name').val();
+		var department = $('#new-course-form #department').val();
+		var number = $('#new-course-form #number').val();
+		var syllabus = $('#new-course-form #syllabus').val();
 		var json = {
-			'project_title': title,
-			'image_url': image_url,
-			'date':  date,
-			'summary': summary
+			'name': title,
+			'department': image_url,
+			'number':  date,
+			'syllabus': summary
 		};
-		$.post('/project/new', json, function() {
-			window.location.href = '/'; // reload the page
+		$.post('/addACourse/new', json, function() {
+			window.location.href = 'index'; // reload the page
 		});
 	} 
 }

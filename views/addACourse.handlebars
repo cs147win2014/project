@@ -25,25 +25,25 @@
 		<h1>Add A Course</h1>
 		<hr>
 		
-		<form id="addCourseForm" role="form" method="get" action="/add">
-		    <div class="form-group">
-		      <label for="name">Name:</label>
-		      <input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name">
-		    </div>
-		    <div class="form-group">
-		      <label for="type">Number:</label>
-		      <input type="text" class="form-control" id="type" placeholder="Ex: Paper" name="type">
-		    </div>
-		    <div class="form-group">
-		      <label for="score">Department:</label>
-		      <input type="text" class="form-control" id="score" placeholder="Ex: 95" name="score">
-		    </div>
-		    <div class="form-group">
-		      <label for="total">Syllabus:</label>
-		      <input type="text" class="form-control" id="total" placeholder="Ex: 100" name="total">
-		    </div>
-		    <input type="submit" id="submitBtn" class="btn btn-default" value="Add"></input>
-		</form>
+	<form id="new-course-form" role="form">
+    <div class="form-group">
+      <label for="name">Course Title:</label>
+      <input type="text" class="form-control" id="name" placeholder="Programming Methodology">
+    </div>
+    <div class="form-group">
+      <label for="department">Department</label>
+      <input type="text" class="form-control" id="department" placeholder="CS">
+    </div>
+    <div class="form-group">
+      <label for="number">Course Number</label>
+      <input type="text" class="form-control" id="number" placeholder="106A">
+    </div>
+    <div class="form-group">
+      <label for="syllabus">Syllabus</label>
+      <textarea type="text" class="form-control" id="syllabus" rows="3" placeholder="So many assignments!!"></textarea>
+    </div>
+    <button id="courseSubmitBtn" type="button" class="btn btn-default">Add Course</button>
+  </form>
 
 		<hr>
 	</div>
