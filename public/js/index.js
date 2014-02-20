@@ -14,7 +14,7 @@ function initializePage() {
 }
 
 function addCourse() {
-	$.get('addACourse');
+	$.get("/addACourse");
 } 
 
 

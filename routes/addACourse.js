@@ -2,6 +2,7 @@
 var data = require('../data.json');
 
 exports.view = function(req, res){
+	alert('here!');
 	console.log(data);
 	res.render('addACourse',data);
 };
