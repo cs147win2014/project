@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 function initializePage() {
-	alert("loading");
+	
 }
 
 function loadClassInfo(className) {
