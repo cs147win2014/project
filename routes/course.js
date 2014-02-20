@@ -76,13 +76,40 @@ exports.add = function(req, res) { 
 exports.viewCourseInfo = function(req, res) {    
 	// Your code goes here%
 	var courseName = req.params.id;
-	console.log(courseName);
+
+	var match = courseName.search(/\d/);
+	if(match === NaN) {
+		// no coursenumber!! eek
+	}
+
+	var department = courseName.substr(0,match);
+	var number = courseName.substr(match);
+
+	var courseInfo = false;
 
   	// find the stuff you want inside the JSON and return it
+	allCourses = data['courses'];
+	for(var i = 0; i < allCourses.length; i++) {
+		if(allCourses[i].department.toLowerCase() === department.toLowerCase()) {
+			if(allCourses[i].number.toLowerCase() === number.toLowerCase()) {
+				courseInfo = allCourses[i];
+			}
+		}
+	}
+
+	console.log(courseInfo);
+
+	if(!courseInfo) {
+		console.log("Unable to find course " + department.toUpperCase() + " " + number);
+		res.json({"data":"NONE"});
+	}
+	else {
+		res.json(courseInfo);
+	}
 	
-	console.log('VIEWING COURSE INFO OR SOMETHING');
 	// instead of rendering add screen, rendered data screen
-	res.render('/courses/'+courseName,data);
+	//res.render('/courses/'+courseName,data);
+	
  }
 
 // var models = require('../models');
