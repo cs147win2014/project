@@ -13,5 +13,6 @@ function initializePage() {
 function loadClassInfo(className) {
 	e.preventDefault();
 	alert("Loading info for " + className);
-	//$.get('/login',checkCredentials);
+	console.log("Loading info for " + className);
+	$.get('/class/'+className,alert('hey'));
 }
