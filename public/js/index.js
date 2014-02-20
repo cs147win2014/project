@@ -14,7 +14,10 @@ function initializePage() {
 }
 
 function addCourse() {
-	$.get("/addACourse");
+	console.log("user clicked button");
+	window.location.href = "/addACourse"; // reload the page
+
+	//$.get("/addACourse");
 } 
 
 
