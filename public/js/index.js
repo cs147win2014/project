@@ -15,7 +15,7 @@ function initializePage() {
 
 function addCourse() {
 	console.log("user clicked button");
-	window.location.href = "/addACourse"; // reload the page
+	window.location.href = "/addACourse"; // load the page
 
 	//$.get("/addACourse");
 } 
