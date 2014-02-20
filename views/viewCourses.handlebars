@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div id="bodyDiv" class="container">
 		{{>navbar}}
 		<h1><b>All Courses</b></h1>
 		<hr>
@@ -26,13 +26,13 @@
 		<!-- THIS IS WHERE THE PANEL LIST GROUP IS -->
 		<div class="panel panel-default">
   		<!-- Default panel contents -->
-  			<div class="panel-heading">Courses</div>
+  			<div class="panel-heading">All Your Courses</div>
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each courses}}
-					<li id="{{name}}" class="list-group-item">{{department}} {{number}}</li>
+					<li id="{{department}}{{number}}" class="list-group-item">{{department}} {{number}}<button id="button{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">View</button></li>
 				{{/each}}
-				<li id="TestCourse" class="list-group-item">TestClass<button id="mycoolbutton" class="btn btn-xs btn-default pull-right course">View</button></li>
+				<li id="TestCourse101" class="list-group-item">TestClass101<button id="mycoolbutton" class="btn btn-xs btn-default pull-right course">View</button></li>
   			</ul>
 		</div>
 
@@ -56,7 +56,7 @@
 	</div>
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/addCourse.js"></script>
+	<!--<script src="js/addCourse.js"></script>-->
 	<script src="js/viewCourse.js"></script>
 
 
