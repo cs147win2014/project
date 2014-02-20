@@ -9,20 +9,63 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-	$('#mycoolbutton').click(editCourse);
+	//$('#mycoolbutton').click(viewCourse);
+	$('.courseButton').click(viewCourse);
 
 }
 
-function editCourse(e) {
+function checkClick(e) {
 	e.preventDefault();
+	alert('selected button');
+}
 
+function viewCourse(e) {
+	e.preventDefault();
 	// Get the div ID, e.g., "project3"
 	var courseName = $(this).closest("li").attr('id');
+	//alert(courseName);
 	// get rid of 'project' from the front of the id 'project3'
-	alert(courseName);
 	
 	var url = "/courses/" + courseName;
-	$.get(url);
+	$.get(url, showCourseInfo);
 } 
+
+function showCourseInfo(result) {
+
+	var syllabusDiv = $("#"+result.department+result.number+"syllabus");
+
+
+	if(syllabusDiv.length) {
+		alert('syllabusdiv does exist');
+		if(syllabusDiv.is(":visible")) {
+			syllabusDiv.hide();
+		} else {
+			syllabusDiv.show();
+		}
+	}
+	else {
+		alert('syllabusdiv doesnt exist');
+
+		var $newSyllabusDiv = $("<div>", {id: result.department+result.number+"syllabus"});
+
+		//alert('created div');
+
+		$newSyllabusDiv.attr('id',result.department+result.number+'syllabus');
+		//alert("heres the syllabus: " + JSON.stringify(result.syllabus));
+
+		$newSyllabusDiv.text(JSON.stringify(result.syllabus));
+
+		//alert("HERES NEWSYLABUSDIV " + $newSyllabusDiv.text());
+
+	
+		//alert("li #"+result.department+""+result.number);
+		var check2 = $("#"+result.department+""+result.number).attr('id');
+		//alert("should append to " + check2);
+
+		$("#"+result.department+result.number).append($newSyllabusDiv);
+	}
+	
+}
+
 
 
