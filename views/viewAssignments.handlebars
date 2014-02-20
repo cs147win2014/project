@@ -10,6 +10,7 @@
 
 	<!-- import plugin script -->
     <script src='Chart.js/Chart.min.js'></script>
+    <script src='canvasjs-1.3.0/canvasjs.min.js'></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,36 +41,7 @@
 	<div class="container">
 		<!-- line chart canvas element -->
         <canvas id="buyers" width="600" height="400"></canvas>
-        <!-- pie chart canvas element -->
-        <canvas id="countries" width="600" height="400"></canvas>
         <script>
-            // pie chart data
-            var pieData = [
-                {
-                    value: 20,
-                    label:"Midterm",
-                    color:"#878BB6"
-                },
-                {
-                    value : 40,
-                    color : "#4ACAB4"
-                },
-                {
-                    value : 10,
-                    color : "#FF8153"
-                },
-                {
-                    value : 30,
-                    color : "#FFEA88"
-                }
-            ];
-            // pie chart options
-            var pieOptions = {
-                 segmentShowStroke : false,
-                 animateScale : true
-            }
-            // get pie chart canvas
-            var countries= document.getElementById("countries").getContext("2d");
             // line chart data
             var buyerData = {
                 labels : ["PSet 1","PSet 2","PSet 3","PSet 4"],
@@ -88,8 +60,6 @@
             var buyers = document.getElementById('buyers').getContext('2d');
             // draw line chart
             new Chart(buyers).Line(buyerData);
-            // draw pie chart
-            new Chart(countries).Pie(pieData, pieOptions);
             // bar chart data
             var barData = {
                 labels : ["January","February","March","April","May","June"],
@@ -111,6 +81,82 @@
             // draw bar chart
             new Chart(income).Bar(barData);
         </script>
+          <head>
+  <script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Overview of Courses."
+
+      },
+      data:[
+      {
+        type: "stackedBar100",
+        showInLegend: true,
+        name: "Assignments",
+        dataPoints: [
+        {y: 40, label: "Course 1" },
+        {y: 50, label: "Course 2" },
+        {y: 120, label: "Course 3" },
+        {y: 250, label: "Course 4" },
+        {y: 350, label: "Course 5" }
+
+        ]
+      },
+       {
+        type: "stackedBar100",
+        showInLegend: true,
+        name: "Midterm(s)",
+        dataPoints: [
+        {y: 20, label: "Course 1" },
+        {y: 20, label: "Course 2" },
+        {y: 220, label: "Course 3" },
+        {y: 474, label: "Course 4" },
+        {y: 450, label: "Course 5" }
+
+        ]
+      },
+      {
+        type: "stackedBar100",
+        showInLegend: true,
+        name: "Final",
+        dataPoints: [
+        {y: 40, label: "Course 1" },
+        {y: 20, label: "Course 2" },
+        {y: 220, label: "Course 3" },
+        {y: 474, label: "Course 4" },
+        {y: 450, label: "Course 5" }
+
+        ]
+      },
+      {
+        type: "stackedBar100",
+        showInLegend: true,
+        name: "Participation",
+        dataPoints: [
+        {y: 0, label: "Course 1" },
+        {y: 10, label: "Course 2" },
+        {y: 75, label: "Course 3" },
+        {y: 310, label: "Course 4" },
+        {y: 340, label: "Course 5" }
+
+        ]
+      }
+
+      ]
+
+    });
+
+chart.render();
+}
+</script>
+<script type="text/javascript" src="/assets/script/canvasjs.min.js"></script></head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
+</body>
 	</div>
 		<form id="addAssignmentForm" role="form" method="get" action="/add">
 			<h3>Add an assignment</h3>
