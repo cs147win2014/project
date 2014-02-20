@@ -19,7 +19,7 @@ var CourseSchema = new Mongoose.Schema({
   "name": String,
   "department": String,
   "number": Number,
-  "syllabus": Objectid // object id corresponding to the syllabus of the class
+  "syllabus": Array // object id corresponding to the syllabus of the class
 });
 
 
