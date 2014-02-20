@@ -16,7 +16,7 @@ var models   = require('./models');
 
 // Connect to the Mongo database, whether locally or on Heroku
 // MAKE SURE TO CHANGE THE NAME FROM 'lab7' TO ... IN OTHER PROJECTS
-var local_database_name = 'lab7';
+var local_database_name = 'project';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
@@ -25,7 +25,7 @@ mongoose.connect(database_uri);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var projects_json = require('./projects.json');
+var projects_json = require('./data.json');
 
 // Step 2: Remove all existing documents
 models.Project
