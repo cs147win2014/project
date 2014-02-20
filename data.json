@@ -73,7 +73,7 @@
 	],
 	"courses": [
 		{
-			"department": "CS",
+			"department": "cs",
 			"number": "109",
 			"syllabus": {
 				"problem set": 0.25,
@@ -82,8 +82,8 @@
 			}
 		},
 		{
-			"department": "EE",
-			"number": "101A",
+			"department": "ee",
+			"number": "101a",
 			"syllabus": {
 					"homework": 0.20,
 					"lab": 0.2,
@@ -92,7 +92,7 @@
 			}
 		},
 		{
-			"department": "CS",
+			"department": "cs",
 			"number": "147",
 			"syllabus": {
 					"assignments": 0.7,
@@ -105,6 +105,11 @@
 					"studioparticipation": 0.04,
 					"classparticipation": 0.02
 			}
+		},
+		{
+			"department": "testcourse",
+			"number":"101",
+			"syllabus": "HERE IS THE SYLLABUS FOR"
 		}
 	],
 	"users": [
