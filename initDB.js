@@ -28,7 +28,7 @@ mongoose.connect(database_uri);
 var projects_json = require('./data.json');
 
 // Step 2: Remove all existing documents
-models.Project
+models.SyllabusSchema
   .find()
   .remove()
   .exec(onceClear); // callback to continue at
