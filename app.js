@@ -9,6 +9,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
 
+var addACourse = require('./routes/addACourse');
 var index = require('./routes/index');
 var add = require ('./routes/add');
 var viewAssignments = require('./routes/viewAssignments');
@@ -57,6 +58,7 @@ app.get('/viewAssignments',viewAssignments.view);
 app.get('/info',info.view);
 app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
+app.get('/addACourse',addACourse.view);
 app.get('/editCourse',editCourse.view);
 app.get('/index',index.view)
 app.post('/login',login.checkUsername);

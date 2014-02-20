@@ -2,12 +2,17 @@
 var Mongoose = require('mongoose');
 
 
-var UserSchema = new Mongoose.Schema({
+
+var AssignmentTypeSchema = new Mongoose.Schema({
   "name": String,
-  "password": String,
-  "classes": [CourseSchema]
+  "percent": Number
 });
 
+
+
+var SyllabusSchema = new Mongoose.Schema({
+  "assignments": [AssignmentTypeSchema]
+});
 
 
 var CourseSchema = new Mongoose.Schema({
@@ -18,17 +23,17 @@ var CourseSchema = new Mongoose.Schema({
 });
 
 
-
-var SyllabusSchema = new Mongoose.Schema({
-  "assignments": [AssignmentTypeSchema]
-});
-
-
-
-var AssignmentTypeSchema = new Mongoose.Schema({
+var UserSchema = new Mongoose.Schema({
   "name": String,
-  "percent": Number
+  "password": String,
+  "classes": [CourseSchema]
 });
+
+
+
+
+
+
 
 
 
