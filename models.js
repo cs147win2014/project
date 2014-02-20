@@ -5,16 +5,16 @@ var Mongoose = require('mongoose');
 var UserSchema = new Mongoose.Schema({
   "name": String,
   "password": String,
-  "classes": [ClassSchema]
+  "classes": [CourseSchema]
 });
 
 
 
-var ClassSchema = new Mongoose.Schema({
+var CourseSchema = new Mongoose.Schema({
   "name": String,
   "number": Number,
   "department": String,
-  "syllabus": SyllabusSchema
+  "syllabus": [SyllabusSchema]
 });
 
 
@@ -32,6 +32,9 @@ var AssignmentTypeSchema = new Mongoose.Schema({
 
 
 
-exports.Project = Mongoose.model('Project', ProjectSchema);
+exports.User = Mongoose.model('User', UserSchema);
+exports.Course = Mongoose.model('Course', CourseSchema);
+exports.Syllabus = Mongoose.model('Syllabus', SyllabusSchema);
+exports.AssignmentType = Mongoose.model('AssignmentType', AssignmentTypeSchema);
 
 
