@@ -19,6 +19,9 @@ var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
 var signup = require('./routes/signup');
+var course = require('./routes/course');
+var assignment = require('./routes/assignment');
+
 // Example route
 // var user = require('./routes/user');
 
