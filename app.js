@@ -71,7 +71,7 @@ app.get('/signup',function(req, res) {
 
 app.post('/signup',signup.signIn);
 app.post('/editCourse',editCourse.addSyllabusFields)
-app.post('/addACourse/new', course.add);
+app.post('/addACourse/new',course.add);
 
 app.post('/signup/check/username', function(req, res) {
   var username = req.body.username;
