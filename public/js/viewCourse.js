@@ -36,7 +36,7 @@ function showCourseInfo(result) {
 
 
 	if(syllabusDiv.length) {
-		alert('syllabusdiv does exist');
+		//alert('syllabusdiv does exist');
 		if(syllabusDiv.is(":visible")) {
 			syllabusDiv.hide();
 		} else {
@@ -44,7 +44,7 @@ function showCourseInfo(result) {
 		}
 	}
 	else {
-		alert('syllabusdiv doesnt exist');
+		//alert('syllabusdiv doesnt exist');
 
 		var $newSyllabusDiv = $("<div>", {id: result.department+result.number+"syllabus"});
 
@@ -53,8 +53,19 @@ function showCourseInfo(result) {
 		$newSyllabusDiv.attr('id',result.department+result.number+'syllabus');
 		//alert("heres the syllabus: " + JSON.stringify(result.syllabus));
 
-		$newSyllabusDiv.text(JSON.stringify(result.syllabus));
+		//$newSyllabusDiv.text(JSON.stringify(result.syllabus));
 
+		var $ul = $("<ul>");
+		
+		for(var key in result.syllabus){
+			var $li = $("<li>");
+            var assignmentType = key;
+            var assignmentWeight = result.syllabus[key];
+            $li.text(assignmentType+": " + assignmentWeight + " of final grade");
+            $ul.append($li);
+        }
+
+        ($newSyllabusDiv).append($ul);
 		//alert("HERES NEWSYLABUSDIV " + $newSyllabusDiv.text());
 
 	
