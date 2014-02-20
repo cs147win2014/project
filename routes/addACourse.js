@@ -1,11 +1,11 @@
 // Get all of our friend data
 var data = require('../data.json');
 
-exports.view = function(req, res){
-	alert('here!');
+exports.view = function(req, res) {
+	//alert("here123");
 	console.log(data);
 	res.render('addACourse',data);
-};
+}
 
 
 // var models = require('../models');
