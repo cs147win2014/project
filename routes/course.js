@@ -73,6 +73,18 @@ exports.add = function(req, res) { 
 	res.render('editCourse',data);
  }
 
+exports.viewCourseInfo = function(req, res) {    
+	// Your code goes here%
+	var courseName = req.params.id;
+	console.log(courseName);
+
+  	// find the stuff you want inside the JSON and return it
+	
+	console.log('VIEWING COURSE INFO OR SOMETHING');
+	// instead of rendering add screen, rendered data screen
+	res.render('/courses/'+courseName,data);
+ }
+
 // var models = require('../models');
 
 // /*
