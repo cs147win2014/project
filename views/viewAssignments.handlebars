@@ -22,71 +22,6 @@
      <!-- Script for stacked bar chart I think-->
  <script type="text/javascript">
   window.onload = function () {
-    var chart1 = new CanvasJS.Chart("chartContainer1",
-    {
-      title:{
-        text: "Overview of Courses."
-
-      },
-      data:[
-      {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Assignments",
-        dataPoints: [
-        {y: 40, label: "Course 1" },
-        {y: 50, label: "Course 2" },
-        {y: 120, label: "Course 3" },
-        {y: 250, label: "Course 4" },
-        {y: 350, label: "Course 5" }
-
-        ]
-      },
-       {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Midterm(s)",
-        dataPoints: [
-        {y: 20, label: "Course 1" },
-        {y: 20, label: "Course 2" },
-        {y: 220, label: "Course 3" },
-        {y: 474, label: "Course 4" },
-        {y: 450, label: "Course 5" }
-
-        ]
-      },
-      {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Final",
-        dataPoints: [
-        {y: 40, label: "Course 1" },
-        {y: 20, label: "Course 2" },
-        {y: 220, label: "Course 3" },
-        {y: 474, label: "Course 4" },
-        {y: 450, label: "Course 5" }
-
-        ]
-      },
-      {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Participation",
-        dataPoints: [
-        {y: 0, label: "Course 1" },
-        {y: 10, label: "Course 2" },
-        {y: 75, label: "Course 3" },
-        {y: 310, label: "Course 4" },
-        {y: 340, label: "Course 5" }
-
-        ]
-      }
-
-      ]
-
-    });
-
-chart1.render();
 
 //figure out how to get blank lines between!!!!!!
 
@@ -200,9 +135,6 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 		{{/each}}
 	</table>
 </div>
-<hr>
-  <div id="chartContainer1" style="height: 300px; width: 100%;">
-  </div>
 <hr>
   <div id="chartContainer2" style="height: 300px; width: 100%;">
   </div>
