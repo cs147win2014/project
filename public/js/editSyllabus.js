@@ -1,5 +1,7 @@
 $(document).ready(function(){
     var next = 1;
+    
+    //$("#addAssignmentTypes").submit(addAssignmentTypesToSyllabus);
 
     $(".add-more").click(function(e){
         e.preventDefault();
@@ -31,7 +33,14 @@ $(document).ready(function(){
                 $(fieldID).remove();
             });
     });
-    
-
-    
 });
+
+/*function addAssignmentTypesToSyllabus(e) {
+    e.preventDefault();
+    
+    $.post("/editCourse",callBack);
+}
+
+function callBack(result) {
+    alert("what am i doing");
+}*/

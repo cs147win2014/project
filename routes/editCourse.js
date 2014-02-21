@@ -25,8 +25,20 @@ exports.addSyllabusFields = function(req, res) {
 
 	console.log(allFields);
 	console.log("doing stuff now");
-	for (var i = 0; i < allFields.length; i++) {
-		console.log("HELLO"+i);
+	for (var key in allFields) {
+		var syllabusText = allFields[key];
+		var commaIndex = syllabusText.indexOf(",");
+		if(commaIndex == -1 || commaIndex == syllabusText.length-1) {
+			console.log("incorrect type formatting :[");
+			break;
+		}
+		else {
+			var assignmentType = syllabusText.substr(0,commaIndex).trim();
+			var assignmentWeight= syllabusText.substr(commaIndex+1).trim();
+			console.log(assignmentType + " is worth " + parseFloat(assignmentWeight)*100 + "% of your final grade");
+			console.log("Here is where you would add it, but unfortunately, I have no idea which course to add this syllabus information to! How depressing");
+			console.log("And since I didn't trigger an AJAX request - I instead submitted a form - I have no idea how to even asynchronously display the data. So great.");
+		}
 	}
 
 
