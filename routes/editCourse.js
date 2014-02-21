@@ -24,7 +24,8 @@ exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
 
 	console.log(allFields);
-	for (var i = 0; i < req.body.length; i++) {
+	console.log("doing stuff now");
+	for (var i = 0; i < allFields.length; i++) {
 		console.log("HELLO"+i);
 	}
 

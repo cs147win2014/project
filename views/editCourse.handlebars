@@ -19,12 +19,14 @@
 <body>
 	<div class="container">
 		{{>navbar}}
-		<h1><b>Configure Course Syllabus</b></h1>
+		<h1>Configure Course Syllabus</h1>
 		<hr>
 		
 		<div class="panel panel-default">
 			<div class="panel panel-body" id="allFields">
-				<p>so this is where you should add types of homework and stuff!</p>
+				<p>This is where you configure your syllabus. Enter the types of assignments you will 
+				   have, in the following format <code>"[Type], [Weighting]"</code>, so if the final is worth 50% 
+				   of your grade, type in <code>"Final, 0.50"</code>!</p>
 				<small>Press + to add more</small>
 
 				<!--<div class="input-append">
@@ -48,15 +50,15 @@
 	                <form role="form" method="post" action="/editCourse">
 
 	                    <div id="field" class="input-append row">
-	                    	<div id="field1" name="prof1" class="col-xs-8 col-md-8"><br>
-		                    	<input autocomplete="off" class="form-control" type="text" placeholder="Ex: Paper" data-items="8" required>
+	                    	<div id="field1" class="col-xs-8 col-md-8"><br>
+		                    	<input autocomplete="off" class="form-control" type="text" name="field1"placeholder="Ex: Paper, 0.25" data-items="8" required>
 		                    </div>
 	                    </div>
 
 	                    <br>
 	                    <button id="b1" class="btn btn-default add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add another type</button></input>
 
-	                    <input autocomplete="off" class="hidden" id="numFields" name="numFields" type="hidden" value="1"/>
+	                    <input autocomplete="off" class="hidden" id="numFields" type="hidden" value="1"/>
 
 	                    <br><br>
 	                    
