@@ -33,7 +33,7 @@
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each courses}}
-					<li id="{{name}}" class="list-group-item">{{department}} {{number}}</li>
+					<li id="{{department}}{{number}}" class="list-group-item">{{department}} {{number}}<button id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">More</button></li>
 				{{/each}}
   			</ul>
 		</div>
