@@ -33,12 +33,18 @@
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each courses}}
-					<li id="{{department}}{{number}}" class="list-group-item">{{department}} {{number}}<button id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">More</button></li>
+					<li id="{{department}}{{number}}" class="list-group-item">
+						<a href="course/{{department}}">
+							<p>{{department}} {{number}}
+						</a>
+						<button id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">More</button>
+							</p>
+					</li>
 				{{/each}}
   			</ul>
 		</div>
-
-		<button id="addCourseButton" class="btn btn-default">Add Course</button>
+		<hr>
+		<button id="addCourseButton" class="btn btn-default pull-right">Add Course</button>
 
 		<!-- THE ASSIGNMENT TABLE [START] 
 		<div class="panel panel-default">
@@ -60,7 +66,7 @@
 		</div>
 		- assignment table [end] -->
 
-		<hr>
+		
 	</div>
 	
 	<script src="js/jquery-1.11.0.js"></script>

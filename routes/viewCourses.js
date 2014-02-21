@@ -13,3 +13,14 @@ exports.getCourseData = function(req,res) {
 	// as well as all the assignments tagged with that 
 	
 }
+
+
+exports.viewCoursePage = function(req, res) { 
+  var department = req.params.department; 
+  //var number = req.params.number; 
+  console.log("The course name is: " + department);
+  res.render('course', {
+  	'course department': department
+//  	'number': number
+  });
+};
