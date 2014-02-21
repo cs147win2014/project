@@ -17,13 +17,13 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
-		          	<li><a href="viewCourses">View All Courses</a></li>
-		          	<li class="divider"></li>
+		          	<!--<li><a href="viewCourses">View All Courses</a></li>
+		          	<li class="divider"></li>-->
 		        {{#each courses}}
 					<li id="{{name}}"><a href="#">{{department}} {{number}}</a></li>
 				{{/each}}
 					<li class="divider"></li>
-					<li><a href="#">Add A Course</a></li>
+					<li><a href="/addACourse">Add another course</a></li>
 				
 		            
 		          </ul>
@@ -32,21 +32,11 @@
 
 		        <li><a href="viewAssignments">View Assignments</a></li>
 		        <li><a href="info">Information</a></li>
-		  <!-- DONT NEED DROPDOWN
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">Separated link</a></li>
-		          </ul>
-		        </li>-->
+		        <li class="divider"></li>
+		        <li><a href="/">Logout {{currentUser}}</a></li>
+
 		      </ul>
-	    	<ul class="nav navbar-nav navbar-right">
-		       	<li class="navbar-right" align="right"><a href="/">Logout {{currentUser}}</a></li>
-		     </ul>
+
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
