@@ -104,6 +104,7 @@ exports.viewCourseInfo = function(req, res) { 
 		res.json({"data":"NONE"});
 	}
 	else {
+		console.log(courseInfo);
 		res.json(courseInfo);
 	}
 	
