@@ -30,7 +30,7 @@ function viewCourseSyllabus(e) {
 	//alert(courseName);
 	// get rid of 'project' from the front of the id 'project3'
 	
-	var url = "/courses/" + courseName;
+	var url = "/courses/" + courseName + "/syllabus/";
 	$.get(url, showCourseSyllabus);
 } 
 
