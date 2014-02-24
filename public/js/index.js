@@ -10,7 +10,7 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$('#addCourseButton').click(addCourse);
-	$('.courseButton').click(viewCourseSyllabus);
+	$('.courseButton').click(getCourseSyllabus);
 
 }
 
@@ -22,7 +22,7 @@ function addCourse() {
 	//$.get("/addACourse");
 } 
 
-function viewCourseSyllabus(e) {
+function getCourseSyllabus(e) {
 	e.preventDefault();
 
 	// Get the div ID, e.g., "project3"
@@ -35,7 +35,6 @@ function viewCourseSyllabus(e) {
 } 
 
 function showCourseSyllabus(result) {
-
 	var syllabusDiv = $("#"+result.department+result.number+"syllabus");
 
 
