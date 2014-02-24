@@ -68,8 +68,8 @@ app.post('/login',login.checkUsername);
 app.get('/signup',function(req, res) {
 	res.render('signup');
 });
-app.get('/courses/:id', course.viewCourseInfo);
-app.get('/course/:department', viewCourses.viewCoursePage);
+// app.get('/courses/:id', course.viewCourseInfo);
+app.get('/course/:courseName', viewCourses.viewCoursePage);
 
 app.post('/signup',signup.signIn);
 app.post('/editCourse',editCourse.addSyllabusFields)

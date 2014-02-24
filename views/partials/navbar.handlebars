@@ -18,7 +18,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		        {{#each courses}}
-					<li id="{{name}}"><a href="/course/{{department}}">{{department}} {{number}}</a></li>
+					<li id="{{name}}"><a href="/course/{{department}}{{name}}">{{department}} {{number}}</a></li>
 				{{/each}}
 					<li class="divider"></li>
 					<li><a href="/addACourse">Add another course</a></li>

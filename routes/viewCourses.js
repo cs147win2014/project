@@ -16,15 +16,16 @@ exports.getCourseData = function(req,res) {
 
 
 exports.viewCoursePage = function(req, res) { 
-  var department = req.params.department; 
+  var courseName = req.params.courseName; 
+  console.log(courseName);
   //var number = req.params.number; 
 
   // this is where we will go through data and systematically construct a JSON of
   // all the data we need to render this page
 
-  console.log("The course name is: " + department);
+  console.log("The course name is: " + courseName);
   res.render('course', {
-  	'department': department
+  	'department': courseName
 //  	'number': number
   });
 };
