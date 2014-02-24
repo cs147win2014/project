@@ -24,7 +24,6 @@ exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
 
 	console.log(allFields);
-	console.log("doing stuff now");
 	for (var key in allFields) {
 		var syllabusText = allFields[key];
 		var commaIndex = syllabusText.indexOf(",");
