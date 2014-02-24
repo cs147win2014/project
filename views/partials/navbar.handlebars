@@ -8,7 +8,7 @@
 				    <span class="icon-bar"></span>
 				    <span class="icon-bar"></span>
 			  	</button>
-		  		<a class="navbar-brand" href="index">Quick Calc</a>
+		  		<a class="navbar-brand" href="/index">Quick Calc</a>
 			</div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,7 +18,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		        {{#each courses}}
-					<li id="{{name}}"><a href="#">{{department}} {{number}}</a></li>
+					<li id="{{name}}"><a href="/course/{{department}}">{{department}} {{number}}</a></li>
 				{{/each}}
 					<li class="divider"></li>
 					<li><a href="/addACourse">Add another course</a></li>
@@ -28,10 +28,10 @@
 		          
 		        </li>
 
-		        <li><a href="viewAssignments">View Assignments</a></li>
-		        <li><a href="info">Information</a></li>
+		        <li><a href="/viewAssignments">View Assignments</a></li>
+		        <li><a href="/info">Information</a></li>
 		        <li class="divider"></li>
-		        <li><a href="/">Logout {{currentUser}}</a></li>
+		        <li><a href="/login">Logout {{currentUser}}</a></li>
 
 		      </ul>
 
