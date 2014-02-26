@@ -18,14 +18,14 @@ exports.getCourseData = function(req,res) {
 exports.viewCoursePage = function(req, res) { 
   var courseName = req.params.courseName; 
   console.log(courseName);
+  var courseData = data["navbar"];
+  courseData.push({'department':courseName});
   //var number = req.params.number; 
 
   // this is where we will go through data and systematically construct a JSON of
   // all the data we need to render this page
 
   console.log("The course name is: " + courseName);
-  res.render('course', {
-  	'department': courseName
-//  	'number': number
-  });
+  console.log(courseData);
+  res.render('course', courseData);
 };

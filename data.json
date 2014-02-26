@@ -126,5 +126,23 @@
 			"password": "c"
 		}
 	],
-	"currentUser": "guest"
+	"currentUser": "guest",
+	"navbar": [
+		{
+			"department": "cs",
+			"number": "109"
+		},
+		{
+			"department": "ee",
+			"number": "101a"
+		},
+		{
+			"department": "cs",
+			"number": "147"
+		},
+		{
+			"department": "testcourse",
+			"number":"101"
+		}
+	]
 }
