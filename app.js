@@ -20,7 +20,7 @@ var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
 // var signup = require('./routes/signup');
 var course = require('./routes/course');
-var assignment = require('./routes/assignment');
+//var assignment = require('./routes/assignment');
 
 var view = require('./routes/view');
 
