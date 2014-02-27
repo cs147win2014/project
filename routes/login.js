@@ -94,16 +94,23 @@ exports.signIn = function(req, res) { 
 	//console.log(inUse);
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
-  		console.log(inUse);
-  		if (!inUse) { 
+  		console.log("the inUse search returned" + inUse);
+  		if (!inUse.length) { 
 			var newUser = new models.User({ "username" : username, "password" : password });
+			console.log(newUser);
 			newUser.save(afterSaving);
   			
   			function afterSaving(err) {
     			if(err) console.log(err);
-    			res.send();
+    			//res.send();
   			};
-  		
+  			
+  			models.User.find({ "username": username }, function (err, used) {
+		  		if (err) { console.log(err) };
+  				console.log("user added" + used);
+  			});
+
+			res.render('index',data);
 
 
   		} else {
@@ -114,7 +121,6 @@ exports.signIn = function(req, res) { 
     		return;
   		}
 	});
-	res.render('index',data);
 
 
 	/*for (var i = 0; i < userDb.length; i++) {
