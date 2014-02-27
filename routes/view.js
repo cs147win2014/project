@@ -52,3 +52,9 @@ exports.viewIndex = function(req, res){
   console.log(data);
   res.render('index',data);
 };
+
+exports.viewAddCoursePage = function(req, res) {
+  //alert("here123");
+  console.log(data);
+  res.render('addACourse',data);
+}

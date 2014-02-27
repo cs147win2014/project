@@ -21,7 +21,11 @@
 		{{>navbar}}
 		<h1>Configure Course Syllabus</h1>
 		<hr>
-		<a href = "javascript:history.back();">BACKBUTTON</a>
+		<div class="row container-fluid">
+			<button class="btn btn-default col-md-2 col-xs-2" id="backBtn"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+			<button class="btn btn-default col-md-2 col-xs-2 pull-right" id="finishBtn"><i class="glyphicon glyphicon-check"></i> Finish</button>
+		</div>
+		<br>
 		<div class="panel panel-default">
 			<div class="panel panel-body" id="courseName">
 				Here is where we have the name of your course.
@@ -101,8 +105,7 @@
 	</div>
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/editSyllabus.js"></script>
-	<script src="js/common.js"></script>
+	<script src="js/editCourse.js"></script>
 
 
 </body>

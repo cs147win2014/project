@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    var next = 1;
     
-    //$("#addAssignmentTypes").submit(addAssignmentTypesToSyllabus);
-
+    $('#backBtn').click(backToCourseInput);
+    $('#finishBtn').click(backToIndex);
+    
+    var next = 1;
     $(".add-more").click(function(e){
         e.preventDefault();
         // the div element selectors
@@ -35,6 +36,16 @@ $(document).ready(function(){
     });
 });
 
+
+function backToCourseInput(e) {
+    e.preventDefault();
+    window.location.href = "javascript:history.back();";
+}
+
+function backToIndex(e) {
+    e.preventDefault();
+    window.location.href = "/index";
+}
 /*function addAssignmentTypesToSyllabus(e) {
     e.preventDefault();
     
