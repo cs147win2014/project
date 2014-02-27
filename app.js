@@ -57,11 +57,21 @@ if ('development' == app.get('env')) {
 // ADD ROUTES HERE
     //Routes we definitely use
 app.get('/',login.view);
+app.get('/signup',function(req, res) {
+  res.render('signup');
+});
+app.post('/signup',signup.signIn);
+
+// i think we should change the name of these and/or consolidate them
+app.get('/add',add.addAssignment);
+app.post('/editCourse',editCourse.addSyllabusFields);
+app.get('/viewAssignments',viewAssignments.view);
+
 
 
     //Do we use these?
-app.get('/add',add.addAssignment);
-app.get('/viewAssignments',viewAssignments.view);
+
+
 app.get('/info',info.view);
 app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
@@ -69,14 +79,10 @@ app.get('/addACourse',addACourse.view);
 app.get('/editCourse',editCourse.view);
 app.get('/index',index.view)
 app.post('/login',login.checkUsername);
-app.get('/signup',function(req, res) {
-	res.render('signup');
-});
+
 app.get('/courses/:id/syllabus', course.viewCourseInfo);
 app.get('/course/:courseName', viewCourses.viewCoursePage);
 
-app.post('/signup',signup.signIn);
-app.post('/editCourse',editCourse.addSyllabusFields)
 app.post('/addACourse/new',course.add);
 
 app.post('/signup/check/username', function(req, res) {
