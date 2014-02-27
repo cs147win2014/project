@@ -6,7 +6,7 @@ exports.add = function(req, res) { 
 					 number: req.body.number};
 
 	data["courses"].push(newCourse);
-	data["navbar"]["courses"].push(newCourse);
+	//data["navbar"]["courses"].push(newCourse);
 	
 	console.log(newCourse);
 	// instead of rendering add screen, rendered data screen

@@ -14,8 +14,8 @@
 			var chart1 = new CanvasJS.Chart("chartContainer",
     		{
       		title:{
-        	text: "Overview of Courses."
-			},
+          	text: "Overview of Courses."
+			    },
       		data:[
       		{
         		type: "stackedBar100",
@@ -51,7 +51,7 @@
         			{y: 220, label: "Course 3" },
         			{y: 474, label: "Course 4" },
         			{y: 450, label: "Course 5" }
-				]
+				  ]
       		},
       		{
         		type: "stackedBar100",
@@ -65,10 +65,10 @@
         			{y: 340, label: "Course 5" }
         		]
       		}
-			]
+			  ]
 			});
-
 			chart1.render();
+    }
 			</script>
 		<script type="text/javascript" src="canvasjs-1.3.0/canvasjs.min.js"></script>  
 
@@ -98,6 +98,7 @@
   			<ul class="list-group">
 				{{#each courses}}
 					<li id="{{department}}{{number}}" class="list-group-item">
+            
 						<a href="course/{{department}}{{number}}">
 							{{department}} {{number}}
 						</a>
@@ -106,6 +107,8 @@
 					</li>
 				{{/each}}
   			</ul>
+
+        <div id="showMe"></div>
 		</div>
 		<hr>
 		<button id="addCourseButton" class="btn btn-default pull-right">Add Course</button>

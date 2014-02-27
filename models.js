@@ -10,7 +10,7 @@ var AssignmentTypeSchema = new Mongoose.Schema({
 
 var SyllabusSchema = new Mongoose.Schema({
   // object ids corresponding to the assignmentTypes of the class
-  "assignmentTypes": [{ type: Schema.Types.ObjectId, ref: 'AssignmentType' }]
+  "assignmentTypes": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' }]
 });
 
 
@@ -19,7 +19,7 @@ var CourseSchema = new Mongoose.Schema({
   "department": String,
   "number": Number,
   // object id corresponding to the syllabus of the class
-  "syllabus": { type: Schema.Types.ObjectId, ref: 'Syllabus' }
+  "syllabus": { type: Mongoose.Schema.Types.ObjectId, ref: 'Syllabus' }
 });
 
 
@@ -27,7 +27,7 @@ var UserSchema = new Mongoose.Schema({
   "name": String,
   "password": String,
   // array of object ids corresponding to the classes they are in
-  "courses": [{ type: Schema.Types.ObjectId, ref: 'Course' }]
+  "courses": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 });
 
 

@@ -11,33 +11,12 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$('#loginBtn').click(login);
-	$('#signUpBtn').click(signup);
 }
+
 
 function login() {
 	e.preventDefault();
 	$.get('/login',checkCredentials);
-}
-
-function signup() {
-	e.preventDefault();
-	//$.get('/login',checkCredentials);
-		console.log('clicked');
-		var title = $('#new-project-form #title').val();
-		var image_url = $('#new-project-form #image_url').val();
-		var date = $('#new-project-form #date').val();
-		var summary = $('#new-project-form #summary').val();
-		var json = {
-			'project_title': title,
-			'image_url': image_url,
-			'date':  date,
-			'summary': summary
-		};
-		$.post('/project/new', json, function() {
-			window.location.href = '/'; // reload the page
-		});
-	});
-	
 }
 
 

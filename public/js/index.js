@@ -39,7 +39,6 @@ function showCourseSyllabus(result) {
 
 
 	if(syllabusDiv.length) {
-		alert('syllabusdiv does exist');
 		if(syllabusDiv.is(":visible")) {
 			$("#viewButton"+result.department+result.number).text("More");
 			syllabusDiv.hide();
@@ -52,7 +51,7 @@ function showCourseSyllabus(result) {
 		//alert('syllabusdiv doesnt exist');
 
 		// creates the div with a specific id for the class
-		var $newSyllabusDiv = $("<div>", {id: result.department+result.number+"syllabus"});
+		var $newSyllabusDiv = $('<div>', {id: result.department+result.number+'syllabus'});
 
 		// $newSyllabusDiv.attr('id',result.department+result.number+'syllabus');
 		//alert("heres the syllabus: " + JSON.stringify(result.syllabus));
@@ -78,11 +77,12 @@ function showCourseSyllabus(result) {
 
 	
 		//alert("li #"+result.department+""+result.number);
-		//var check2 = $("#"+result.department+""+result.number).attr('id');
-		//alert("should append to " + check2);
+		var check2 = $("#"+result.department+""+result.number).attr('id');
+		alert("should append to " + check2);
+		alert($("#"+check2).html());
 
 		// append the syllabus div onto the li element 
-		$("li #"+result.department+result.number).append($newSyllabusDiv);
+		$("#showMe").append($newSyllabusDiv);
 
 		// change the button text
 		$("#viewButton"+result.department+result.number).text("Less");

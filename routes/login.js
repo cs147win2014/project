@@ -1,5 +1,7 @@
 // Get all of our friend data
 var data = require('../data.json');
+var models = require('../models');
+
 
 exports.view = function(req, res){
 	//console.log(data);
@@ -83,10 +85,39 @@ exports.signIn = function(req, res) { 
 	}
 	
 
-	var userDb = data["users"];
+	//var userDb = data["users"];
+	
+	
+	//console.log(models);
+	// check if username is already taken -- this doesn't work
+	//var inUse = models.User.find({'username': username});
+	//console.log(inUse);
+	models.User.find({ "username": username }, function (err, inUse) {
+  		if (err) { console.log(err) };
+  		console.log(inUse);
+  		if (!inUse) { 
+			var newUser = new models.User({ "username" : username, "password" : password });
+			newUser.save(afterSaving);
+  			
+  			function afterSaving(err) {
+    			if(err) console.log(err);
+    			res.send();
+  			};
+  		
 
-	// check if username is already taken
-	for (var i = 0; i < userDb.length; i++) {
+
+  		} else {
+  			res.status(403);
+    		res.render('signup', {
+     			error: 'Username is already taken!'
+    		});
+    		return;
+  		}
+	});
+	res.render('index',data);
+
+
+	/*for (var i = 0; i < userDb.length; i++) {
 	 	if (userDb[i].username === username) {
 	  		res.status(403);
 	    	res.render('signup', {
@@ -95,11 +126,29 @@ exports.signIn = function(req, res) { 
 	    	return;
 		}
 	}
+	*/
 
-	var newUser = { "username" : username,
-				    "password" : password };
+
+/*
+
 	data["users"].push(newUser);
 	data["currentUser"] = username;
 	
 	res.render('index',data);
+	*/
  };
+
+exports.addProject = function(req, res) {
+  var form_data = req.body;
+  console.log(form_data);
+
+  form_data.title = form_data.project_title;
+
+  var newProj = new models.Project(form_data);
+  newProj.save(afterSaving);
+
+  function afterSaving(err) {
+    if(err) console.log(err);
+    res.send();
+  };
+}
