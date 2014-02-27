@@ -143,13 +143,27 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
   </div>
 		<form id="addAssignmentForm" role="form" method="get" action="/add">
 			<h3>Add an assignment</h3>
+      <div class="form-group">
+          <label for="Course">Name:</label>
+          <select class="form-control" id="courseSelect">
+            <option value="1"></option>
+            {{#each courses}}
+            <option value="1">{{department}}{{number}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Type">Type:</label>
+          <select class="form-control" id="typeSelect">
+            <option value="1"></option>
+            {{#each courses}}
+            <option value="1">{{department}}{{number}}</option>
+            {{/each}}
+          </select>
+        </div>
 		    <div class="form-group">
 		      <label for="name">Name:</label>
 		      <input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name">
-		    </div>
-		    <div class="form-group">
-		      <label for="type">Type:</label>
-		      <input type="text" class="form-control" id="type" placeholder="Ex: Paper" name="type">
 		    </div>
 		    <div class="form-group">
 		      <label for="score">Score:</label>
@@ -167,7 +181,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
-    <script src="js/common.js"></script>
+  <script src="js/addAssignment.js"></script>
 
 
 </body>
