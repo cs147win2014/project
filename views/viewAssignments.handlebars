@@ -117,76 +117,36 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 
 <body>
 	<div class="container">
-        {{>navbar}}
-        <div class="row container-fluid">
-		<h1 class="col-md-8 col-xs-8">Assignments</h1>
-    <div>
-      <br>
-      <button id="addAssignmentBtn" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Add Assignment</button>
-    </div>
+      {{>navbar}}
+      <div class="row container-fluid">
+		    <h1 class="col-md-8 col-xs-8">Assignments</h1>
+        <div>
+        <br>
+        <button id="addAssignmentBtn" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Add Assignment</button>
+      </div>
   </div>
-
-		<hr>
-      
-		
-        <div class="panel panel-default">
-          
+  <hr>
+  <div class="panel panel-default">     
 		<table class="table">
 			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-		{{#each assignments}}
+		  {{#each assignments}}
 			<tr id="{{name}}">
 				<td>{{name}}</td>
 				<td>{{type}}</td>
 				<td>{{score}}</td>
 				<td>{{total}}</td>
 			</tr>
-		{{/each}}
-	</table>
-</div>
-<hr>
-  <div id="chartContainer2" style="height: 300px; width: 100%;">
+		  {{/each}}
+	  </table>
   </div>
-<hr>
-  <div id="chartContainer3" style="height: 300px; width: 100%;">
-  </div>
-		<form id="addAssignmentForm" role="form" method="get" action="/add">
-			<h3>Add an assignment</h3>
-      <div class="form-group">
-          <label for="Course">Name:</label>
-          <select class="form-control" id="courseSelect">
-            <option value="1"></option>
-            {{#each courses}}
-            <option value="1">{{department}}{{number}}</option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="Type">Type:</label>
-          <select class="form-control" id="typeSelect">
-            <option value="1"></option>
-            {{#each courses}}
-            <option value="1">{{department}}{{number}}</option>
-            {{/each}}
-          </select>
-        </div>
-		    <div class="form-group">
-		      <label for="name">Name:</label>
-		      <input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name">
-		    </div>
-		    <div class="form-group">
-		      <label for="score">Score:</label>
-		      <input type="text" class="form-control" id="score" placeholder="Ex: 95" name="score">
-		    </div>
-		    <div class="form-group">
-		      <label for="total">Out of:</label>
-		      <input type="text" class="form-control" id="total" placeholder="Ex: 100" name="total">
-		    </div>
-		    <input type="submit" id="submitBtn" class="btn btn-default" value="Add"></input>
-		</form>
-		<hr>
+    <hr>
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+    <hr>
+    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+    <br>
 	</div>
 
-
+  
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>
   <script src="js/addAssignment.js"></script>
