@@ -21,11 +21,7 @@
 		{{>navbar}}
 		<h1>Configure Syllabus for SOMECOURSE</h1>
 		<hr>
-		<div class="row container-fluid">
-			<button class="btn btn-default col-md-2 col-xs-2" id="backBtn"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
-			<button class="btn btn-default col-md-2 col-xs-2 pull-right" id="finishBtn"><i class="glyphicon glyphicon-ok"></i> Finish</button>
-		</div>
-		<br>
+		
 		<div class="panel panel-default">
 			<div class="panel panel-body" id="courseName">
 				Here is where we have the name of your course.
@@ -85,23 +81,12 @@
         		
     </div>
 		</div>
-		
-		<div class="panel panel-default">
-		  <!-- Default panel contents -->
-		  <div class="panel-heading">Assignments</div>
-		<table class="table">
-			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-		{{#each assignments}}
-			<tr id="{{name}}" class="hci-friend">
-				<td>{{name}}</td>
-				<td>{{type}}</td>
-				<td>{{score}}</td>
-				<td>{{total}}</td>
-			</tr>
-		{{/each}}
-	</table>
-</div>
 		<hr>
+		<div class="row container-fluid">
+			<button class="btn btn-default col-md-2 col-xs-2" id="backBtn"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+			<button class="btn btn-default col-md-2 col-xs-2 pull-right" id="finishBtn"><i class="glyphicon glyphicon-ok"></i> Finish</button>
+		</div>
+		<br><br>
 	</div>
 	<script src="js/jquery-1.11.0.js"></script>
 	<script src="js/bootstrap.js"></script>

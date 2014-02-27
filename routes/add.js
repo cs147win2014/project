@@ -11,5 +11,5 @@ exports.addAssignment = function(req, res) { 
 	
 	console.log(newAssignment);
 	// instead of rendering add screen, rendered data screen
-	res.render('add',data);
+	res.render('viewAssignments',data);
  }
