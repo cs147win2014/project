@@ -54,8 +54,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// Add routes here
+// ADD ROUTES HERE
+    //Routes we definitely use
 app.get('/',login.view);
+
+
+    //Do we use these?
 app.get('/add',add.addAssignment);
 app.get('/viewAssignments',viewAssignments.view);
 app.get('/info',info.view);

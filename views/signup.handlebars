@@ -17,22 +17,9 @@
 <body>
 
 <div class="container">
-    {{>navbar}}
     <div class="row">
-        <h1 class="container-fluid"><b>Welcome to Quick Calc!</b></h1>
-
-        <div class="col-md-6"> 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Quick Calc</div>
-                <div class="panel-body">
-                    Welcome to Quick Calc, a tool you can use to keep track of where you are in a class, and 
-                    how you're doing along the way!</div>
-            </div>
-        </div>
-
-        <div class="col-md-4 ">
-            
+        <h1 class="container-fluid"><b>Sign Up for Quick Calc!</b></h1>
+        <div class="col-md-4 "> 
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> Sign Up!</div>
@@ -40,7 +27,7 @@
 
                     <div>{{error}}</div><br>
 
-                    <form role="form" method="post" action="/signup">
+                    <form role="form" method="post" action="/signup" id="new-user-form">
                     <div class="form-group">
                         <label for="inputUsername" class="control-label">
                             Username</label>
@@ -72,9 +59,9 @@
 
 
                     <div class="form-group last">
-                            <button type="submit" id="loginBtn" class="btn btn-success btn-sm">
+                            <button type="submit" id="signUpButton" class="btn btn-success btn-sm">
                                 Sign up</button>
-                                 <button type="reset" class="btn btn-default btn-sm">
+                            <button type="reset" class="btn btn-default btn-sm">
                                 Reset</button>
 
                     </div>

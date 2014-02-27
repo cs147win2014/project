@@ -11,7 +11,7 @@ var AssignmentTypeSchema = new Mongoose.Schema({
 
 
 var SyllabusSchema = new Mongoose.Schema({
-  "assignmentTypes": Array // array of assignment types
+  "assignmentTypes": [String] // array of assignment types
 });
 
 
@@ -26,14 +26,8 @@ var CourseSchema = new Mongoose.Schema({
 var UserSchema = new Mongoose.Schema({
   "name": String,
   "password": String,
-  "classes": Array // array of object ids corresponding to the classes they are in
+  "courses": Array // array of object ids corresponding to the classes they are in
 });
-
-
-
-
-
-
 
 
 
