@@ -78,6 +78,7 @@ exports.viewCourseInfo = function(req, res) { 
 		if(allCourses[i].department.toLowerCase() === department.toLowerCase()) {
 			if(allCourses[i].number.toLowerCase() === number.toLowerCase()) {
 				courseInfo = allCourses[i];
+				break;
 			}
 		}
 	}
