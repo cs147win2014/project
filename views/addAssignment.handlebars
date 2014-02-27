@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>Assignments</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/simplex.min.css">
+
+	<!-- import plugin script -->
+    <script src='Chart.js/Chart.min.js'></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->        
+</head>
+
+<body>
+	<div class="container">
+        {{>navbar}}
+		<h1>Add A Course</h1>
+		<hr>
+		<div class="row container-fluid">
+					<form id="addAssignmentForm" role="form" method="get" action="/add">
+			<h3>Add an assignment</h3>
+      <div class="form-group">
+          <label for="Course">Name:</label>
+          <select class="form-control" id="courseSelect">
+            <option value="1"></option>
+            {{#each courses}}
+            <option value="1">{{department}}{{number}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Type">Type:</label>
+          <select class="form-control" id="typeSelect">
+            <option value="1"></option>
+            {{#each courses}}
+            <option value="1">{{department}}{{number}}</option>
+            {{/each}}
+          </select>
+        </div>
+		    <div class="form-group">
+		      <label for="name">Name:</label>
+		      <input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name">
+		    </div>
+		    <div class="form-group">
+		      <label for="score">Score:</label>
+		      <input type="text" class="form-control" id="score" placeholder="Ex: 95" name="score">
+		    </div>
+		    <div class="form-group">
+		      <label for="total">Out of:</label>
+		      <input type="text" class="form-control" id="total" placeholder="Ex: 100" name="total">
+		    </div>
+		    <input type="submit" id="submitBtn" class="btn btn-default" value="Add"></input>
+		</form>
+
+
+			    <button id="backBtn" class="btn btn-default form-group col-md-2 col-xs-2" ><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+			</div>
+			
+		</div>
+		
+	</div>
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.js"></script>
+  	<script src="js/addCourse.js"></script>
+
+
+
+</body>
+
+
+</html>
