@@ -39,7 +39,7 @@ function showCourseSyllabus(result) {
 
 
 	if(syllabusDiv.length) {
-		//alert('syllabusdiv does exist');
+		alert('syllabusdiv does exist');
 		if(syllabusDiv.is(":visible")) {
 			$("#viewButton"+result.department+result.number).text("More");
 			syllabusDiv.hide();
@@ -55,7 +55,7 @@ function showCourseSyllabus(result) {
 		var $newSyllabusDiv = $("<div>", {id: result.department+result.number+"syllabus"});
 
 		// $newSyllabusDiv.attr('id',result.department+result.number+'syllabus');
-		// alert("heres the syllabus: " + JSON.stringify(result.syllabus));
+		//alert("heres the syllabus: " + JSON.stringify(result.syllabus));
 
 		// $newSyllabusDiv.text(JSON.stringify(result.syllabus));
 
@@ -74,15 +74,15 @@ function showCourseSyllabus(result) {
 
         // append the formatted syllabus (in the form of an 'ul') to the div
         ($newSyllabusDiv).append($ul);
-		// alert("HERES NEWSYLABUSDIV " + $newSyllabusDiv.text());
+		//alert("HERES NEWSYLABUSDIV " + $newSyllabusDiv.text());
 
 	
-		// alert("li #"+result.department+""+result.number);
-		// var check2 = $("#"+result.department+""+result.number).attr('id');
-		// alert("should append to " + check2);
+		//alert("li #"+result.department+""+result.number);
+		//var check2 = $("#"+result.department+""+result.number).attr('id');
+		//alert("should append to " + check2);
 
 		// append the syllabus div onto the li element 
-		$("#"+result.department+result.number).append($newSyllabusDiv);
+		$("li #"+result.department+result.number).append($newSyllabusDiv);
 
 		// change the button text
 		$("#viewButton"+result.department+result.number).text("Less");

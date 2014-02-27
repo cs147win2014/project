@@ -18,7 +18,7 @@ var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
-var signup = require('./routes/signup');
+// var signup = require('./routes/signup');
 var course = require('./routes/course');
 var assignment = require('./routes/assignment');
 
@@ -60,7 +60,7 @@ app.get('/',login.view);
 app.get('/signup',function(req, res) {
   res.render('signup');
 });
-app.post('/signup',signup.signIn);
+app.post('/signup',login.signIn);
 
 // i think we should change the name of these and/or consolidate them
 app.get('/add',add.addAssignment);
