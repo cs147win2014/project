@@ -88,12 +88,13 @@ exports.signIn = function(req, res) { 
 	//var userDb = data["users"];
 	
 	
-	console.log(models);
+	//console.log(models);
 	// check if username is already taken -- this doesn't work
 	//var inUse = models.User.find({'username': username});
 	//console.log(inUse);
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
+  		console.log(inUse);
   		if (!inUse) { 
 			var newUser = new models.User({ "username" : username, "password" : password });
 			newUser.save(afterSaving);
