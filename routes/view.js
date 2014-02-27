@@ -59,7 +59,7 @@ exports.viewAddCoursePage = function(req, res) {
   res.render('addACourse',data);
 }
 
-exports.viewAddCoursePage = function(req, res) {
+exports.viewAddAssignmentPage = function(req, res) {
   //alert("here123");
   console.log(data);
   res.render('addAssignment',data);
