@@ -120,13 +120,16 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
         {{>navbar}}
 		<h1>Assignments</h1>
 		<hr>
-		
+      <div>
+      <button class="btn btn-default pull-right">Add Assignment</button>
+    </div>
+		<br><br><br>
         <div class="panel panel-default">
           
 		<table class="table">
 			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 		{{#each assignments}}
-			<tr id="{{name}}" class="hci-friend">
+			<tr id="{{name}}">
 				<td>{{name}}</td>
 				<td>{{type}}</td>
 				<td>{{score}}</td>
