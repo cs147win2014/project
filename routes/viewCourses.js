@@ -27,5 +27,5 @@ exports.viewCoursePage = function(req, res) { 
 
   console.log("The course name is: " + courseName);
   console.log(courseData);
-  res.render('course', courseData);
+  res.render('course', {'department':courseName});
 };
