@@ -36,3 +36,14 @@ exports.viewCoursePage = function(req, res) { 
   console.log(courseData);
   res.render('course', courseData);
 };
+
+exports.viewAssignments = function(req, res){
+  
+  console.log(data);
+  res.render('viewAssignments',data);
+};
+
+exports.viewInfoPage = function(req, res){
+  console.log(data);
+  res.render('info',data);
+};

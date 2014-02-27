@@ -12,9 +12,9 @@ var mongoose = require('mongoose');
 var addACourse = require('./routes/addACourse');
 var index = require('./routes/index');
 var add = require ('./routes/add');
-var viewAssignments = require('./routes/viewAssignments');
-var info = require('./routes/info');
-var viewCourses = require('./routes/viewCourses');
+//var viewAssignments = require('./routes/viewAssignments');
+//var info = require('./routes/info');
+//var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
@@ -67,15 +67,15 @@ app.post('/signup',login.signIn);
 // i think we should change the name of these and/or consolidate them
 app.get('/add',add.addAssignment);
 app.post('/editCourse',editCourse.addSyllabusFields);
-app.get('/viewAssignments',viewAssignments.view);
+app.get('/viewAssignments',view.viewAssignments);
 
 
 
     //Do we use these?
 
 
-app.get('/info',info.view);
-app.get('/viewCourses',viewCourses.view);
+app.get('/info',view.viewInfoPage);
+//app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
 app.get('/addACourse',addACourse.view);
 app.get('/editCourse',editCourse.view);
