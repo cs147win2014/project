@@ -10,17 +10,19 @@ var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
 
 var addACourse = require('./routes/addACourse');
-var index = require('./routes/index');
+//var index = require('./routes/index');
 var add = require ('./routes/add');
-var viewAssignments = require('./routes/viewAssignments');
-var info = require('./routes/info');
-var viewCourses = require('./routes/viewCourses');
+//var viewAssignments = require('./routes/viewAssignments');
+//var info = require('./routes/info');
+//var viewCourses = require('./routes/viewCourses');
 var addCourse = require ('./routes/addCourse');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
 // var signup = require('./routes/signup');
 var course = require('./routes/course');
 var assignment = require('./routes/assignment');
+
+var view = require('./routes/view');
 
 // Example route
 // var user = require('./routes/user');
@@ -65,23 +67,23 @@ app.post('/signup',login.signIn);
 // i think we should change the name of these and/or consolidate them
 app.get('/add',add.addAssignment);
 app.post('/editCourse',editCourse.addSyllabusFields);
-app.get('/viewAssignments',viewAssignments.view);
+app.get('/viewAssignments',view.viewAssignments);
 
 
 
     //Do we use these?
 
 
-app.get('/info',info.view);
-app.get('/viewCourses',viewCourses.view);
+app.get('/info',view.viewInfo);
+//app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
 app.get('/addACourse',addACourse.view);
 app.get('/editCourse',editCourse.view);
-app.get('/index',index.view)
+app.get('/index',view.viewIndex);
 app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.viewCourseInfo);
-app.get('/course/:courseName', viewCourses.viewCoursePage);
+app.get('/course/:courseName', view.viewCoursePage);
 
 app.post('/addACourse/new',course.add);
 
