@@ -58,3 +58,9 @@ exports.viewAddCoursePage = function(req, res) {
   console.log(data);
   res.render('addACourse',data);
 }
+
+exports.viewAddCoursePage = function(req, res) {
+  //alert("here123");
+  console.log(data);
+  res.render('addAssignment',data);
+}
