@@ -113,6 +113,8 @@ exports.viewCourseInfo = function(req, res) { 
 	
  }
 
+
+
 // var models = require('../models');
 
 // /*

@@ -22,6 +22,8 @@ var login = require ('./routes/login');
 var course = require('./routes/course');
 var assignment = require('./routes/assignment');
 
+var view = require('./routes/view');
+
 // Example route
 // var user = require('./routes/user');
 
@@ -81,7 +83,7 @@ app.get('/index',index.view)
 app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.viewCourseInfo);
-app.get('/course/:courseName', viewCourses.viewCoursePage);
+app.get('/course/:courseName', view.viewCoursePage);
 
 app.post('/addACourse/new',course.add);
 
