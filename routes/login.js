@@ -94,7 +94,7 @@ exports.signIn = function(req, res) { 
 	//console.log(inUse);
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
-  		console.log("the inUse search returned" + inUse);
+  		console.log("the inUse search returned " + inUse);
   		if (!inUse.length) { 
 			var newUser = new models.User({ "username" : username, "password" : password });
 			console.log(newUser);
@@ -102,14 +102,10 @@ exports.signIn = function(req, res) { 
   			
   			function afterSaving(err) {
     			if(err) console.log(err);
+    			console.log(newUser + " was supposedly saved");
     			//res.send();
   			};
   			
-  			models.User.find({ "username": username }, function (err, used) {
-		  		if (err) { console.log(err) };
-  				console.log("user added" + used);
-  			});
-
 			res.render('index',data);
 
 
