@@ -87,7 +87,7 @@ app.get('/course/:courseName', view.viewCoursePage);
 
 app.post('/addACourse/new',course.add);
 
-app.post('/signup/check/username', function(req, res) {
+/*app.post('/signup/check/username', function(req, res) {
   var username = req.body.username;
   // check if username contains non-url-safe characters
   if (username !== encodeURIComponent(username)) {
@@ -112,7 +112,7 @@ app.post('/signup/check/username', function(req, res) {
   }
   // looks like everything is fine
   res.send(200);
-});
+});*/
 // Example route
 // app.get('/users', user.list);
 
