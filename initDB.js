@@ -28,14 +28,14 @@ mongoose.connect(database_uri);
 var projects_json = require('./data.json');
 
 // Step 2: Remove all existing documents
-models.Syllabus.find().remove().exec(onceClear); // callback to continue at
-models.Syllabus.find().remove().exec(onceClear); // callback to continue at
-models.Syllabus.find().remove().exec(onceClear); // callback to continue at
-models.Syllabus.find().remove().exec(onceClear); // callback to continue at
+models.Syllabus.find().remove(); // callback to continue at
+//models.User.find().remove(); // callback to continue at
+models.Course.find().remove(); // callback to continue at
+models.AssignmentType.find().remove().exec(onceClear); // callback to continue at
 
 // Step 3: load the data from the JSON file
 function onceClear(err) {
-  console.log(err);
+  console.log("hey");
   if(err) console.log(err);
 
   // loop over the projects, construct and save an object from each one
