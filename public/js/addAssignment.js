@@ -13,6 +13,7 @@ function initializePage() {
     });
 
     $('#addAssignmentBtn').click(addAssignment);
+    $('#backBtn').click(goBack);
 }
 
 function addAssignment() {
@@ -22,3 +23,7 @@ function addAssignment() {
 	//$.get("/addACourse");
 }
 
+function goBack(e) {
+    e.preventDefault();
+    window.location.href = "javascript:history.back();";
+}
