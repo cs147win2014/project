@@ -87,32 +87,6 @@ app.get('/course/:courseName', view.viewCoursePage);
 
 app.post('/addACourse/new',course.add);
 
-/*app.post('/signup/check/username', function(req, res) {
-  var username = req.body.username;
-  // check if username contains non-url-safe characters
-  if (username !== encodeURIComponent(username)) {
-    res.json(403, {
-      invalidChars: true
-    });
-    return;
-  }
-  // check if username is already taken - query your db here
-  var usernameTaken = false;
-  for (var i = 0; i < dummyDb.length; i++) {
-    if (dummyDb[i].username === username) {
-      usernameTaken = true;
-      break;
-    }
-  }
-  if (usernameTaken) {
-    res.json(403, {
-      isTaken: true
-    });
-    return
-  }
-  // looks like everything is fine
-  res.send(200);
-});*/
 // Example route
 // app.get('/users', user.list);
 
