@@ -106,7 +106,7 @@ exports.signIn = function(req, res) { 
     			//res.send();
   			};
   			
-			res.render('index',data);
+			res.render('index',newUser);
 
 
   		} else {
