@@ -10,7 +10,7 @@ var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
 
 var addACourse = require('./routes/addACourse');
-var index = require('./routes/index');
+//var index = require('./routes/index');
 var add = require ('./routes/add');
 //var viewAssignments = require('./routes/viewAssignments');
 //var info = require('./routes/info');
@@ -74,12 +74,12 @@ app.get('/viewAssignments',view.viewAssignments);
     //Do we use these?
 
 
-app.get('/info',view.viewInfoPage);
+app.get('/info',view.viewInfo);
 //app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
 app.get('/addACourse',addACourse.view);
 app.get('/editCourse',editCourse.view);
-app.get('/index',index.view)
+app.get('/index',view.viewIndex);
 app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.viewCourseInfo);

@@ -43,7 +43,12 @@ exports.viewAssignments = function(req, res){
   res.render('viewAssignments',data);
 };
 
-exports.viewInfoPage = function(req, res){
+exports.viewInfo = function(req, res){
   console.log(data);
   res.render('info',data);
+};
+
+exports.viewIndex = function(req, res){
+  console.log(data);
+  res.render('index',data);
 };
