@@ -1,6 +1,4 @@
-
 var Mongoose = require('mongoose');
-
 
 
 var AssignmentTypeSchema = new Mongoose.Schema({
@@ -11,7 +9,8 @@ var AssignmentTypeSchema = new Mongoose.Schema({
 
 
 var SyllabusSchema = new Mongoose.Schema({
-  "assignmentTypes": [String] // object ids corresponding to the assignmentTypes of the class
+  // object ids corresponding to the assignmentTypes of the class
+  "assignmentTypes": [{ type: Schema.Types.ObjectId, ref: 'AssignmentType' }]
 });
 
 
@@ -19,14 +18,16 @@ var CourseSchema = new Mongoose.Schema({
   "name": String,
   "department": String,
   "number": Number,
-  "syllabus": Array // object id corresponding to the syllabus of the class
+  // object id corresponding to the syllabus of the class
+  "syllabus": { type: Schema.Types.ObjectId, ref: 'Syllabus' }
 });
 
 
 var UserSchema = new Mongoose.Schema({
   "name": String,
   "password": String,
-  "courses": [] // array of object ids corresponding to the classes they are in
+  // array of object ids corresponding to the classes they are in
+  "courses": [{ type: Schema.Types.ObjectId, ref: 'Course' }]
 });
 
 
