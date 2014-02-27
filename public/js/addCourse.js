@@ -9,7 +9,7 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-	$('#backBtn').click(goBack);
+	$('#backBtn').click(backToIndex);
 	$('#submitBtn').click(addCourse);
 
 }
@@ -31,10 +31,10 @@ function addCourse() {
 	});
 }
 
-
-
-function goBack(e) {
+function backToIndex(e) {
 	e.preventDefault();
 	window.location.href = "/index";
 }
+
+
 
