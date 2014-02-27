@@ -24,7 +24,7 @@ var CourseSchema = new Mongoose.Schema({
 
 
 var UserSchema = new Mongoose.Schema({
-  "name": String,
+  "username": String,
   "password": String,
   // array of object ids corresponding to the classes they are in
   "courses": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Course' }]

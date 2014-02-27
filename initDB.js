@@ -29,7 +29,7 @@ var projects_json = require('./data.json');
 
 // Step 2: Remove all existing documents
 models.Syllabus.find().remove(); // callback to continue at
-//models.User.find().remove(); // callback to continue at
+models.User.find().remove(); // callback to continue at
 models.Course.find().remove(); // callback to continue at
 models.AssignmentType.find().remove().exec(onceClear); // callback to continue at
 
