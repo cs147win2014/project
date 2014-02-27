@@ -118,12 +118,17 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 <body>
 	<div class="container">
         {{>navbar}}
-		<h1>Assignments</h1>
-		<hr>
-      <div>
-      <button class="btn btn-default pull-right">Add Assignment</button>
+        <div class="row container-fluid">
+		<h1 class="col-md-8 col-xs-8">Assignments</h1>
+    <div>
+      <br>
+      <button id="addAssignmentBtn" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Add Assignment</button>
     </div>
-		<br><br><br>
+  </div>
+
+		<hr>
+      
+		
         <div class="panel panel-default">
           
 		<table class="table">
