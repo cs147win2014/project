@@ -44,8 +44,6 @@ exports.checkUsername = function(req, res) { 
  };
 
 exports.signIn = function(req, res) {    
-	console.log("req is " + req);
-	console.log("res is " + res);
 	// Your code goes here%
 	
 	var username = req.body.username; 
@@ -107,8 +105,8 @@ exports.signIn = function(req, res) { 
     			console.log(newUser + " was supposedly saved");
     			//res.send();
   			};
-  			
-			res.render('index',newUser);
+  			req.session.user = username;
+			res.redirect('index');
 
 
   		} else {
