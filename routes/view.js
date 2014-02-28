@@ -49,11 +49,13 @@ exports.viewInfo = function(req, res){
 };
 
 exports.viewIndex = function(req, res){
+  data['expand'] = false;
   console.log(data);
   res.render('index',data);
 };
 
 exports.viewIndexExpand = function(req, res) {
+  data['expand'] = true;
   console.log(data);
   res.render('index',data);
 };

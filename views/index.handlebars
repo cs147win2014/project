@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/css/simplex.min.css">
 	<script src='/canvasjs-1.3.0/canvasjs.min.js'></script>
-  <!--
 	<script type="text/javascript">
   		window.onload = function () {
 			var chart1 = new CanvasJS.Chart("chartContainer",
@@ -69,8 +68,8 @@
 			});
 			chart1.render();
     }
-			</script> -->
-		<script type="text/javascript" src="canvasjs-1.3.0/canvasjs.min.js"></script>  
+			</script> 
+		<script type="text/javascript" src="/canvasjs-1.3.0/canvasjs.min.js"></script>  
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -112,16 +111,17 @@
 		</div>
 		<hr>
 		<div><button id="addCourseButton" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Add Course</button></div>
-		<div id="chartContainer" style="height: 300px; width: 100%;">
-  		</div>
+    <br>
+    <br>
+
+
 		
-
-		<!-- THE ASSIGNMENT TABLE [START] 
+      {{#if expand}}
+      <div id="chartContainer" style="height: 300px; width: 100%;">
+      </div>
+      <br>
 		<div class="panel panel-default">
-		  <! Default panel contents 
 		  <div class="panel-heading">Assignments</div>
-
-		  <! Table 
 		  <table class="table">
 		    <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 		{{#each assignments}}
@@ -134,10 +134,10 @@
 		{{/each}}
 		  </table>
 		</div>
-		- assignment table [end] -->
+    {{/if}}
+	
 
-		
-	</div>
+  </div>
 	
 	<script src="/js/jquery-1.11.0.js"></script>
 	<script src="/js/bootstrap.js"></script>
