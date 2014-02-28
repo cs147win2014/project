@@ -126,19 +126,106 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
       </div>
   </div>
   <hr>
-  <div class="panel panel-default">     
-		<table class="table">
-			<th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-		  {{#each assignments}}
-			<tr id="{{name}}">
-				<td>{{name}}</td>
-				<td>{{type}}</td>
-				<td>{{score}}</td>
-				<td>{{total}}</td>
-			</tr>
-		  {{/each}}
-	  </table>
+
+
+  <!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#listTab" data-toggle="tab">Assignment List</a></li>
+  <li><a href="#progressTab" data-toggle="tab">Course Progress</a></li>
+  <li><a href="#syllabusTab" data-toggle="tab">Syllabus Configuration</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="listTab"> 
+    
+    <div class="panel panel-default">
+      <div class="panel panel-body " id="allFields">
+        Here are all your assignments so far:
+      
+      <table class="table">
+        <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
+        {{#each assignments}}
+        <tr id="{{name}}">
+          <td>{{name}}</td>
+          <td>{{type}}</td>
+          <td>{{score}}</td>
+          <td>{{total}}</td>
+        </tr>
+        {{/each}}
+      </table>
+      </div>
+    </div>
+
+    <hr>
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+    <hr>
+    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+
   </div>
+
+  <div class="tab-pane" id="progressTab"> 
+    <div class="panel panel-default">     
+      Progress in the Class with charts
+    </div>
+  </div>
+
+
+
+  <div class="tab-pane" id="syllabusTab">
+
+    <div class="panel panel-default">
+      <div class="panel panel-body " id="allFields">
+        <p>Here is your current syllabus:</p>
+        <p>This is where you configure your syllabus. Enter the types of assignments you will 
+           have, in the following format <code>"[Type], [Weighting]"</code>, so if the final is worth 50% 
+           of your grade, type in <code>"Final, 0.50"</code>!</p>
+        <small>Press + to add more</small>
+              <div id="profs"> 
+                  <form id="addAssignmentTypes" role="form" method="post" action="/editCourse">
+
+                      <div id="field" class="input-append row">
+                        <div id="field1" class="col-xs-8 col-md-8"><br>
+                          <input autocomplete="off" class="form-control" type="text" name="field1"placeholder="Ex: Paper, 0.25" data-items="8" required>
+                        </div>
+                      </div>
+
+                      <br>
+                      <button id="b1" class="btn btn-default add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add another type</button></input>
+
+                      <input autocomplete="off" class="hidden" id="numFields" type="hidden" value="1"/>
+
+                      <br><br>
+                      
+                      <div>
+                <button type="submit" id="submitBtn" class="btn btn-default pull-right" ><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+              </div>
+
+                  </form>
+
+            </div>
+            
+    </div>
+    </div>
+    <hr>
+    <div class="row container-fluid">
+      <button class="btn btn-default col-md-2 col-xs-2" id="backBtn"><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+      <button class="btn btn-default col-md-2 col-xs-2 pull-right" id="finishBtn"><i class="glyphicon glyphicon-ok"></i> Finish</button>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  
     <hr>
     <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
     <hr>
