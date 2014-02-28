@@ -78,8 +78,8 @@ function showCourseSyllabus(result) {
 	
 		//alert("li #"+result.department+""+result.number);
 		var check2 = $("#"+result.department+""+result.number).attr('id');
-		alert("should append to " + check2);
-		alert($("#"+check2).html());
+		//alert("should append to " + check2);
+		//alert($("#"+check2).html());
 
 		// append the syllabus div onto the li element 
 		$("#showMe").append($newSyllabusDiv);

@@ -130,14 +130,29 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 
   <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#listTab" data-toggle="tab">Assignment List</a></li>
-  <li><a href="#progressTab" data-toggle="tab">Course Progress</a></li>
+  <li class="active"><a href="#progressTab" data-toggle="tab">Course Progress</a></li>
+  <li ><a href="#listTab" data-toggle="tab">Assignment List</a></li>
   <li><a href="#syllabusTab" data-toggle="tab">Syllabus Configuration</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane active" id="listTab"> 
+  <div class="tab-pane active" id="progressTab"> 
+    <div class="panel panel-default">  
+      <div class="panel panel-body">   
+        Here are some trends regarding your [types of homework for this class!]
+
+      </div>
+    
+
+    <br><br>
+    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+    <br><br><br><br>
+    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="listTab"> 
     
     <div class="panel panel-default">
       <div class="panel panel-body " id="allFields">
@@ -157,20 +172,9 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
       </div>
     </div>
 
-    <hr>
-    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
-    <hr>
-    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+    
 
   </div>
-
-  <div class="tab-pane" id="progressTab"> 
-    <div class="panel panel-default">     
-      Progress in the Class with charts
-    </div>
-  </div>
-
-
 
   <div class="tab-pane" id="syllabusTab">
 
@@ -182,7 +186,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
            of your grade, type in <code>"Final, 0.50"</code>!</p>
         <small>Press + to add more</small>
               <div id="profs"> 
-                  <form id="addAssignmentTypes" role="form" method="post" action="/editCourse">
+                  <form id="addAssignmentTypes" role="form" method="get" action="/viewAssignments">
 
                       <div id="field" class="input-append row">
                         <div id="field1" class="col-xs-8 col-md-8"><br>
