@@ -35,7 +35,7 @@ var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 
 var app = express();
-var MongoStore = require('connect-mongo')(express);
+//var MongoStore = require('connect-mongo')(express);
 
 
 // all environments
@@ -51,14 +51,15 @@ app.use(express.methodOverride());
 
 //COOKIES!!
 app.use(express.cookieParser('Intro HCI secret key'));
-app.use(express.session({
-	//FROM THE INTERNETS
-  store: new MongoStore({
-    url: 'mongodb://root:myPassword@mongo.onmodulus.net:27017/3xam9l3'
-  }),
-  secret: '1234567890QWERTY'
-}));
+app.use(express.session();
 
+// {
+// 	//FROM THE INTERNETS
+//   store: new MongoStore({
+//     url: 'mongodb://root:myPassword@mongo.onmodulus.net:27017/3xam9l3'
+//   }),
+//   secret: '1234567890QWERTY'
+// })
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
