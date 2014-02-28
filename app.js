@@ -51,7 +51,7 @@ app.use(express.methodOverride());
 
 //COOKIES!!
 app.use(express.cookieParser('Intro HCI secret key'));
-app.use(express.session());
+app.use(express.session();
 
 // {
 // 	//FROM THE INTERNETS
