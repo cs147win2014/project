@@ -91,5 +91,7 @@ exports.viewAddAssignmentPage = function(req, res) {
 
 exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
+  // query the database for all assignments
+  // sorted by type
   res.json(data["assignments"]);
 }

@@ -3,189 +3,121 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
     console.log('document is ready');
+    var myData;
 
     $.get("/getAssignments", function(data) {
         console.log(data);
-        // data is a JavaScript object now. Handle it as such
+        console.log('now ill try to assign');
 
+        var chart = AmCharts.makeChart("testLine", {
+            "type": "serial",
+            "theme": "none",
+            "marginLeft": 20,
+            "pathToImages": "http://www.amcharts.com/lib/3/images/",
+            "dataProvider": data,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                //"inside": true,
+                "position": "left"//,
+                //"ignoreAxisWidth": true
+            }],
+            "graphs": [{
+                "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+                "bullet": "round",
+                "bulletSize": 6,
+                "lineColor": "#d1655d",
+                "lineThickness": 2,
+                "negativeLineColor": "#637bb6",
+                "type": "smoothedLine",
+                "valueField": "score"
+            },
+            {
+                "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+                "bullet": "round",
+                "bulletSize": 6,
+                "lineColor": "#d1655d",
+                "lineThickness": 2,
+                "negativeLineColor": "#637bb6",
+                "type": "smoothedLine",
+                "valueField": "total"
+            }
+            ],
+            "chartScrollbar": {},
+            "chartCursor": {
+                "categoryBalloonDateFormat": "YYYY",
+                "cursorAlpha": 0,
+                "cursorPosition": "mouse"
+            },
+            "categoryField": "name",
+            "categoryAxis": {
+                "startOnAxis": true,
+                "minorGridAlpha": 0.1,
+                "minorGridEnabled": true
+            }
+        });
+        
+
+        var allAssignmentsChart = AmCharts.makeChart("allAssignmentsChartDiv", {
+            "type": "serial",
+            "theme": "none",
+            "pathToImages": "http://www.amcharts.com/lib/3/images/",
+            "legend": {
+                "equalWidths": false,
+                "periodValueText": "total: [[value.sum]]",
+                "position": "top",
+                "valueAlign": "left",
+                "valueWidth": 100
+            },
+
+            "dataProvider": data,
+
+            "valueAxes": [{
+                "stackType": "regular",
+                "gridAlpha": 0.07,
+                "position": "left",
+                "title": "Test plot! :D"
+            }],
+
+            "graphs": [
+                {
+                    "fillAlphas": 0.6,
+                    "lineAlpha": 0.4,
+                    "title": "Your score",
+                    "valueField": "score"
+                }, 
+                {
+                    "fillAlphas": 0.6,
+                    "hidden": true,
+                    "lineAlpha": 0.4,
+                    "title": "Possible score",
+                    "valueField": "total"
+                }
+            ],
+
+            "plotAreaBorderAlpha": 0,
+            "marginTop": 10,
+            "marginLeft": 0,
+            "marginBottom": 0,
+            "chartScrollbar": {},
+            "chartCursor": {
+                "cursorAlpha": 0
+            },
+            "categoryField": "name",
+            "categoryAxis": {
+                "startOnAxis": true,
+                "axisColor": "#DADADA",
+                "gridAlpha": 0.07
+            },
+            "exportConfig": {
+                "menuTop": "10px",
+                "menuRight": "10px",
+                "menuItems": [{
+                    "icon": 'http://www.amcharts.com/lib/3/images/car.png',
+                    "format": 'png'
+                }]
+            }
+        });
+
+        
     });
-
-
-    var chart = AmCharts.makeChart("chartdiv", {
-        "type": "serial",
-        "theme": "none",
-        "pathToImages": "http://www.amcharts.com/lib/3/images/",
-        "legend": {
-            "equalWidths": false,
-            "periodValueText": "total: [[value.sum]]",
-            "position": "top",
-            "valueAlign": "left",
-            "valueWidth": 100
-        },
-        "dataProvider": [{
-            "year": 1994,
-            "cars": 1587,
-            "motorcycles": 650,
-            "bicycles": 121
-        }, {
-            "year": 1995,
-            "cars": 1567,
-            "motorcycles": 683,
-            "bicycles": 146
-        }, {
-            "year": 1996,
-            "cars": 1617,
-            "motorcycles": 691,
-            "bicycles": 138
-        }, {
-            "year": 1997,
-            "cars": 1630,
-            "motorcycles": 642,
-            "bicycles": 127
-        }, {
-            "year": 1998,
-            "cars": 1660,
-            "motorcycles": 699,
-            "bicycles": 105
-        }, {
-            "year": 1999,
-            "cars": 1683,
-            "motorcycles": 721,
-            "bicycles": 109
-        }, {
-            "year": 2000,
-            "cars": 1691,
-            "motorcycles": 737,
-            "bicycles": 112
-        }, {
-            "year": 2001,
-            "cars": 1298,
-            "motorcycles": 680,
-            "bicycles": 101
-        }, {
-            "year": 2002,
-            "cars": 1275,
-            "motorcycles": 664,
-            "bicycles": 97
-        }, {
-            "year": 2003,
-            "cars": 1246,
-            "motorcycles": 648,
-            "bicycles": 93
-        }, {
-            "year": 2004,
-            "cars": 1318,
-            "motorcycles": 697,
-            "bicycles": 111
-        }, {
-            "year": 2005,
-            "cars": 1213,
-            "motorcycles": 633,
-            "bicycles": 87
-        }, {
-            "year": 2006,
-            "cars": 1199,
-            "motorcycles": 621,
-            "bicycles": 79
-        }, {
-            "year": 2007,
-            "cars": 1110,
-            "motorcycles": 210,
-            "bicycles": 81
-        }, {
-            "year": 2008,
-            "cars": 1165,
-            "motorcycles": 232,
-            "bicycles": 75
-        }, {
-            "year": 2009,
-            "cars": 1145,
-            "motorcycles": 219,
-            "bicycles": 88
-        }, {
-            "year": 2010,
-            "cars": 1163,
-            "motorcycles": 201,
-            "bicycles": 82
-        }, {
-            "year": 2011,
-            "cars": 1180,
-            "motorcycles": 285,
-            "bicycles": 87
-        }, {
-            "year": 2012,
-            "cars": 1159,
-            "motorcycles": 277,
-            "bicycles": 71
-        }],
-        "valueAxes": [{
-            "stackType": "regular",
-            "gridAlpha": 0.07,
-            "position": "left",
-            "title": "Traffic incidents"
-        }],
-        "graphs": [{
-            //"balloonText": "<img src='http://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'>[[value]]</span>",
-            "fillAlphas": 0.6,
-            //"hidden": true,
-            "lineAlpha": 0.4,
-            "title": "Cars",
-            "valueField": "cars"
-        }, {
-            //"balloonText": "<span style='font-size:14px; color:#000000;'>[[value]]</span>",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "Motorcycles",
-            "valueField": "motorcycles"
-        }, {
-            //"balloonText": "<span style='font-size:14px; color:#000000;'>[[value]]</span>",
-            "fillAlphas": 0.6,
-            "lineAlpha": 0.4,
-            "title": "Bicycles",
-            "valueField": "bicycles"
-        }],
-        "plotAreaBorderAlpha": 0,
-        "marginTop": 10,
-        "marginLeft": 0,
-        "marginBottom": 0,
-        "chartScrollbar": {},
-        "chartCursor": {
-            "cursorAlpha": 0
-        },
-        "categoryField": "year",
-        "categoryAxis": {
-            "startOnAxis": true,
-            "axisColor": "#DADADA",
-            "gridAlpha": 0.07//,
-            /*"guides": [{
-                category: "2001",
-                toCategory: "2003",
-                lineColor: "#CC0000",
-                lineAlpha: 1,
-                fillAlpha: 0.2,
-                fillColor: "#CC0000",
-                dashLength: 2,
-                inside: true,
-                labelRotation: 90,
-                label: "fines for speeding increased"
-            }, {
-                category: "2007",
-                lineColor: "#CC0000",
-                lineAlpha: 1,
-                dashLength: 2,
-                inside: true,
-                labelRotation: 90,
-                label: "motorcycle fee introduced"
-            }]*/
-        },
-        "exportConfig": {
-            "menuTop": "10px",
-            "menuRight": "10px",
-            "menuItems": [{
-                "icon": 'http://www.amcharts.com/lib/3/images/car.png',
-                "format": 'png'
-            }]
-        }
-    });
-    console.log('loaded chart');
 });
