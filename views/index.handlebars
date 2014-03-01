@@ -99,7 +99,7 @@
   			<div class="panel-heading">All Courses</div>
   			<!-- List group -->
   			<ul class="list-group">
-				{{#each results.courses}}
+				{{#each userData.courses}}
 					<li id="{{department}}{{number}}" class="list-group-item">
             
 						<a href="course/{{department}}{{number}}">
@@ -128,7 +128,7 @@
 		  <div class="panel-heading">Assignments</div>
 		  <table class="table">
 		    <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-		{{#each results.assignments}}
+		{{#each userData.assignments}}
 			<tr id="{{name}}">
 				<td>{{name}}</td>
 				<td>{{type}}</td>

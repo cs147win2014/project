@@ -25,38 +25,28 @@ mongoose.connect(database_uri);
 // Do the initialization here
 
 // Step 1: load the JSON data
-var projects_json = require('./data.json');
+var json = require('./data.json');
+console.log("heyyyy");
 
 // Step 2: Remove all existing documents
-models.Syllabus.find().remove(); // callback to continue at
-models.User.find().remove(); // callback to continue at
-models.Course.find().remove(); // callback to continue at
-models.AssignmentType.find().remove().exec(onceClear); // callback to continue at
+models.User.find().remove().exec(function(err) {
+  models.Course.find().remove().exec(function(err) {
+    models.AssignmentType.find().remove().exec(onceClear);  
+  });
+}); 
+ 
+ 
 
 // Step 3: load the data from the JSON file
 function onceClear(err) {
   console.log("hey");
   if(err) console.log(err);
 
-  // loop over the projects, construct and save an object from each one
-  // Note that we don't care what order these saves are happening in...
-  var to_save_count = projects_json.length;
-  for(var i=0; i<projects_json.length; i++) {
-    var json = projects_json[i];
-    var proj = new models.Project(json);
-
-    proj.save(function(err, proj) {
-      if(err) console.log(err);
-
-      to_save_count--;
-      console.log(to_save_count + ' left to save');
-      if(to_save_count <= 0) {
-        console.log('DONE');
-        // The script won't terminate until the 
-        // connection to the database is closed
-        mongoose.connection.close()
-      }
-    });
-  }
+  // reload the guest user data from the json
+  var guest = new models.User(json[0]);
+  guest.save(function(err, guest) {
+    if(err) console.log(err);
+    mongoose.connection.close()
+  });
 }
 

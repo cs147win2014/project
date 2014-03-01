@@ -1,5 +1,95 @@
-{
-	"assignments": [
+[
+	{
+		"username": "Guest",
+		"password": "",
+		"courses": [],
+		"assignments": []
+	},
+	{
+		"username": "Guest",
+		"password": "",
+		"courses": [
+		{
+			"name": "Programming Methodology",
+			"department": "CS",
+			"number": "109",
+			"syllabus": [
+			{
+				"name": "Problem Set",
+				"weighting": 0.25
+			},
+			{
+				"name": "Midterm",
+				"weighting": 0.25
+			},
+			{
+				"name": "Final",
+				"weighting": 0.5
+			}
+			]
+		},
+		{
+			"name": "Circuits I",
+			"department": "EE",
+			"number": "101A",
+			"syllabus": [
+			{
+				"name": "Homework",
+				"weighting": 0.20
+			},
+			{
+				"name": "Lab",
+				"weighting": 0.20
+			},
+			{
+				"name": "Final",
+				"weighting": 0.35
+			},
+			{
+				"name": "Midterm",
+				"weighting": 0.25
+			}
+			]
+		},
+		{
+			"name": "Intro to HCI",
+			"department": "CS",
+			"number": "147",
+			"syllabus": [
+			{
+				"name": "Assignments",
+				"weighting": 0.70
+			},
+			{
+				"name": "Quiz",
+				"weighting": 0.096
+			},
+			{
+				"name": "Self Assessment",
+				"weighting": 0.08
+			},
+			{
+				"name": "End Quarter Self Assessment",
+				"weighting": 0.012
+			},
+			{
+				"name": "Lab Participation",
+				"weighting": 0.04
+			},
+			{
+				"name": "Studio Participation",
+				"weighting": 0.04
+			},
+			{
+				"name": "Class Participation",
+				"weighting": 0.02
+			}
+			]
+		}
+		]
+	},
+	{
+		"assignments": [
 		{
 			"name": "Pset 1",
 			"type": "Homework",
@@ -29,6 +119,7 @@
 			"course": "EE 101A"
 		},
 		{
+			"_id": "assignment5",
 			"name": "Lab 2",
 			"type": "Lab",
 			"score": "50",
@@ -36,6 +127,7 @@
 			"course": "EE 101A"
 		},
 		{
+			"_id": "assignment6",
 			"name": "Lab 3: full wave diode rectifier",
 			"type": "Lab",
 			"score": "50",
@@ -43,6 +135,7 @@
 			"course": "EE 101A"
 		},
 		{
+			"_id": "assignment7",
 			"name": "Lab 4: adding zener diode",
 			"type": "Lab",
 			"score": "50",
@@ -50,6 +143,7 @@
 			"course": "EE 101A"
 		},
 		{
+			"_id": "assignment8",
 			"name": "Pset 4",
 			"type": "Homework",
 			"score": "40",
@@ -57,92 +151,13 @@
 			"course": "EE 101A"
 		},
 		{
+			"_id": "assignment9",
 			"name": "Midterm",
 			"type": "Midterm",
 			"score": "79",
 			"total": "100",
 			"course": "EE 101A"
-		},
-		{
-			"name": "Total",
-			"type": "",
-			"score": "calculated sum",
-			"total": "calculated sum",
-			"course": "EE 101A"
 		}
-	],
-	"courses": [
-		{
-			"department": "cs",
-			"number": "109",
-			"syllabus": {
-				"problem set": 0.25,
-				"midterm": 0.25,
-				"final": 0.5
-			}
-		},
-		{
-			"department": "ee",
-			"number": "101a",
-			"syllabus": {
-					"homework": 0.20,
-					"lab": 0.2,
-					"midterm": 0.25,
-					"final": 0.35
-			}
-		},
-		{
-			"department": "cs",
-			"number": "147",
-			"syllabus": {
-					"assignments": 0.7,
-					"quiz1": 0.032,
-					"quiz2": 0.032,
-					"quiz3": 0.032,
-					"selfassessment": 0.08,
-					"endquarterselfassessment": 0.012,
-					"labparticipation": 0.04,
-					"studioparticipation": 0.04,
-					"classparticipation": 0.02
-			}
-		},
-		{
-			"department": "testcourse",
-			"number":"101",
-			"syllabus": "HERE IS THE SYLLABUS FOR"
-		}
-	],
-	"users": [
-		{
-			"username": "m",
-			"password": "a"
-		},
-		{
-			"username": "i",
-			"password": "b"
-		},
-		{
-			"username": "w",
-			"password": "c"
-		}
-	],
-	"currentUser": "guest",
-	"navbar": [
-		{
-			"department": "cs",
-			"number": "109"
-		},
-		{
-			"department": "ee",
-			"number": "101a"
-		},
-		{
-			"department": "cs",
-			"number": "147"
-		},
-		{
-			"department": "testcourse",
-			"number":"101"
-		}
-	]
-}
+		]
+	}
+]

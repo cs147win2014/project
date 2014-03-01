@@ -65,7 +65,7 @@ exports.viewIndex = function(req, res){
       } else { //user is in the database, use their data
         results = doc[0];
       }
-      var userData = { "results": results, "user": user, "expand": false};
+      var userData = { "userData": results, "user": user, "expand": false};
       console.log("user data is " + userData);
       res.render('index',userData);
     });

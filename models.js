@@ -7,10 +7,12 @@ var AssignmentTypeSchema = new Mongoose.Schema({
 });
 
 
-
-var SyllabusSchema = new Mongoose.Schema({
-  // object ids corresponding to the assignmentTypes of the class
-  "assignmentTypes": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' }]
+var AssignmentSchema = new Mongoose.Schema({
+  "name": String,
+  "type": { type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' },
+  "score": Number,
+  "total": Number,
+  "course": String,
 });
 
 
@@ -19,7 +21,7 @@ var CourseSchema = new Mongoose.Schema({
   "department": String,
   "number": Number,
   // object id corresponding to the syllabus of the class
-  "syllabus": { type: Mongoose.Schema.Types.ObjectId, ref: 'Syllabus' }
+  "syllabus": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' }]
 });
 
 
@@ -27,14 +29,15 @@ var UserSchema = new Mongoose.Schema({
   "username": String,
   "password": String,
   // array of object ids corresponding to the classes they are in
-  "courses": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Course' }]
+  "courses": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+  "assignments": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'Assignment' }]
 });
 
 
 
 exports.User = Mongoose.model('User', UserSchema);
 exports.Course = Mongoose.model('Course', CourseSchema);
-exports.Syllabus = Mongoose.model('Syllabus', SyllabusSchema);
 exports.AssignmentType = Mongoose.model('AssignmentType', AssignmentTypeSchema);
+exports.Assignment = Mongoose.model('Assignment', AssignmentSchema);
 
 

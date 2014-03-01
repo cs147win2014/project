@@ -115,7 +115,7 @@ exports.signUp = function(req, res) { 
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
   		console.log("the inUse search returned " + inUse);
-  		if (!inUse.length && username !== "Guest") { //can't take "Guest" or other user's username
+  		if (!inUse.length) { //can't take "Guest" or other user's username
 			var newUser = new models.User({ "username" : username, "password" : password });
 			console.log(newUser);
 			newUser.save(afterSaving);
