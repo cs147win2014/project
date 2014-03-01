@@ -60,13 +60,13 @@ exports.viewIndex = function(req, res){
       if(err) {console.log(err)};
       console.log(doc[0]);
       var results;
-      if (doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
         results = data; 
       } else { //user is in the database, use their data
         results = doc[0];
       }
       var userData = { "results": results, "user": user, "expand": false};
-      console.log(userData);
+      console.log("user data is " + userData);
       res.render('index',userData);
     });
 };
