@@ -39,7 +39,7 @@
 					<li id="{{department}}{{number}}" class="list-group-item">
             
 						<a href="course/{{department}}{{number}}">
-							{{department}} {{number}}
+							Name: {{this.department}} {{this.department}} {{this.number}}
 						</a>
 						<button id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">More</button>
 						
@@ -76,8 +76,9 @@
 		</div>
     {{/if}}
 	
-
+    <br><br>
   </div>
+
 	
 	<script src="/js/jquery-1.11.0.js"></script>
 	<script src="/js/bootstrap.js"></script>

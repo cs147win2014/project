@@ -19,22 +19,23 @@ exports.add = function(req, res) { 
       			if(err) {
               console.log('Error: ' + err);
             }
-      			console.log('here is the doc: ' + doc);
+      			
       			if(doc!=null) {
-              doc[0].courses.push(newCourse);
-      			  doc[0].save(function(err) {
+              console.log('here is the doc: ' + doc);
+              doc.courses.push(newCourse);
+      			  doc.save(function(err) {
       			 	   if(err) {
                     console.log('Error: ' + err);
                  }
-	      			  var results = doc[0];
-	      			  console.log(doc[0]);
-				        var sessionData = { "userData": results, "user": user, "expand": false};
-      				  console.log("user data is " + sessionData);
+				        var sessionData = { "userData": doc, "user": user, "expand": false};
+      				  console.log("user data is " + sessionData["userData"]);
+                console.log("user is " + sessionData["user"]);
+                
 					      res.render('editCourse',sessionData);
       			  });
       		  }
             else {
-              console.log("doc is null, couldn't find username user");
+              console.log("doc is null, couldn't find username " + user);
               res.render('editCourse');
             }
 
