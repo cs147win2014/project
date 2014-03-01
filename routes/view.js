@@ -88,3 +88,8 @@ exports.viewAddAssignmentPage = function(req, res) {
   console.log(data);
   res.render('addAssignment',data);
 }
+
+exports.getAssignments = function(req,res) {
+  console.log('heres all your assignments');
+  res.json(data["assignments"]);
+}

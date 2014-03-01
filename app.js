@@ -99,6 +99,7 @@ app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.viewCourseInfo);
 app.get('/course/:courseName', view.viewCoursePage);
+app.get('/getAssignments',view.getAssignments);
 
 app.post('/addACourse/new',course.add);
 
