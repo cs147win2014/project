@@ -19,7 +19,7 @@ var AssignmentSchema = new Mongoose.Schema({
 var CourseSchema = new Mongoose.Schema({
   "name": String,
   "department": String,
-  "number": Number,
+  "number": String,
   // object id corresponding to the syllabus of the class
   "syllabus": [{ type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' }]
 });
