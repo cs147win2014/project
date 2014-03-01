@@ -33,29 +33,10 @@
 
 		<div class="panel panel-default">
 			<div class="panel panel-body" id="allFields">
-				<p>This is where you configure your syllabus. Enter the types of assignments you will 
-				   have, in the following format <code>"[Type], [Weighting]"</code>, so if the final is worth 50% 
-				   of your grade, type in <code>"Final, 0.50"</code>!</p>
-				<small>Press + to add more</small>
-
-				<!--<div class="input-append">
-  					<input class="span2" id="appendedInputButton" type="text">
-  					<button class="btn btn-sm" type="button">Go!</button>
-				</div>-->
-
-				<!--<div class="row">
-					<div class="col-xs-6 col-md-3">
-						<input type="text" class="form-control" placeholder=".col-lg-2">
-					</div>
-					<div class="col-xs-6 col-md-3">
-						<input type="text" class="form-control" placeholder=".col-lg-3">
-					</div>
-					<div class="col-xs-6 col-md-3">
-						<input type="text" class="form-control" placeholder=".col-lg-4">
-					</div>
-				</div>-->
-
-            	<div id="profs"> 
+				<p>This is where you configure your syllabus. Enter the types of assignments you will complete throughout the quarter, as well as their weighting. If you have <b>problem sets</b> 
+					that are <b>25%</b> of your grade, enter "Problem Sets" and "25"</p>
+				
+				<div id="profs"> 
 	                <form id="addAssignmentTypes" role="form" method="post" action="/editCourse">
 
 	                    <div id="field" class="input-append row">
@@ -63,10 +44,10 @@
 		                    	
 	                    		<div class="row">
                             		<div class="col-md-6 col-xs-6"> 
-                                		<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text">
+                                		<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type1" type="text">
                                 	</div> 
                             		<div class="col-md-6 col-xs-6">
-                                		<input autocomplete="off" placeholder="Ex: 0.25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text">
+                                		<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting1" type="text">
                                 	</div>
                             	</div>
 
@@ -76,7 +57,7 @@
 	                    <br>
 	                    <button id="b1" class="btn btn-default add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add another type</button></input>
 
-	                    <input autocomplete="off" class="hidden" id="numFields" type="hidden" name="numFields" value="1"/>
+	                    <input autocomplete="off" class="hidden" id="numFields" type="hidden" value="1"/>
 
 	                    <br><br>
 	                    
