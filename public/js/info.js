@@ -3,6 +3,14 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
     console.log('document is ready');
+
+    $.get("/getAssignments", function(data) {
+        console.log(data);
+        // data is a JavaScript object now. Handle it as such
+
+    });
+
+
     var chart = AmCharts.makeChart("chartdiv", {
         "type": "serial",
         "theme": "none",
@@ -117,20 +125,20 @@ $(document).ready(function() {
             "title": "Traffic incidents"
         }],
         "graphs": [{
-            "balloonText": "<img src='http://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+            //"balloonText": "<img src='http://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'>[[value]]</span>",
             "fillAlphas": 0.6,
-            "hidden": true,
+            //"hidden": true,
             "lineAlpha": 0.4,
             "title": "Cars",
             "valueField": "cars"
         }, {
-            "balloonText": "<img src='http://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+            //"balloonText": "<span style='font-size:14px; color:#000000;'>[[value]]</span>",
             "fillAlphas": 0.6,
             "lineAlpha": 0.4,
             "title": "Motorcycles",
             "valueField": "motorcycles"
         }, {
-            "balloonText": "<img src='http://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>[[value]]</b></span>",
+            //"balloonText": "<span style='font-size:14px; color:#000000;'>[[value]]</span>",
             "fillAlphas": 0.6,
             "lineAlpha": 0.4,
             "title": "Bicycles",
@@ -148,8 +156,8 @@ $(document).ready(function() {
         "categoryAxis": {
             "startOnAxis": true,
             "axisColor": "#DADADA",
-            "gridAlpha": 0.07,
-            "guides": [{
+            "gridAlpha": 0.07//,
+            /*"guides": [{
                 category: "2001",
                 toCategory: "2003",
                 lineColor: "#CC0000",
@@ -168,13 +176,13 @@ $(document).ready(function() {
                 inside: true,
                 labelRotation: 90,
                 label: "motorcycle fee introduced"
-            }]
+            }]*/
         },
         "exportConfig": {
             "menuTop": "10px",
             "menuRight": "10px",
             "menuItems": [{
-                "icon": '/lib/3/images/export.png',
+                "icon": 'http://www.amcharts.com/lib/3/images/car.png',
                 "format": 'png'
             }]
         }
