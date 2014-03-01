@@ -53,17 +53,21 @@ exports.viewInfo = function(req, res){
 exports.viewIndex = function(req, res){
   var user = req.session.user;
   console.log(user);
-  var results;
   //query database - get array of json situations
   models.User
-    .findOne({"username": user})
+    .find({"username": user})
     .exec(function(err, doc) {
       if(err) {console.log(err)};
-      console.log(doc);
-      results = doc;
-      var data = { "results": results, "user": user, "expand": false};
-      console.log(data);
-      res.render('index',data);
+      console.log(doc[0]);
+      var results;
+      if (doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+        results = data; 
+      } else { //user is in the database, use their data
+        results = doc[0];
+      }
+      var userData = { "results": results, "user": user, "expand": false};
+      console.log(userData);
+      res.render('index',userData);
     });
 };
 

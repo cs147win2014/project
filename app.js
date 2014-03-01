@@ -75,7 +75,7 @@ app.get('/',login.view);
 app.get('/signup',function(req, res) {
   res.render('signup');
 });
-app.post('/signup',login.signIn);
+app.post('/signup',login.signUp);
 
 // i think we should change the name of these and/or consolidate them
 app.get('/add',add.addAssignment);
