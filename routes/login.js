@@ -14,29 +14,54 @@ exports.checkUsername = function(req, res) { 
 	var username = req.body.username; 
 	var password = req.body.password; 
 	
-	
-	var foundUsername = false;
-	var userDb = data["users"];
+
+	//var foundUsername = false;
 	var error = "";
 
-	// check if username is already taken
-	for (var i = 0; i < userDb.length; i++) {
-	 	if (userDb[i].username === username) {
-	 		foundUsername = true;
-	 		if(userDb[i].password === password) {
-	 			data["currentUser"] = username;
-	 			res.render('index',data);
-	 			return;
-	 		} else {
-	 			error = "Password incorrect!";
-	 			break;
-	 		}
-	 	}
-	}
 
-	if(!foundUsername) {
-		error = "Username not found!";
-	}
+	models.User.find({ "username": username }, function (err, reqUser) {
+  		if (err) { console.log(err) };
+  		console.log("the requested user search returned " + reqUser);
+  		
+  		if (reqUser.length) { //there is a user with that username
+  			var associatedPassword = reqUser[0].password;
+  			console.log(associatedPassword);
+  			//foundUsername = true;
+  			if(associatedPassword === password) {
+  				req.session.user = username;
+  				res.redirect('index');
+  				return;
+  			} else {
+  				error = "Password incorrect!";
+  			}
+  		} else {
+  			error = "Username not found!";
+  		}
+	});
+
+
+	
+
+	//var userDb = data["users"];
+
+	// // check if username is already taken
+	// for (var i = 0; i < userDb.length; i++) {
+	//  	if (userDb[i].username === username) {
+	//  		foundUsername = true;
+	//  		if(userDb[i].password === password) {
+	//  			data["currentUser"] = username;
+	//  			res.render('index',data);
+	//  			return;
+	//  		} else {
+	//  			error = "Password incorrect!";
+	//  			break;
+	//  		}
+	//  	}
+	// }
+
+	// if(!foundUsername) {
+	// 	error = "Username not found!";
+	// }
 
 	console.log("Username or password incorrect");
 	res.render('login',{error:error});

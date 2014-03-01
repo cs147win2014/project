@@ -1,4 +1,6 @@
 var data = require("../data.json");
+var models = require('../models');
+
 
 exports.viewCoursePage = function(req, res) { 
   var courseName = req.params.courseName; 
@@ -49,9 +51,20 @@ exports.viewInfo = function(req, res){
 };
 
 exports.viewIndex = function(req, res){
-  data['expand'] = false;
-  console.log(data);
-  res.render('index',data);
+  var user = req.session.user;
+  console.log(user);
+  var results;
+  //query database - get array of json situations
+  models.User
+    .findOne({"username": user})
+    .exec(function(err, doc) {
+      if(err) {console.log(err)};
+      console.log(doc);
+      results = doc;
+      var data = { "results": results, "user": user, "expand": false};
+      console.log(data);
+      res.render('index',data);
+    });
 };
 
 exports.viewIndexExpand = function(req, res) {
