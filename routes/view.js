@@ -91,6 +91,6 @@ exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
   // sorted by type
-  console.log(data["assignments"]);
-  res.json(data["assignments"]);
+  console.log(data[2]["assignments"]);
+  res.json(data[2]["assignments"]);
 }
