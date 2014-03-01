@@ -40,7 +40,6 @@ exports.viewCoursePage = function(req, res) { 
 };
 
 exports.viewAssignments = function(req, res){
-  
   console.log(data);
   res.render('viewAssignments',data);
 };
@@ -60,14 +59,15 @@ exports.viewIndex = function(req, res){
       if(err) {console.log(err)};
       console.log(doc[0]);
       var results;
-      if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
-        results = data; 
-      } else { //user is in the database, use their data
-        results = doc[0];
-      }
-      var userData = { "userData": results, "user": user, "expand": false};
-      console.log("user data is " + userData);
-      res.render('index',userData);
+      results = doc[0];
+      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      //   results = data; 
+      // } else { //user is in the database, use their data
+      //   results = doc[0];
+      // }
+      var sessionData = { "userData": results, "user": user, "expand": false};
+      console.log("user data is " + sessionData);
+      res.render('index',sessionData);
     });
 };
 

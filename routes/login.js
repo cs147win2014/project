@@ -4,30 +4,25 @@ var models = require('../models');
 
 
 exports.view = function(req, res){
-	//console.log(data);
 	req.session.user = "Guest";
 	res.render('login');
 };
 
 exports.checkUsername = function(req, res) {    
-	// Your code goes here%
 	
 	var username = req.body.username; 
 	var password = req.body.password; 
 	
-
-	//var foundUsername = false;
 	var error = "";
 
 
 	models.User.find({ "username": username }, function (err, reqUser) {
   		if (err) { console.log(err) };
   		console.log("the requested user search returned " + reqUser);
-  		
+
   		if (reqUser.length) { //there is a user with that username
   			var associatedPassword = reqUser[0].password;
   			console.log(associatedPassword);
-  			//foundUsername = true;
   			if(associatedPassword === password) {
   				req.session.user = username;
   				res.redirect('index');
@@ -39,30 +34,6 @@ exports.checkUsername = function(req, res) { 
   			error = "Username not found!";
   		}
 	});
-
-
-	
-
-	//var userDb = data["users"];
-
-	// // check if username is already taken
-	// for (var i = 0; i < userDb.length; i++) {
-	//  	if (userDb[i].username === username) {
-	//  		foundUsername = true;
-	//  		if(userDb[i].password === password) {
-	//  			data["currentUser"] = username;
-	//  			res.render('index',data);
-	//  			return;
-	//  		} else {
-	//  			error = "Password incorrect!";
-	//  			break;
-	//  		}
-	//  	}
-	// }
-
-	// if(!foundUsername) {
-	// 	error = "Username not found!";
-	// }
 
 	console.log("Username or password incorrect");
 	res.render('login',{error:error});
@@ -76,7 +47,6 @@ exports.signUp = function(req, res) { 
 	var email = req.body.email;
 	var password = req.body.password; 
 	var verification = req.body.verification;
-
 	var error = null;
 	// regexp from https://github.com/angular/angular.js/blob/master/src/ng/directive/input.js#L4
 	var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
@@ -89,7 +59,6 @@ exports.signUp = function(req, res) { 
 	  });
 	  return;
 	}
-
 
 	// check for valid inputs
 	if (!username || !email || !password || !verification) {
@@ -115,7 +84,7 @@ exports.signUp = function(req, res) { 
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
   		console.log("the inUse search returned " + inUse);
-  		if (!inUse.length) { //can't take "Guest" or other user's username
+  		if (!inUse.length) { //can't take another user's username
 			var newUser = new models.User({ "username" : username, "password" : password });
 			console.log(newUser);
 			newUser.save(afterSaving);
@@ -124,6 +93,7 @@ exports.signUp = function(req, res) { 
     			if(err) console.log(err);
     			console.log(newUser + " was supposedly saved");
   			};
+
   			req.session.user = username;
 			res.redirect('index');
   		} else {
