@@ -8,6 +8,7 @@ $(document).ready(function() {
     $.get("/getAssignments", function(data) {
         console.log(data);
         console.log('now ill try to assign');
+        
 
         var chart = AmCharts.makeChart("testLine", {
             "type": "serial",
