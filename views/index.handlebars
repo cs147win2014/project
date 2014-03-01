@@ -8,6 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/css/simplex.min.css">
 	<script src='/canvasjs-1.3.0/canvasjs.min.js'></script>
+  <script src="/js/amcharts.js"></script>
+  <style>
+      canvas{
+      }
+    </style>
 	<script type="text/javascript">
   		window.onload = function () {
 			var chart1 = new CanvasJS.Chart("chartContainer",
@@ -84,9 +89,8 @@
 		{{>navbar}}
 		<h1>Quarter Overview</h1>
 		<hr>
-
 		
-	
+	   <div id="chartdiv"></div>   
 		
 
 		<!-- THIS IS WHERE THE PANEL LIST GROUP IS -->

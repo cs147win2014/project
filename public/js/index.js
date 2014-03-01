@@ -3,7 +3,9 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 	initializePage();
+	
 });
+
 
 /*
  * Function that is called when the document is ready.
@@ -78,11 +80,11 @@ function showCourseSyllabus(result) {
 	
 		//alert("li #"+result.department+""+result.number);
 		var check2 = $("#"+result.department+""+result.number).attr('id');
-		//alert("should append to " + check2);
-		//alert($("#"+check2).html());
+		console.log("should append to " + check2);
+		console.log($("#"+check2).html());
 
 		// append the syllabus div onto the li element 
-		$("#showMe").append($newSyllabusDiv);
+		$("#"+check2).append($newSyllabusDiv);
 
 		// change the button text
 		$("#viewButton"+result.department+result.number).text("Less");
@@ -134,4 +136,35 @@ function showCourseAssignments(results) {
 	$("#"+result.department+result.number).append($newAssignmentsDiv);
 }
 
+
+
+// this method is called when chart is first inited as we listen for "dataUpdated" event
+function zoomChart() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
+}
+
+
+// generate some random data, quite different range
+function generateChartData() {
+    var chartData = [];
+    var firstDate = new Date();
+    firstDate.setDate(firstDate.getDate() - 5);
+
+    for (var i = 0; i < 1000; i++) {
+        // we create date objects here. In your data, you can have date strings
+        // and then set format of your dates using chart.dataDateFormat property,
+        // however when possible, use date objects, as this will speed up chart rendering.
+        var newDate = new Date(firstDate);
+        newDate.setDate(newDate.getDate() + i);
+
+        var visits = Math.round(Math.random() * (40 + i / 5)) + 20 + i;
+
+        chartData.push({
+            date: newDate,
+            visits: visits
+        });
+    }
+    return chartData;
+}
 
