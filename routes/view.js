@@ -78,13 +78,11 @@ exports.viewIndexExpand = function(req, res) {
 };
 
 exports.viewAddCoursePage = function(req, res) {
-  //alert("here123");
   console.log(data);
   res.render('addACourse',data);
 }
 
 exports.viewAddAssignmentPage = function(req, res) {
-  //alert("here123");
   console.log(data);
   res.render('addAssignment',data);
 }

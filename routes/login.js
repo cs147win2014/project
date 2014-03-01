@@ -91,11 +91,11 @@ exports.signUp = function(req, res) { 
   			
   			function afterSaving(err) {
     			if(err) console.log(err);
-    			console.log(newUser + " was supposedly saved");
+    			console.log(newUser + " was saved");
+	  			req.session.user = username;
+				res.redirect('index');
   			};
 
-  			req.session.user = username;
-			res.redirect('index');
   		} else {
   			res.status(403);
     		res.render('signup', {
