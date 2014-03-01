@@ -22,6 +22,38 @@ exports.view = function(req, res){
 	res.render('editCourse',data);
 };
 
+exports.addSyllabusFields_ajax = function(req, res) {
+	allFields = req.body;
+	console.log("CALLING THE RIGHT FUNCTION");
+	var syllabus = {};
+	var type = "";
+	var weighting = "";
+	console.log("here is the body:" + allFields.length);
+	for(var i = 0; i < allFields.length; i++) {
+		console.log(allFields[i]);
+	}
+
+
+	for(var key in allFields) {
+		if(key.match(/type/gi) != null) {
+			type = allFields[key];
+			console.log("TYPE: " + type);
+		} else {
+			weighting = allFields[key];
+			console.log("WEIGHTING: " + weighting + " and the type is: " + type);
+			if(isNaN(parseFloat(weighting))) {
+				console.log("UGH ITS NOT A NUMBER U SUCK");
+			} else {
+				syllabus[type] = weighting;
+			}
+		}
+	}
+	console.log(syllabus);
+	// here is where you wanna mess with the database stuff then return other
+	res.json(syllabus);
+	return;
+};
+
 exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
 
@@ -44,7 +76,7 @@ exports.addSyllabusFields = function(req, res) {
 		}
 	}
 	console.log(syllabus);
-	// here is where you wanna mess with the database stuff then return other things.
+	// here is where you wanna mess with the database stuff then return other
 	res.render('editCourse',data);
 	return;
 };

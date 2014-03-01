@@ -2,6 +2,7 @@ $(document).ready(function(){
     
     $('#backBtn').click(backToCourseInput);
     $('#finishBtn').click(backToIndex);
+    $('#addAssignmentTypes').click(submitAssignmentForm);
     
     var next = 1;
     $(".add-more").click(function(e){
@@ -46,6 +47,32 @@ $(document).ready(function(){
     });
 });
 
+function submitAssignmentForm(e) {
+    e.preventDefault();
+    // get all the values of all the inputs.
+    var $allInputs = $('div#field input.form-control');
+    console.log($allInputs.length);
+    console.log($allInputs[0]);
+    var data = {};
+
+    for(var i=0; i<$allInputs.length; i++) {
+        var name = $($allInputs[i]).attr('name');
+        var val = $($allInputs[i]).val();
+        data[name] = val;
+    }
+
+    console.log(data);
+
+    $.post('/editCourseAJAX',data,callback);
+}
+
+function callback(results) {
+    console.log('i made it back!');
+    console.log(results);
+    // now display everything. so on the server side you want to make sure you remove all duplicates
+    // so basically 'results' should only be what the server doesn't already contain
+    // like you should change everything that isn't already the same as what's on the servers.
+}
 
 function backToCourseInput(e) {
     e.preventDefault();

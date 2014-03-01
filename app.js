@@ -80,6 +80,8 @@ app.post('/signup',login.signUp);
 // i think we should change the name of these and/or consolidate them
 app.get('/add',add.addAssignment);
 app.post('/editCourse',editCourse.addSyllabusFields);
+app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
+
 app.get('/viewAssignments',view.viewAssignments);
 
 
