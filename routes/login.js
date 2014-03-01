@@ -5,6 +5,7 @@ var models = require('../models');
 
 exports.view = function(req, res){
 	//console.log(data);
+	req.session.user = "Guest";
 	res.render('login');
 };
 
@@ -68,7 +69,7 @@ exports.checkUsername = function(req, res) { 
 	
  };
 
-exports.signIn = function(req, res) {    
+exports.signUp = function(req, res) {    
 	// Your code goes here%
 	
 	var username = req.body.username; 
@@ -110,17 +111,11 @@ exports.signIn = function(req, res) { 
 	}
 	
 
-	//var userDb = data["users"];
-	
-	
-	//console.log(models);
-	// check if username is already taken -- this doesn't work
-	//var inUse = models.User.find({'username': username});
-	//console.log(inUse);
+	// check if username is already taken -- if not, enter them into the database
 	models.User.find({ "username": username }, function (err, inUse) {
   		if (err) { console.log(err) };
   		console.log("the inUse search returned " + inUse);
-  		if (!inUse.length) { 
+  		if (!inUse.length && username !== "Guest") { //can't take "Guest" or other user's username
 			var newUser = new models.User({ "username" : username, "password" : password });
 			console.log(newUser);
 			newUser.save(afterSaving);
@@ -128,12 +123,9 @@ exports.signIn = function(req, res) { 
   			function afterSaving(err) {
     			if(err) console.log(err);
     			console.log(newUser + " was supposedly saved");
-    			//res.send();
   			};
   			req.session.user = username;
 			res.redirect('index');
-
-
   		} else {
   			res.status(403);
     		res.render('signup', {
@@ -142,28 +134,9 @@ exports.signIn = function(req, res) { 
     		return;
   		}
 	});
-
-
-	/*for (var i = 0; i < userDb.length; i++) {
-	 	if (userDb[i].username === username) {
-	  		res.status(403);
-	    	res.render('signup', {
-	     		error: 'Username is already taken!'
-	    	});
-	    	return;
-		}
-	}
-	*/
-
-
-/*
-
-	data["users"].push(newUser);
-	data["currentUser"] = username;
-	
-	res.render('index',data);
-	*/
  };
+
+
 
 exports.addProject = function(req, res) {
   var form_data = req.body;
