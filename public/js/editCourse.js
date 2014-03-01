@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     $('#backBtn').click(backToCourseInput);
     $('#finishBtn').click(backToIndex);
-    $('#addAssignmentTypes').click(submitAssignmentForm);
+    $('#submitBtn').click(submitAssignmentForm);
     
     var next = 1;
     $(".add-more").click(function(e){
