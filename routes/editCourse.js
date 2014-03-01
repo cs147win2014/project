@@ -25,6 +25,7 @@ exports.view = function(req, res){
 exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
 
+	var syllabus = {};
 	var type = "";
 	var weighting = "";
 	console.log(allFields);
@@ -37,10 +38,12 @@ exports.addSyllabusFields = function(req, res) {
 			console.log("WEIGHTING: " + weighting + " and the type is: " + type);
 			if(isNaN(parseFloat(weighting))) {
 				console.log("UGH ITS NOT A NUMBER U SUCK");
+			} else {
+				syllabus[type] = weighting;
 			}
 		}
 	}
-
+	console.log(syllabus);
 	res.render('editCourse',data);
 	return;
 };

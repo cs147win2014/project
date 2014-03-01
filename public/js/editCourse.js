@@ -19,7 +19,7 @@ $(document).ready(function(){
                             '<div class="col-md-6 col-xs-6">' + 
                                 '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text"></div>' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 0.25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
                     '</div>';
         var newInput = $(newIn);
 
