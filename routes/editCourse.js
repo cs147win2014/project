@@ -44,6 +44,7 @@ exports.addSyllabusFields = function(req, res) {
 		}
 	}
 	console.log(syllabus);
+	// here is where you wanna mess with the database stuff then return other things.
 	res.render('editCourse',data);
 	return;
 };

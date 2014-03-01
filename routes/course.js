@@ -36,13 +36,26 @@ exports.addAssignment = function(req, res) { 
 exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
 
+	var syllabus = {};
+	var type = "";
+	var weighting = "";
 	console.log(allFields);
-	for (var i = 0; i < req.body.length; i++) {
-		console.log("HELLO"+i);
+	for(var key in allFields) {
+		if(key.match(/type/gi) != null) {
+			type = allFields[key];
+			console.log("TYPE: " + type);
+		} else {
+			weighting = allFields[key];
+			console.log("WEIGHTING: " + weighting + " and the type is: " + type);
+			if(isNaN(parseFloat(weighting))) {
+				console.log("UGH ITS NOT A NUMBER U SUCK");
+			} else {
+				syllabus[type] = weighting;
+			}
+		}
 	}
-
-
-	res.render('editCourse',data);
+	console.log(syllabus);
+	res.render('/index',data);
 	return;
 };
 

@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         next = next + 1;
         $("#numFields").attr("value", next);
-        console.log("just added, " + next);
+        //console.log("just added, " + next);
 
         var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
                         '<div class="row">' + 

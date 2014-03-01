@@ -7,110 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/simplex.min.css">
-
-	<!-- import plugin script -->
-    <script src='Chart.js/Chart.min.js'></script>
-    <script src='canvasjs-1.3.0/canvasjs.min.js'></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]--> 
-
-     <!-- Script for stacked bar chart I think-->
- <script type="text/javascript">
-  window.onload = function () {
-
-//figure out how to get blank lines between!!!!!!
-
-var chart2 = new CanvasJS.Chart("chartContainer2",
-    {
-      title:{
-        text: "Overview of Course"
-
-      },
-      data:[
-      {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Assignment(s)",
-        dataPoints: [
-        {y: parseInt(40 + 57 + 50 + 40), label: "Actual" },
-        {y: parseInt(45 + 70 + 50 + 42), label: "Total" }
-        ]
-      },
-       {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Lab(s)",
-        dataPoints: [
-        {y: parseInt(50 + 50 + 50 + 50), label: "Actual" },
-        {y: parseInt(50 + 50 + 50 + 50), label: "Total" }
-        ]
-      },
-      {
-        type: "stackedBar100",
-        showInLegend: true,
-        name: "Midterm(s)",
-        dataPoints: [
-        {y: parseInt(70), label: "Actual" },
-        {y: parseInt(100), label: "Total" }
-        ]
-      },
-      {
-        type: "stackedBar100",
-        color: "white",
-        dataPoints: [
-        {y: parseInt(41), label: "Actual" },
-        {y: 0, label: "Total" }
-        ]
-      }
-      ]
-
-    });
-
-chart2.render();
-
-//BLANK LINES NEEDEDDDDDDDDD
-
-var chart3 = new CanvasJS.Chart("chartContainer3",
-    {
-
-      title:{
-      text: "Course Grades Over Time"
-      },
-      axisX: {                      
-        title: "Type of Grade"
-    },
-    axisY: {                        
-        title: "Score out of 100",
-        maximum: 105,
-        interval: 25
-    },
-       data: [
-      {
-        type: "line",
-
-        dataPoints: [
-        { x: 1 , y: parseInt(40/45*100) , label: "Pset 1" },
-        { x: 2, y: parseInt(57/70*100) , label: "Pset 2"},
-        { x: 3, y: parseInt(50/50*100), label: "Pset 3" },
-        { x: 4, y: parseInt(50/50*100) , label: "Lab 1"},
-        { x: 5, y: parseInt(40/50*100) , label: "Lab 2"},
-        { x: 6, y: parseInt(40/50*100) , label: "Lab 3"},
-        { x: 7, y: parseInt(50/50*100) , label: "Lab 4"},
-        { x: 8, y: parseInt(40/42*100) , label: "Pset 4"},
-        { x: 9, y: parseInt(79/100*100) , label: "Midterm"}
-        ]
-      }
-      ]
-    });
-    chart3.render();
-}
-</script>
-<script type="text/javascript" src="canvasjs-1.3.0/canvasjs.min.js"></script>   
+  <link rel="stylesheet" type="text/css" href="css/amcharts.css">
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 
 <!-- close head -->
 </head>
@@ -146,9 +46,8 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
     
 
     <br><br>
-    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
-    <br><br><br><br>
-    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+    <div id="testLine" class="smoothLineChart"></div><br><br><br><br>
+    <div id="allAssignmentsChartDiv" class="stackedChart"></div>
     </div>
   </div>
 
@@ -181,16 +80,23 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
     <div class="panel panel-default">
       <div class="panel panel-body " id="allFields">
         <p>Here is your current syllabus:</p>
-        <p>This is where you configure your syllabus. Enter the types of assignments you will 
-           have, in the following format <code>"[Type], [Weighting]"</code>, so if the final is worth 50% 
-           of your grade, type in <code>"Final, 0.50"</code>!</p>
-        <small>Press + to add more</small>
+        <p>This is where you configure your syllabus. Enter the types of assignments you will complete throughout the quarter, as well as their weighting. If you have <b>problem sets</b> 
+          that are <b>25%</b> of your grade, enter "Problem Sets" and "25"</p>
               <div id="profs"> 
-                  <form id="addAssignmentTypes" role="form" method="get" action="/viewAssignments">
+                  <form id="addAssignmentTypes" role="form" method="post" action="/editCourse">
 
                       <div id="field" class="input-append row">
-                        <div id="field1" class="col-xs-8 col-md-8"><br>
-                          <input autocomplete="off" class="form-control" type="text" name="field1"placeholder="Ex: Paper, 0.25" data-items="8" required>
+                        <div id="field1" class="col-xs-9 col-md-4"><br>
+                          
+                          <div class="row">
+                                <div class="col-md-6 col-xs-6"> 
+                                    <input autocomplete="off" placeholder="Ex: 'Homework'" class="form-control col-xs-4 col-md-4" name="type1" type="text">
+                                  </div> 
+                                <div class="col-md-6 col-xs-6">
+                                    <input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting1" type="text">
+                                  </div>
+                              </div>
+
                         </div>
                       </div>
 
@@ -202,7 +108,7 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
                       <br><br>
                       
                       <div>
-                <button type="submit" id="submitBtn" class="btn btn-default pull-right" ><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                <button type="submit" id="submitBtn" class="btn btn-default pull-right col-md-2 col-lg-2 col-xs-12" ><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
               </div>
 
                   </form>
@@ -216,21 +122,6 @@ var chart3 = new CanvasJS.Chart("chartContainer3",
 
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-  
-    <hr>
-    <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
-    <hr>
-    <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
-    <br>
 	</div>
 
   
