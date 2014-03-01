@@ -39,9 +39,9 @@ $(document).ready(function(){
             var fieldID = "#field" + fieldNum;
             ($divToRemove).remove();
             $(fieldID).remove();
-            next = next-1;
-            $("#numFields").attr("value", next);
-            console.log('just deleted, ' + next);
+            //next = next-1;
+            //$("#numFields").attr("value", next--);
+            //console.log('just deleted, ' + next);
         });
     });
 });
