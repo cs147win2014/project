@@ -3,12 +3,11 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
     console.log('document is ready');
-    var myData;
 
     $.get("/getAssignments", function(data) {
         console.log(data);
         console.log('now ill try to assign');
-        
+
 
         var chart = AmCharts.makeChart("testLine", {
             "type": "serial",
@@ -121,4 +120,5 @@ $(document).ready(function() {
 
         
     });
+    console.log('hello');
 });
