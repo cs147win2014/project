@@ -12,10 +12,21 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$('#addCourseButton').click(addCourse);
-	$('.courseButton').click(getCourseSyllabus);
+	$('.syllabusButton').click(getCourseSyllabus);
+	$('.removeButton').click(removeCourse);
+	$('.editButton').click(editCourse);
 
 }
 
+function removeCourse(e) {
+	e.preventDefault();
+	alert('here is where i would try to delete the course');
+}
+
+function editCourse(e) {
+	e.preventDefault();
+	alert('here i would take you to the /editCourse for the course you just clicked on');
+}
 
 function addCourse() {
 	console.log("user clicked button");

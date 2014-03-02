@@ -41,7 +41,11 @@
 						<a href="course/{{department}}{{number}}">
 							Name: {{this.department}} {{this.department}} {{this.number}}
 						</a>
-						<button id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default pull-right ">More</button>
+						<div class="btn-group pull-right">
+							<button type="button" id="viewButton{{department}}{{number}}" class="btn courseButton btn-xs btn-default "><span class="glyphicon glyphicon-info-sign"></span></button>
+							<button type="button" id="editButton{{department}}{{number}}" class="btn editButton btn-xs btn-default "><span class="glyphicon glyphicon-wrench"></span></button>
+							<button type="button" id="removeButton{{department}}{{number}}" class="btn removeButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+						</div>
 						
 					</li>
 				{{/each}}
