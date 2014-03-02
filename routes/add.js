@@ -7,7 +7,7 @@ exports.addAssignment = function(req, res) { 
 					 score: req.query.score,
 					 total: req.query.total};
 
-	data["assignments"].push(newAssignment);
+	data[2]["assignments"].push(newAssignment);
 	
 	console.log(newAssignment);
 	// instead of rendering add screen, rendered data screen
