@@ -2,6 +2,7 @@
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
+    initializePage();
     console.log('document is ready');
 
     $.get("/getAssignments", function(data) {
@@ -122,3 +123,11 @@ $(document).ready(function() {
     });
     console.log('hello');
 });
+
+function initializePage() {
+    alert("here");
+    $('#typeSelect').hide();
+    $('#courseSelect').on('change', function(event) {
+        $('#typeSelect').show();
+    });
+}
