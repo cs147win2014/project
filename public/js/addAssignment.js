@@ -132,10 +132,10 @@ $(document).ready(function() {
 
 
 function initializePage() {
-	$('#typeSelect').hide();
-    $('#courseSelect').on('change', function(event) {
-        $('#typeSelect').show();
-    });
+	//$('#typeSelect').hide();
+    //$('#courseSelect').on('change', function(event) {
+        //$('#typeSelect').show();
+    //});
 
     $('#addAssignmentBtn').click(addAssignment);
     $('#backBtn').click(goBack);
