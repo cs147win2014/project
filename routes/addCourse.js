@@ -15,7 +15,7 @@ exports.add = function(req, res) { 
     	console.log(newCourse);
       //Find the user and push the newCourse onto it's array of courses
     	models.User
-    		.findOne({"username": user})
+    		.findOne({"username": user}) 
     		.exec(function(err, doc) {
       			if(err) {
               console.log('Error: ' + err);

@@ -60,7 +60,10 @@ function submitAssignmentForm(e) {
         var val = $($allInputs[i]).val();
         data[name] = val;
     }
+    var courseInfo = $('div.classInfoDiv').attr('id');
+    console.log(courseInfo);
 
+    var toPassIn = {"courseName": "NOTASSIGNEDRIGHTNOW", "allFields": data};
     console.log(data);
 
     $.post('/editCourseAJAX',data,callback);
