@@ -86,7 +86,7 @@ exports.viewCourseInfo = function(req, res) { 
 	var courseInfo = false;
 
   	// find the stuff you want inside the JSON and return it
-	allCourses = data['courses'];
+	allCourses = data[1]['courses'];
 	for(var i = 0; i < allCourses.length; i++) {
 		if(allCourses[i].department.toLowerCase() === department.toLowerCase()) {
 			if(allCourses[i].number.toLowerCase() === number.toLowerCase()) {
