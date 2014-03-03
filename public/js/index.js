@@ -15,12 +15,13 @@ function initializePage() {
 	$('.syllabusButton').click(getCourseSyllabus);
 	$('.removeButton').click(removeCourse);
 	$('.editButton').click(editCourse);
-
 }
 
 function removeCourse(e) {
 	e.preventDefault();
-	alert('here is where i would try to delete the course');
+	var courseName = $(this).closest('li').attr('id');
+	console.log(coursename);
+	alert('i now have the course name ' + coursename + ' and then we have to go into database and remove it');
 }
 
 function editCourse(e) {
