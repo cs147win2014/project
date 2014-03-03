@@ -1,5 +1,5 @@
 
-
+var models = require('../models');
 var data = require("../data.json");
 
 exports.addAssignment = function(req, res) {    
@@ -23,12 +23,13 @@ exports.view = function(req, res){
 };
 
 exports.addSyllabusFields_ajax = function(req, res) {
-	allFields = req.body;
+	allFields = req.body["allFields"];
 	console.log("CALLING THE RIGHT FUNCTION");
-	var syllabus = {};
+	console.log(allFields);
+	//var syllabus = {};
 	var type = "";
 	var weighting = "";
-	console.log("here is the body:" + allFields.length);
+	console.log("here is the body:" + allFields);
 	for(var i = 0; i < allFields.length; i++) {
 		console.log(allFields[i]);
 	}
@@ -44,7 +45,43 @@ exports.addSyllabusFields_ajax = function(req, res) {
 			if(isNaN(parseFloat(weighting))) {
 				console.log("UGH ITS NOT A NUMBER U SUCK");
 			} else {
-				syllabus[type] = weighting;
+				var newAssignmentTypeInfo = {"name": type, "weighting": weighting};
+				var newAssignmentType = new models.AssignmentType(newAssignmentTypeInfo);
+				newAssignmentType.save(afterSavingAssignmentType);
+
+				function afterSavingAssignmentType(err) {
+    				if(err) console.log(err);
+    				console.log(newAssignmentType);
+      				//Find the course and push the newCourse onto it's array of courses
+    	models.User
+    		.findOne({"username": user})
+    		.exec(function(err, doc) {
+      			if(err) {
+              console.log('Error: ' + err);
+            }
+      			if(doc!=null) {
+              console.log('here is the doc: ' + doc);
+              doc.courses.push(newCourse);
+      			  doc.save(function(err) {
+      			 	  if(err) {
+                  console.log('Error: ' + err);
+                }
+				        var sessionData = { "userData": doc, "user": user, "expand": false, "course": courseInfo};
+      				  console.log("user data is " + sessionData["userData"]);
+                console.log("user is " + sessionData["user"]);
+                
+					      res.render('editCourse',sessionData);
+      			  });
+      		  }
+            else {
+              console.log("doc is null, couldn't find username " + user);
+              res.render('editCourse');
+            }
+
+          });
+	};
+
+				//syllabus[type] = weighting;
 			}
 		}
 	}
