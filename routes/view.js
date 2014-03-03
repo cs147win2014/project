@@ -55,6 +55,7 @@ exports.viewIndex = function(req, res){
   //query database - get array of json situations
   models.User
     .find({"username": user})
+    .populate("courses")
     .exec(function(err, doc) {
       if(err) {console.log(err)};
       console.log(doc[0]);
@@ -65,7 +66,13 @@ exports.viewIndex = function(req, res){
       // } else { //user is in the database, use their data
       //   results = doc[0];
       // }
-      var sessionData = { "userData": results, "user": user, "expand": false};
+      var hasCourses;
+      if(courses.length) { //false if no courses
+        hasCourses = true;
+      } else {
+        hasCourses = false;
+      }
+      var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
       console.log("user data is " + sessionData);
       res.render('index',sessionData);
     });
