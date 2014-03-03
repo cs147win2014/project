@@ -67,7 +67,7 @@ exports.viewIndex = function(req, res){
       //   results = doc[0];
       // }
       var hasCourses;
-      if(courses.length) { //false if no courses
+      if(doc[0].courses.length) { //false if no courses
         hasCourses = true;
       } else {
         hasCourses = false;

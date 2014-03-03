@@ -20,7 +20,7 @@
 		        {{#each userData.courses}}
 					<li id="{{this.department}}{{this.number}}_navbar"><a href="/course/{{this.department}}{{this.number}}">{{this.department}} {{this.number}}</a></li>
 				{{/each}}
-					{{#if {{hasCourses}}}}
+					{{#if hasCourses}}
 						<li class="divider"></li>
 					{{/if}}
 					<li><a href="/addACourse"><span class="glyphicon glyphicon-plus"></span> Add another course</a></li>
