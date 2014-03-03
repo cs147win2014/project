@@ -36,6 +36,8 @@ exports.checkUsername = function(req, res) { 
 	});
 
 	console.log("Username or password incorrect");
+	error = "Username or password incorrect";
+	//console.log("The error is: " + error);
 	res.render('login',{error:error});
 	
  };
