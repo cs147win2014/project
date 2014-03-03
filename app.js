@@ -72,6 +72,7 @@ if ('development' == app.get('env')) {
 // ADD ROUTES HERE
     //Routes we definitely use
 app.get('/',login.view);
+app.get('/login', login.view);
 app.get('/signup',function(req, res) {
   res.render('signup');
 });
