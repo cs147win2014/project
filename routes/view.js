@@ -41,6 +41,7 @@ exports.viewCoursePage = function(req, res) { 
 
 exports.viewAssignments = function(req, res){
   console.log(data);
+  data["progressTabFirst"] = false;
   res.render('viewAssignments',data);
 };
 

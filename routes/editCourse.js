@@ -23,7 +23,7 @@ exports.view = function(req, res){
 };
 
 exports.addSyllabusFields_ajax = function(req, res) {
-	allFields = req.body["allFields"];
+	allFields = req.body;
 	console.log("CALLING THE RIGHT FUNCTION");
 	console.log(allFields);
 	//var syllabus = {};
@@ -33,10 +33,13 @@ exports.addSyllabusFields_ajax = function(req, res) {
 	for(var i = 0; i < allFields.length; i++) {
 		console.log(allFields[i]);
 	}
-
+	var id = "";
 
 	for(var key in allFields) {
-		if(key.match(/type/gi) != null) {
+		if(key.match("courseId")) {
+			id = allFields[key];
+		} else {
+			if(key.match(/type/gi) != null) {
 			type = allFields[key];
 			console.log("TYPE: " + type);
 		} else {
@@ -53,36 +56,38 @@ exports.addSyllabusFields_ajax = function(req, res) {
     				if(err) console.log(err);
     				console.log(newAssignmentType);
       				//Find the course and push the newCourse onto it's array of courses
-    	models.User
-    		.findOne({"username": user})
-    		.exec(function(err, doc) {
-      			if(err) {
-              console.log('Error: ' + err);
-            }
-      			if(doc!=null) {
-              console.log('here is the doc: ' + doc);
-              doc.courses.push(newCourse);
-      			  doc.save(function(err) {
-      			 	  if(err) {
-                  console.log('Error: ' + err);
-                }
-				        var sessionData = { "userData": doc, "user": user, "expand": false, "course": courseInfo};
-      				  console.log("user data is " + sessionData["userData"]);
-                console.log("user is " + sessionData["user"]);
+ //    	models.User
+ //    		.findOne({"username": user})
+ //    		.exec(function(err, doc) {
+ //      			if(err) {
+ //              console.log('Error: ' + err);
+ //            }
+ //      			if(doc!=null) {
+ //              console.log('here is the doc: ' + doc);
+ //              doc.courses.push(newCourse);
+ //      			  doc.save(function(err) {
+ //      			 	  if(err) {
+ //                  console.log('Error: ' + err);
+ //                }
+	// 			        var sessionData = { "userData": doc, "user": user, "expand": false, "course": courseInfo};
+ //      				  console.log("user data is " + sessionData["userData"]);
+ //                console.log("user is " + sessionData["user"]);
                 
-					      res.render('editCourse',sessionData);
-      			  });
-      		  }
-            else {
-              console.log("doc is null, couldn't find username " + user);
-              res.render('editCourse');
-            }
+	// 				      res.render('editCourse',sessionData);
+ //      			  });
+ //      		  }
+ //            else {
+ //              console.log("doc is null, couldn't find username " + user);
+ //              res.render('editCourse');
+ //            }
 
-          });
-	};
-
+ //          });
+	// };
+				}
 				//syllabus[type] = weighting;
 			}
+		}
+		
 		}
 	}
 	console.log(syllabus);
@@ -117,3 +122,5 @@ exports.addSyllabusFields = function(req, res) {
 	res.render('index',data);
 	return;
 };
+
+

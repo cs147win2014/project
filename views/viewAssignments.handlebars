@@ -36,7 +36,7 @@
     <li ><a href="#listTab" data-toggle="tab">List View</a></li>
   {{else}}
     <li class="active"><a href="#listTab" data-toggle="tab">List View</a></li>
-    <li ><a href="#progressTab" data-toggle="tab">Progress</a></li>
+    <li id="actualProgressTab"><a href="#progressTab" data-toggle="tab">Progress</a></li>
   {{/if}}
   <li><a href="#syllabusTab" data-toggle="tab">Syllabus</a></li>
 </ul>
@@ -45,64 +45,9 @@
 <div class="tab-content">
   {{#if progressTabFirst}}
     <div class="tab-pane active" id="progressTab"> 
-      <div class="panel panel-default">  
-        <div class="panel panel-body">   
-          Here are some trends regarding your [types of homework for this class!]
-
-        </div>
-      
-
-      <br><br>
-      <div id="testLine" class="smoothLineChart"></div><br><br><br><br>
-      <div id="allAssignmentsChartDiv" class="stackedChart"></div>
-      </div>
-    </div>
-
-    <div class="tab-pane" id="listTab"> 
-      
-      <div class="panel panel-default">
-        <div class="panel panel-body " id="allFields">
-          Here are all your assignments so far:
-        
-        <table class="table">
-          <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-          {{#each assignments}}
-          <tr id="{{name}}">
-            <td>{{name}}</td>
-            <td>{{type}}</td>
-            <td>{{score}}</td>
-            <td>{{total}}</td>
-          </tr>
-          {{/each}}
-        </table>
-        </div>
-      </div>
-    </div>
-
-
-  {{else}} 
-    <div class="tab-pane active" id="listTab"> 
-      
-      <div class="panel panel-default">
-        <div class="panel panel-body " id="allFields">
-          Here are all your assignments so far:
-        
-        <table class="table">
-          <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-          {{#each assignments}}
-          <tr id="{{name}}">
-            <td>{{name}}</td>
-            <td>{{type}}</td>
-            <td>{{score}}</td>
-            <td>{{total}}</td>
-          </tr>
-          {{/each}}
-        </table>
-        </div>
-      </div>
-    </div>
-
+  {{else}}
     <div class="tab-pane" id="progressTab"> 
+  {{/if}}
       <div class="panel panel-default">  
         <div class="panel panel-body">   
           Here are some trends regarding your [types of homework for this class!]
@@ -116,7 +61,30 @@
       </div>
     </div>
 
-  {{/if}}
+    {{#if progressTabFirst}}
+      <div class="tab-pane" id="listTab"> 
+    {{else}}
+      <div class="tab-pane active" id="listTab">
+    {{/if}}
+      
+      <div class="panel panel-default">
+        <div class="panel panel-body " id="allFields">
+          Here are all your assignments so far:
+        
+        <table class="table">
+          <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
+          {{#each assignments}}
+          <tr id="{{name}}">
+            <td>{{name}}</td>
+            <td>{{type}}</td>
+            <td>{{score}}</td>
+            <td>{{total}}</td>
+          </tr>
+          {{/each}}
+        </table>
+        </div>
+      </div>
+    </div>
 
   <div class="tab-pane" id="syllabusTab">
 
