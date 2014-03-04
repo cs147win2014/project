@@ -31,7 +31,7 @@
           <select class="form-control" id="typeSelect">
             <option value="null"></option>
             {{#each userData.courses}}
-            <option value="{{this.department}}{{this.number}}">{{this.name}}: {{this.department}} {{this.number}}</option>
+            <option value="{{this.department}}{{this.number}}">{{this.department}} {{this.number}}: {{this.name}}</option>
             {{/each}}
           </select>
         </div>
