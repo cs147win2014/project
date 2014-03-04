@@ -125,7 +125,6 @@ $(document).ready(function() {
 });
 
 function initializePage() {
-    alert("here");
     $('#typeSelect').hide();
     $('#courseSelect').on('change', function(event) {
         $('#typeSelect').show();
