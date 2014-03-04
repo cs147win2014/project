@@ -2,7 +2,11 @@
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
-	initializePage();
+    initializePage();
+    makeCharts();
+});
+
+function makeCharts() {
     $.get("/getAssignments", function(data) {
         console.log(data);
         console.log('now ill try to assign');
@@ -125,11 +129,8 @@ $(document).ready(function() {
                 }]
             }
         });
-
-        
     });
-})
-
+}
 
 function initializePage() {
 	//$('#typeSelect').hide();
@@ -139,6 +140,7 @@ function initializePage() {
 
     $('#addAssignmentBtn').click(addAssignment);
     $('#backBtn').click(goBack);
+    $('#actualProgressTab').click(makeCharts);
 
     $('#myTab a').click(function (e) {
   		e.preventDefault()
