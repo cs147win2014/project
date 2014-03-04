@@ -12,7 +12,9 @@ exports.add = function(req, res) { 
 	
 	function afterSaving(err) {
     	if(err) console.log(err);
-    	console.log(newCourse);
+    	console.log("new course made is" + newCourse);
+      var id = newCourse._id;
+      console.log("id number is" + newCourse._id);
       //Find the user and push the newCourse onto it's array of courses
     	models.User
     		.findOne({"username": user}) 
@@ -27,7 +29,7 @@ exports.add = function(req, res) { 
       			 	  if(err) {
                   console.log('Error: ' + err);
                 }
-				        var sessionData = { "userData": doc, "user": user, "expand": false, "course": courseInfo};
+				        var sessionData = { "userData": doc, "user": user, "expand": false, "course": newCourse, "idNumber": id};
       				  console.log("user data is " + sessionData["userData"]);
                 console.log("user is " + sessionData["user"]);
                 

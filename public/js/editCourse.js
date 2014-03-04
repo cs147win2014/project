@@ -63,7 +63,9 @@ function submitAssignmentForm(e) {
     var courseInfo = $('div.classInfoDiv').attr('id');
     console.log(courseInfo);
 
-    var toPassIn = {"courseName": "NOTASSIGNEDRIGHTNOW", "allFields": data};
+    //var toPassIn = {"courseName": "NOTASSIGNEDRIGHTNOW", "allFields": data};
+    //console.log(toPassIn);
+
     console.log(data);
 
     $.post('/editCourseAJAX',data,callback);
