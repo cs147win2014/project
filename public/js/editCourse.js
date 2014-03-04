@@ -63,6 +63,7 @@ function submitAssignmentForm(e) {
     var courseInfo = $('div.classInfoDiv').attr('id');
     console.log(courseInfo);
 
+
     //var toPassIn = {"courseName": "NOTASSIGNEDRIGHTNOW", "allFields": data};
     //console.log(toPassIn);
 
@@ -74,11 +75,14 @@ function submitAssignmentForm(e) {
 function callback(results) {
     console.log('i made it back!');
     console.log(results);
+    var department = results.department;
+    var number = results.number;
+    var syllabus = results.syllabus;
     var fields = "";
-    for(var key in results) {
+    for(var key in syllabus) {
         fields += key + ", ";
     }
-    $("#successMessageDiv").text("Added the following fields to your [course here] syllabus: " + fields.substr(0,fields.length-2));
+    $("#successMessageDiv").text("Added the following fields to your " + department + " " + number + " syllabus: " + fields.substr(0,fields.length-2));
     // now display everything. so on the server side you want to make sure you remove all duplicates
     // so basically 'results' should only be what the server doesn't already contain
     // like you should change everything that isn't already the same as what's on the servers.
