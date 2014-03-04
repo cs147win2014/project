@@ -20,8 +20,8 @@ function initializePage() {
 function removeCourse(e) {
 	e.preventDefault();
 	var courseName = $(this).closest('li').attr('id');
-	console.log(coursename);
-	alert('i now have the course name ' + coursename + ' and then we have to go into database and remove it');
+	console.log(courseName);
+	alert('i now have the course name ' + courseName + ' and then we have to go into database and remove it');
 }
 
 function editCourse(e) {
