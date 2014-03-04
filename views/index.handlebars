@@ -49,6 +49,10 @@
 						
 					</li>
 				{{/each}}
+				{{#if hasCourses}}
+				{{else}}
+					<li class="list-group-item">Sorry, you haven't added any courses yet!</li>
+				{{/if}}
   			</ul>
 
         <div id="showMe"></div>

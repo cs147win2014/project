@@ -6,6 +6,16 @@ exports.addAssignment = function(req, res) { 
 					 type: req.query.type, 
 					 score: req.query.score,
 					 total: req.query.total};
+	var percent = parseFloat(req.query.score)/parseFloat(req.query.total);
+
+	newAssignment["percent"] = percent;
+	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; 
+
+	newAssignment["shortName"] = req.query.type + ' ' + mm + '-' + dd;
+
 
 	data[2]["assignments"].push(newAssignment);
 	
