@@ -29,9 +29,9 @@
         <div class="form-group">
           <label for="Type">Type:</label>
           <select class="form-control" id="typeSelect">
-            <option value="1"></option>
-            {{#each courses}}
-            <option value="1">{{department}}{{number}}</option>
+            <option value="null"></option>
+            {{#each userData.courses}}
+            <option value="{{this.department}}{{this.number}}">{{this.name}}: {{this.department}} {{this.number}}</option>
             {{/each}}
           </select>
         </div>

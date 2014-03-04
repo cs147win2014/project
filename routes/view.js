@@ -91,8 +91,33 @@ exports.viewAddCoursePage = function(req, res) {
 }
 
 exports.viewAddAssignmentPage = function(req, res) {
-  console.log(data);
-  res.render('addAssignment',data);
+  
+  var user = req.session.user;
+  
+  //query database - get array of json situations
+  models.User
+    .find({"username": user})
+    .populate("courses")
+    .exec(function(err, doc) {
+      if(err) {console.log(err)};
+      console.log(doc[0]);
+      var results;
+      results = doc[0];
+      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      //   results = data; 
+      // } else { //user is in the database, use their data
+      //   results = doc[0];
+      // }
+      var hasCourses;
+      if(doc[0].courses.length) { //false if no courses
+        hasCourses = true;
+      } else {
+        hasCourses = false;
+      }
+      var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
+      console.log("user data is " + sessionData);
+      res.render('addAssignment',sessionData);
+    });
 }
 
 exports.getAssignments = function(req,res) {
