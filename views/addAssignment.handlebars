@@ -31,7 +31,7 @@
 		<div class="row container-fluid">
 			<form id="addAssignmentForm" role="form" method="get" action="/add">
         		<div class="form-group">
-          			<label for="Type">Type:</label>
+          			<label for="type">Type:</label>
           				<select class="form-control" id="typeSelect">
             				<option value="1"></option>
             				{{#each course.syllabus}}
@@ -54,7 +54,9 @@
 			    	</div>
 				</div>
 		    	<hr>
-		    	<button type="submit" id="submitBtn" class="btn btn-default col-md-2 col-xs-4 pull-right" ><i class="glyphicon glyphicon-plus"></i> Add</button>
+		    	<div id="{{_id}}">
+		    		<button type="submit" id="submitAssignmentBtn" class="btn btn-default col-md-2 col-xs-4 pull-right" ><i class="glyphicon glyphicon-plus"></i> Add</button>
+		    	</div>
 			</form>
 				<button id="backBtn" class="btn btn-default form-group col-md-2 col-xs-4" ><i class="glyphicon glyphicon-chevron-left"></i> Back</button>
 				

@@ -36,9 +36,9 @@
   			<!-- List group -->
   			<ul class="list-group">
 				{{#each userData.courses}}
-					<li id="{{department}}{{number}}" class="list-group-item">
+					<li id="{{_id}}" class="list-group-item">
             
-						<a href="course/{{department}}{{number}}">
+						<a href="course/{{_id}}">
 							{{this.department}} {{this.number}}: {{this.name}}
 						</a>
 						<div class="btn-group pull-right">

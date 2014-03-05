@@ -12,7 +12,7 @@ var AssignmentSchema = new Mongoose.Schema({
   "type": { type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' },
   "score": Number,
   "total": Number,
-  "course": String,
+  "course": { type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' },
 });
 
 

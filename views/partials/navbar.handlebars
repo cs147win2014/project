@@ -18,7 +18,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		        {{#each userData.courses}}
-					<li id="{{this.department}}{{this.number}}_navbar"><a href="/course/{{this.department}}{{this.number}}">{{this.department}} {{this.number}}</a></li>
+					<li id="{{this._id}}_navbar"><a href="/course/{{this._id}}">{{this.department}} {{this.number}}</a></li>
 				{{/each}}
 					{{#if hasCourses}}
 						<li class="divider"></li>

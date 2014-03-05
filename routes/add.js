@@ -1,7 +1,8 @@
 var data = require("../data.json");
 
-exports.addAssignment = function(req, res) {    
-	// Your code goes here%
+exports.addAssignment = function(req, res) { 
+	var courseID = req.params.courseID; 
+	console.log(courseID);
 	var newAssignment = {name: req.query.name, 
 					 type: req.query.type, 
 					 score: req.query.score,
@@ -21,5 +22,5 @@ exports.addAssignment = function(req, res) { 
 	
 	console.log(newAssignment);
 	// instead of rendering add screen, rendered data screen
-	res.render('viewAssignments',data);
+	//res.render('viewAssignments',data);
  }
