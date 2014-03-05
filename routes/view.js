@@ -52,8 +52,29 @@ exports.viewAssignments = function(req, res){
   //query database - get array of json situations
   var actualUser = models.User.find({"username": user});
   if(actualUser.length != 0) {
-    res.render('viewAssignments',data);
-    return;
+    actualUser.populate("courses")
+    .exec(function(err, doc) {
+      if(err) {console.log(err)};
+      console.log(doc[0]);
+      var results;
+      results = doc[0];
+      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      //   results = data; 
+      // } else { //user is in the database, use their data
+      //   results = doc[0];
+      // }
+      var hasCourses;
+      if(doc[0].courses.length) { //false if no courses
+        hasCourses = true;
+      } else {
+        hasCourses = false;
+      }
+      var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
+      console.log("user data is " + sessionData);
+      res.render('viewAssignments',sessionData);
+      return;
+    });
+    
   } 
   else {
     console.log('couldnt find user ' + username);
