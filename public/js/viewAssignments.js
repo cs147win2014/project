@@ -133,6 +133,15 @@ function makeCharts() {
 }
 
 function initializePage() {
+
+    //for google analytics
+
+    $(".active").click(function (e) {
+        ga("send", "event", "tabSwitched", "click");
+    });
+
+    //end stuff for google analytics
+
 	//$('#typeSelect').hide();
     //$('#courseSelect').on('change', function(event) {
         //$('#typeSelect').show();
