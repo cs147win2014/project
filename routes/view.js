@@ -191,8 +191,14 @@ exports.viewIndex = function(req, res){
   }
 };
 
-exports.viewIndexExpand = function(req, res) {
-  data['expand'] = true;
+exports.viewAssignmentsTest = function(req, res){
+  //console.log(data);
+  data["progressTabFirst"] = true;
+  res.render('viewAssignments',data);
+};
+
+
+exports.viewInfo = function(req, res){
   console.log(data);
   res.render('index',data);
 };

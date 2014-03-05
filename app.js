@@ -86,6 +86,8 @@ app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
 app.get('/viewAssignments',view.viewAssignments);
 app.get('/viewAssignments/test', view.viewAssignmentsTest);
 
+//app.get('/viewAssignments/test2', view.viewAssignmentsTest2);
+
 
 
     //Do we use these?
@@ -98,7 +100,6 @@ app.get('/addACourse',view.viewAddCoursePage);
 app.get('/addAssignment',view.viewAddAssignmentPage);
 app.get('/editCourse',editCourse.view);
 app.get('/index',view.viewIndex);
-app.get('/index/expand', view.viewIndexExpand);
 app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.getCourseSyllabus);
