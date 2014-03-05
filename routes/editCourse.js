@@ -132,6 +132,117 @@ exports.addSyllabusFields_ajax = function(req, res) {
 };
 
 
+exports.delete_ajax = function(req, res) {
+	courseName = req.body;
+	console.log("CALLING THE DLETE FUNCTION");
+	console.log(allFields);
+	
+	//Get the course ID number
+	var id = "";
+	for(var key in allFields) {
+		if(key.match("courseId")) {
+			id = allFields[key];
+		}
+	}
+
+	//Find the corresponding course in the database, add the assignment types to it
+	models.Course
+		.findOne({"_id": id})
+		.populate("syllabus")
+		.exec(function(err, course) {
+      		if(err) {
+              	console.log('Error: ' + err);
+            }
+      		if(course!=null) {
+              	console.log('here is the course: ' + course);
+
+              	//Syllabus will hold type-weighting paris
+				var newSyllabus = {};
+				//Keys will hold index-type pairs (for saving)
+				var keys = {};
+				//Will keep track of how many assignment types there are
+				var count = 0;
+
+				var type = "";
+				var weighting = "";
+
+				var oldSyllabus = course.syllabus;
+				console.log(oldSyllabus);
+
+				function inSyllabus(aType) {
+					for(var i = 0; i < oldSyllabus.length; i++) {
+						var oldAssign = oldSyllabus[i];
+						console.log("comparison assign name: " + oldAssign.name);
+						console.log("our assign name: " + aType);
+						if(aType.match(oldAssign.name)) return true;
+					}
+					return false;
+				}
+
+				var badWeight = false;
+
+				//Create the type-weighting map and the index-type map
+				for(var key in allFields) {
+					//It's not the course ID
+					console.log(allFields[key]);
+					if(!key.match("courseId") && !inSyllabus(allFields[key]) && !badWeight) {
+						//It's a type
+						if(key.match(/type/gi) != null) {
+							type = allFields[key];
+							console.log("TYPE: " + type);
+							badWeight = false;
+						//It's a weighting
+						} else {
+							weighting = allFields[key];
+							console.log("WEIGHTING: " + weighting + " and the type is: " + type);
+							if(isNaN(parseFloat(weighting))) {
+								console.log("UGH ITS NOT A NUMBER U SUCK");
+							} else {
+								newSyllabus[type] = weighting;
+								keys[count] = type;
+								count++;
+							}
+						}
+					}
+					badWeight = inSyllabus(allFields[key]);
+				}
+				console.log(newSyllabus);
+				console.log(count);
+				addToDatabase(0);
+
+				//Recursiveley add the assignment types to the database and their ID's to the given course
+				function addToDatabase(index) {
+					if(index < count) {
+						type = keys[index];
+						weighting = newSyllabus[type];
+						var newAssignmentTypeInfo = {"name": type, "weighting": weighting};
+						var newAssignmentType = new models.AssignmentType(newAssignmentTypeInfo);
+						newAssignmentType.save(function(err) {
+							if(err) console.log(err);
+    						console.log(newAssignmentType);
+	    					course.syllabus.push(newAssignmentType);
+    						course.save(function(err) {
+    							if(err) {
+	                  				console.log('Error: ' + err);
+ 				               	}
+	    						addToDatabase(index + 1);
+ 		   					});
+						});
+					} else {
+						var returnData = {"syllabus": newSyllabus, "department": course.department, "number": course.number};
+						console.log("OUT");
+						console.log(course);
+						res.json(returnData);
+						return;
+					}
+				}
+			}
+		});
+	// // here is where you wanna mess with the database stuff then return other
+};
+
+
+
 
 exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;

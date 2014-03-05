@@ -21,6 +21,7 @@ function removeCourse(e) {
 	e.preventDefault();
 	var courseName = $(this).closest('li').attr('id');
 	console.log(courseName);
+    //$.post('/deleteCourseAJAX',courseName,callback);
 	alert('i now have the course name ' + courseName + ' and then we have to go into database and remove it');
 }
 
