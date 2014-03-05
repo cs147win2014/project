@@ -16,10 +16,36 @@
 <body>
 	<div class="container">
         {{>navbar}}
+        {{#if courseKnown}}
 		<h1>Add {{course.department}} {{course.number}} Grade</h1>
+		{{else}}
+		<h1>Add Grade</h1>
+		{{/if}}		
 		<hr>
 		<div class="row container-fluid">
 			<form id="addAssignmentForm" role="form" method="get" action="/add">
+        		<div class="form-group">
+          			<label for="Course">Course:</label>
+          				<select class="form-control" id="courseSelect">
+          					{{#if courseKnown}}
+            				<option value="{{course._id}}">{{course.department}} {{course.number}}: {{course.name}}</option>
+            				{{else}}
+            				<option value="1"></option>
+            				{{/if}}
+            				{{#each userData.courses}}
+            				<option value="{{this.department}}{{this.number}}">{{this.department}} {{this.number}}: {{this.name}}</option>
+            				{{/each}}
+          				</select>
+        		</div>
+        		<div class="form-group" id="typeSelectDiv">
+           			<label for="Type">Type:</label>
+           				<select class="form-control" id="typeSelect">
+             				<option value="1"></option>
+            				{{#each course.syllabus}}
+            				<option value="{{this.name}}">{{this.name}}</option>
+            				{{/each}}
+           				</select>
+         		</div>
         		<div class="form-group">
           			<label for="type">Type:</label>
           				<select class="form-control" id="typeSelect">
