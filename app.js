@@ -97,13 +97,14 @@ app.get('/info',view.viewInfo);
 //app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);
 app.get('/addACourse',view.viewAddCoursePage);
-app.get('/addAssignment',view.viewAddAssignmentPage);
+//app.get('/addAssignment',view.viewAddAssignmentPage);
 app.get('/editCourse',editCourse.view);
 app.get('/index',view.viewIndex);
 app.post('/login',login.checkUsername);
 
 app.get('/courses/:id/syllabus', course.getCourseSyllabus);
 app.get('/course/:courseName', view.viewCoursePage);
+app.get('/addAssignment/:courseID', view.viewAddAssignmentPage);
 app.get('/getAssignments',view.getAssignments);
 
 app.post('/addACourse/new',course.add);

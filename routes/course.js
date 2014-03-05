@@ -1,10 +1,6 @@
 var data = require("../data.json");
 var models = require('../models');
 
-exports.view = function(req, res){
-	console.log(data);
-	res.render('course',data);
-};
 
 /* not currently in use
 exports.addAssignment = function(req, res) {    

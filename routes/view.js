@@ -31,13 +31,27 @@ exports.viewCoursePage = function(req, res) { 
       } else {
         hasCourses = false;
       }
+      var courseInfo;
+      var allCourses = results.courses;
+      //Find the actual course we're rendering - first one in array, if there are multiple there will be a BUG!!!!
+      for(var i = 0; i < allCourses.length; i++) {
+        var curr = allCourses[i];
+        if(curr.department.toLowerCase() === department.toLowerCase()) {
+          if(curr.number.toLowerCase() === number.toLowerCase()) {
+            courseInfo = curr;
+          }
+        }
+      }
+      console.log(courseInfo);
+
       var sessionData = { "userData": results,
                           "department": department,
                           "number": number,
                           "user": user, 
-                          "expand": false, 
-                          "hasCourses": hasCourses};
-      console.log("user data is " + sessionData);
+                          "hasCourses": hasCourses,
+                          "course": courseInfo};
+
+      //console.log("user data is " + sessionData);
       res.render('course',sessionData);
       return;
     });
@@ -79,7 +93,6 @@ exports.viewAssignments = function(req, res){
   //                         "department": department,
   //                         "number": number,
   //                         "user": user, 
-  //                         "expand": false, 
   //                         "progressTabFirst": false,
   //                         "hasCourses": hasCourses};
   //     console.log("user data is " + sessionData);
@@ -129,7 +142,6 @@ exports.viewAssignmentsTest = function(req, res){
   //                         "department": department,
   //                         "number": number,
   //                         "user": user, 
-  //                         "expand": false, 
   //                         "progressTabFirst": true,
   //                         "hasCourses": hasCourses};
   //     console.log("user data is " + sessionData);
@@ -179,7 +191,6 @@ exports.viewIndex = function(req, res){
       }
       var sessionData = { "userData": results, 
                           "user": username, 
-                          "expand": false, 
                           "hasCourses": hasCourses};
       console.log("user data is " + sessionData);
       res.render('index',sessionData);
@@ -228,7 +239,6 @@ exports.viewAddCoursePage = function(req, res) {
       }
       var sessionData = { "userData": results, 
                           "user": username, 
-                          "expand": false, 
                           "hasCourses": hasCourses};
       console.log("user data is " + sessionData);
       res.render('addACourse',sessionData);
@@ -241,6 +251,8 @@ exports.viewAddCoursePage = function(req, res) {
 }
 
 exports.viewAddAssignmentPage = function(req, res) {
+  var courseID = req.params.courseID; 
+  console.log(courseID);
   
   var user = req.session.user;
   console.log(user);
@@ -265,13 +277,18 @@ exports.viewAddAssignmentPage = function(req, res) {
       } else {
         hasCourses = false;
       }
-      var sessionData = { "userData": results, 
-                          "user": user, 
-                          "expand": false, 
-                          "hasCourses": hasCourses};
-      console.log("user data is " + sessionData);
-      res.render('addAssignment',sessionData);
-      return;
+      models.Course.findOne({"_id": courseID})
+        .exec(function(err, actualCourse) {
+          if(err) console.log(err);
+          console.log(actualCourse);
+          var sessionData = { "userData": results, 
+                              "user": user, 
+                              "hasCourses": hasCourses,
+                              "course": actualCourse};
+          console.log("user data is " + sessionData);
+          res.render('addAssignment',sessionData);
+          return;
+        });
     });
   } else {
     console.log('couldnt find user ' + user);

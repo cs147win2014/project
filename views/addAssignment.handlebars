@@ -6,14 +6,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
-	<link rel="stylesheet" type="text/css" href="css/flatly.min.css">
-	<link rel="stylesheet" type="text/css" href="css/amcharts.css">
+	<link rel="stylesheet" type="text/css" href="../css/flatly.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/amcharts.css">
  	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
   	<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
   	<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 
 	<!-- import plugin script -->
-    <script src='Chart.js/Chart.min.js'></script>
+    <script src='../Chart.js/Chart.min.js'></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +26,7 @@
 <body>
 	<div class="container">
         {{>navbar}}
-		<h1>Add An Assignment</h1>
+		<h1>Add {{course.department}} {{course.number}} Grade</h1>
 		<hr>
 		<div class="row container-fluid">
 			<form id="addAssignmentForm" role="form" method="get" action="/add">
@@ -70,9 +70,9 @@
 		
 	</div>
 	<br><br>
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.js"></script>
-  	<script src="js/addAssignment.js"></script>
+	<script src="/js/jquery-1.11.0.js"></script>
+	<script src="/js/bootstrap.js"></script>
+  	<script src="/js/addAssignment.js"></script>
 
 
 

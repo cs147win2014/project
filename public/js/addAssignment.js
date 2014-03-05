@@ -136,6 +136,8 @@ function initializePage() {
 	$('#typeSelectDiv').hide();
     $('#courseSelect').on('change', showTypeSelectElement);
     $('#backBtn').click(goBack);
+    $('#addAssignmentBtn').click(addAssignment);
+
     
 }
 
@@ -164,7 +166,9 @@ function populateTypeSelect(syllabus) {
 
 function addAssignment() {
 	console.log("user clicked add assignment button");
-	window.location.href = "/addAssignment"; // load the page
+    var courseID = $(this).closest('div').attr('id');
+    console.log(courseID);
+	window.location.href = "/addAssignment/" + courseID; // load the page
 
 	//$.get("/addACourse");
 }
