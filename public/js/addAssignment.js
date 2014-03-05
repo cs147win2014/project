@@ -133,7 +133,7 @@ function makeCharts() {
 }
 
 function initializePage() {
-	//$('#typeSelect').hide();
+	$('#typeSelectDiv').hide();
     $('#courseSelect').on('change', showTypeSelectElement);
     $('#backBtn').click(goBack);
     
@@ -144,8 +144,22 @@ function showTypeSelectElement(e) {
     var selectedCourse = $("#"+elemId+" option:selected").attr('value');
     // now go into the database and get the syllabus types for the class
     // then show a typeSelect element that is populated with all of those syllabus types
-    $('#typeSelect').show();
+    //$.get('/getAssignmentTypes',populateTypeSelect);
+    var url = "/courses/" + selectedCourse + "/syllabus/";
+    $.get(url, populateTypeSelect);
+    $('#typeSelectDiv').show();
     
+}
+
+function populateTypeSelect(syllabus) {
+    alert('im gonna populate the types now');
+    var $selectElement = $('#typeSelect');
+    var optionHTML = ''; 
+    for(var key in syllabus) {
+        optionHTML = '<option value="' + key + '">' + key + '</option>';
+        var optionElement = $(optionHTML);
+        $selectElement.append(optionElement);
+    }
 }
 
 function addAssignment() {

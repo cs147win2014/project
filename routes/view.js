@@ -40,9 +40,47 @@ exports.viewCoursePage = function(req, res) { 
 };
 
 exports.viewAssignments = function(req, res){
-  console.log(data);
   data["progressTabFirst"] = false;
-  res.render('viewAssignments',data);
+  var user = req.session.user;
+  console.log(user);
+  if(!user) {
+    console.log('username undefined we should not do this');
+    res.render('login', {error:"Please sign in first!"});
+    return;
+  }
+  
+  //query database - get array of json situations
+  var actualUser = models.User.find({"username": user});
+  if(actualUser.length != 0) {
+    actualUser.populate("courses")
+    .exec(function(err, doc) {
+      if(err) {console.log(err)};
+      console.log(doc[0]);
+      var results;
+      results = doc[0];
+      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      //   results = data; 
+      // } else { //user is in the database, use their data
+      //   results = doc[0];
+      // }
+      var hasCourses;
+      if(doc[0].courses.length) { //false if no courses
+        hasCourses = true;
+      } else {
+        hasCourses = false;
+      }
+      var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
+      console.log("user data is " + sessionData);
+      res.render('viewAssignments',sessionData);
+      return;
+    });
+    
+  } 
+  else {
+    console.log('couldnt find user ' + username);
+    res.render('login',{error:"Could not find user " + username});
+    return;
+  }
 };
 
 exports.viewAssignmentsTest = function(req, res){
@@ -90,7 +128,7 @@ exports.viewIndex = function(req, res){
     });
   } else {
     console.log('couldnt find user ' + username);
-    res.render('login',{error:"Could not find user " + user});
+    res.render('login',{error:"Could not find user " + username});
     return;
   }
 };
@@ -117,7 +155,7 @@ exports.viewAddAssignmentPage = function(req, res) {
   }
   
   //query database - get array of json situations
-  var actualUser = models.User.find({"username": username});
+  var actualUser = models.User.find({"username": user});
   if(actualUser.length != 0) {
     actualUser.populate("courses")
     .exec(function(err, doc) {
@@ -142,7 +180,7 @@ exports.viewAddAssignmentPage = function(req, res) {
       return;
     });
   } else {
-    console.log('couldnt find user ' + username);
+    console.log('couldnt find user ' + user);
     res.render('login',{error:"Could not find user " + user});
     return;
   }
@@ -152,6 +190,6 @@ exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
   // sorted by type
-  console.log(data[2]["assignments"]);
+  //console.log(data[2]["assignments"]);
   res.json(data[2]["assignments"]);
 }
