@@ -9,34 +9,59 @@ exports.viewCoursePage = function(req, res) { 
   var match = courseName.search(/\d/);
   if(match === NaN) {
     // no coursenumber!! eek
+    console.log("There's no course number!!");
   }
 
   var department = courseName.substr(0,match);
   var number = courseName.substr(match);
+  var user = req.session.user;
 
-  var courseInfo = false;
-    // find the stuff you want inside the JSON and return it
-  allCourses = data[1]['courses'];
-  for(var i = 0; i < allCourses.length; i++) {
-    if(allCourses[i].department.toLowerCase() === department.toLowerCase()) {
-      if(allCourses[i].number.toLowerCase() === number.toLowerCase()) {
-        courseInfo = allCourses[i];
+  //query database - get array of json situations
+  var actualUser = models.User.find({"username": user});
+  if(actualUser.length != 0) {
+    actualUser.populate("courses")
+    .exec(function(err, doc) {
+      if(err) {console.log(err)};
+      console.log(doc[0]);
+      var results;
+      results = doc[0];
+      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
+      //   results = data; 
+      // } else { //user is in the database, use their data
+      //   results = doc[0];
+      // }
+      var hasCourses;
+      if(doc[0].courses.length) { //false if no courses
+        hasCourses = true;
+      } else {
+        hasCourses = false;
       }
-    }
+      var sessionData = { "userData": results,
+                          "department": department,
+                          "number": number,
+                          "user": user, 
+                          "expand": false, 
+                          "hasCourses": hasCourses};
+      console.log("user data is " + sessionData);
+      res.render('course',sessionData);
+      return;
+    });
+    
+  } 
+  else {
+    console.log('couldnt find user ' + username);
+    res.render('login',{error:"Could not find user " + username});
+    return;
   }
-
-  var courseData = { 'department':department,
-                     'number':number};
-
 
   //var number = req.params.number; 
 
   // this is where we will go through data and systematically construct a JSON of
   // all the data we need to render this page
 
-  console.log("The course name is: " + courseName);
-  console.log(courseData);
-  res.render('course', courseData);
+  // console.log("The course name is: " + courseName);
+  // console.log(courseData);
+  // res.render('course', courseData);
 };
 
 exports.viewAssignments = function(req, res){
@@ -118,11 +143,6 @@ exports.viewIndex = function(req, res){
       console.log(doc[0]);
       var results;
       results = doc[0];
-      // if (!doc.length) { //no result was found aka user isn't in the database aka user was "Guest"
-      //   results = data; 
-      // } else { //user is in the database, use their data
-      //   results = doc[0];
-      // }
       var hasCourses;
       if(doc[0].courses.length) { //false if no courses
         hasCourses = true;

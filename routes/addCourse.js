@@ -3,6 +3,7 @@ var models = require('../models');
 
 exports.add = function(req, res) {    
 	var user = req.session.user;
+  //ONLY DO THIS IF COURSE DOESN'T ALREADY EXIST?????????
   var courseInfo = {"name": req.body.name,
                     "department": req.body.department, 
                     "number": req.body.number};
