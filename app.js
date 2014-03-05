@@ -100,7 +100,7 @@ app.get('/index',view.viewIndex);
 app.get('/index/expand', view.viewIndexExpand);
 app.post('/login',login.checkUsername);
 
-app.get('/courses/:id/syllabus', course.viewCourseInfo);
+app.get('/courses/:id/syllabus', course.getCourseSyllabus);
 app.get('/course/:courseName', view.viewCoursePage);
 app.get('/getAssignments',view.getAssignments);
 

@@ -40,9 +40,26 @@ exports.viewCoursePage = function(req, res) { 
 };
 
 exports.viewAssignments = function(req, res){
-  console.log(data);
   data["progressTabFirst"] = false;
-  res.render('viewAssignments',data);
+  var user = req.session.user;
+  console.log(user);
+  if(!user) {
+    console.log('username undefined we should not do this');
+    res.render('login', {error:"Please sign in first!"});
+    return;
+  }
+  
+  //query database - get array of json situations
+  var actualUser = models.User.find({"username": user});
+  if(actualUser.length != 0) {
+    res.render('viewAssignments',data);
+    return;
+  } 
+  else {
+    console.log('couldnt find user ' + username);
+    res.render('login',{error:"Could not find user " + username});
+    return;
+  }
 };
 
 exports.viewInfo = function(req, res){
@@ -84,7 +101,7 @@ exports.viewIndex = function(req, res){
     });
   } else {
     console.log('couldnt find user ' + username);
-    res.render('login',{error:"Could not find user " + user});
+    res.render('login',{error:"Could not find user " + username});
     return;
   }
 };
@@ -111,7 +128,7 @@ exports.viewAddAssignmentPage = function(req, res) {
   }
   
   //query database - get array of json situations
-  var actualUser = models.User.find({"username": username});
+  var actualUser = models.User.find({"username": user});
   if(actualUser.length != 0) {
     actualUser.populate("courses")
     .exec(function(err, doc) {
@@ -136,7 +153,7 @@ exports.viewAddAssignmentPage = function(req, res) {
       return;
     });
   } else {
-    console.log('couldnt find user ' + username);
+    console.log('couldnt find user ' + user);
     res.render('login',{error:"Could not find user " + user});
     return;
   }
@@ -146,6 +163,6 @@ exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
   // sorted by type
-  console.log(data[2]["assignments"]);
+  //console.log(data[2]["assignments"]);
   res.json(data[2]["assignments"]);
 }
