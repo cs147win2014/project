@@ -86,6 +86,8 @@ app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
 app.get('/viewAssignments',view.viewAssignments);
 app.get('/viewAssignments/test', view.viewAssignmentsTest);
 
+//app.get('/viewAssignments/test2', view.viewAssignmentsTest2);
+
 
 
     //Do we use these?

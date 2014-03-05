@@ -43,7 +43,7 @@ exports.viewAssignments = function(req, res){
   data["progressTabFirst"] = false;
   var user = req.session.user;
   console.log(user);
-  if(!user) {
+  /*if(!user) {
     console.log('username undefined we should not do this');
     res.render('login', {error:"Please sign in first!"});
     return;
@@ -73,21 +73,28 @@ exports.viewAssignments = function(req, res){
       console.log("user data is " + sessionData);
       res.render('viewAssignments',sessionData);
       return;
-    });
+    });*/
+    res.render('viewAssignments',data);
     
-  } 
+  /*} 
   else {
     console.log('couldnt find user ' + username);
     res.render('login',{error:"Could not find user " + username});
     return;
-  }
+  }*/
 };
 
 exports.viewAssignmentsTest = function(req, res){
-  console.log(data);
+  //console.log(data);
   data["progressTabFirst"] = true;
   res.render('viewAssignments',data);
 };
+
+/*exports.viewAssignmentsTest2 = function(req, res){
+  console.log(data);
+  data["progressTabFirst"] = false;
+  res.render('viewAssignments',data);
+};*/
 
 exports.viewInfo = function(req, res){
   console.log(data);
