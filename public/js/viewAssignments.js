@@ -200,10 +200,12 @@ function initializePage() {
 }
 
 function addAssignment() {
-	console.log("user clicked add assignment button");
-	window.location.href = "/addAssignment"; // load the page
+    console.log("user clicked add assignment button");
+    var courseID = $(this).closest('div').attr('id');
+    console.log(courseID);
+    window.location.href = "/addAssignment/" + courseID; // load the page
 
-	//$.get("/addACourse");
+    //$.get("/addACourse");
 }
 
 function goBack(e) {
