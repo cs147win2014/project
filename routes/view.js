@@ -278,6 +278,7 @@ exports.viewAddAssignmentPage = function(req, res) {
         hasCourses = false;
       }
       models.Course.findOne({"_id": courseID})
+        .populate("syllabus")
         .exec(function(err, actualCourse) {
           if(err) console.log(err);
           console.log(actualCourse);
