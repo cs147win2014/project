@@ -51,12 +51,17 @@ exports.viewInfo = function(req, res){
 };
 
 exports.viewIndex = function(req, res){
-  var user = req.session.user;
-  console.log(user);
+  var username = req.session.user;
+  console.log(username);
+  if(!username) {
+    console.log('username undefined we should not do this');
+    res.render('login', {error:"Please sign in first!"});
+    return;
+  }
   //query database - get array of json situations
-  models.User
-    .find({"username": user})
-    .populate("courses")
+  var actualUser = models.User.find({"username": username});
+  if(actualUser.length != 0) {
+    actualUser.populate("courses")
     .exec(function(err, doc) {
       if(err) {console.log(err)};
       console.log(doc[0]);
@@ -73,10 +78,15 @@ exports.viewIndex = function(req, res){
       } else {
         hasCourses = false;
       }
-      var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
+      var sessionData = { "userData": results, "user": username, "expand": false, "hasCourses": hasCourses};
       console.log("user data is " + sessionData);
       res.render('index',sessionData);
     });
+  } else {
+    console.log('couldnt find user ' + username);
+    res.render('login',{error:"Could not find user " + user});
+    return;
+  }
 };
 
 exports.viewIndexExpand = function(req, res) {
@@ -93,11 +103,17 @@ exports.viewAddCoursePage = function(req, res) {
 exports.viewAddAssignmentPage = function(req, res) {
   
   var user = req.session.user;
+  console.log(user);
+  if(!user) {
+    console.log('username undefined we should not do this');
+    res.render('login', {error:"Please sign in first!"});
+    return;
+  }
   
   //query database - get array of json situations
-  models.User
-    .find({"username": user})
-    .populate("courses")
+  var actualUser = models.User.find({"username": username});
+  if(actualUser.length != 0) {
+    actualUser.populate("courses")
     .exec(function(err, doc) {
       if(err) {console.log(err)};
       console.log(doc[0]);
@@ -117,7 +133,13 @@ exports.viewAddAssignmentPage = function(req, res) {
       var sessionData = { "userData": results, "user": user, "expand": false, "hasCourses": hasCourses};
       console.log("user data is " + sessionData);
       res.render('addAssignment',sessionData);
+      return;
     });
+  } else {
+    console.log('couldnt find user ' + username);
+    res.render('login',{error:"Could not find user " + user});
+    return;
+  }
 }
 
 exports.getAssignments = function(req,res) {
