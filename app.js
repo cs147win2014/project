@@ -84,6 +84,7 @@ app.post('/editCourse',editCourse.addSyllabusFields);
 app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
 
 app.get('/viewAssignments',view.viewAssignments);
+app.get('/viewAssignments/test', view.viewAssignmentsTest);
 
 
 

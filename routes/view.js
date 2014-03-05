@@ -45,6 +45,12 @@ exports.viewAssignments = function(req, res){
   res.render('viewAssignments',data);
 };
 
+exports.viewAssignmentsTest = function(req, res){
+  console.log(data);
+  data["progressTabFirst"] = true;
+  res.render('viewAssignments',data);
+};
+
 exports.viewInfo = function(req, res){
   console.log(data);
   res.render('info',data);
