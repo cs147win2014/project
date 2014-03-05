@@ -301,6 +301,7 @@ exports.viewAddAssignmentPage = function(req, res) {
             console.log("user data is " + sessionData);
             res.render('addAssignment',sessionData);
             return;
+          }
         });
     });
   } else {
