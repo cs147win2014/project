@@ -110,17 +110,17 @@ exports.getCourseSyllabus = function(req,res) {
 	if(actualUser.length != 0) {
     	var courseID = req.params.id;
     	console.log('heres the course ID: ' + courseID);
-    	    	
+
     	var selectedCourseArray = models.Course.find({"_id":courseID});
     	if (selectedCourseArray.length != 0) {
 	    	selectedCourseArray.populate("syllabus")
 	    	.exec(function(err, populatedCourse) {
 	    		if(err) console.log(err);
-	    		var syllabus = selectedCourseArray.syllabus;
+	    		var syllabus = populatedCourse[0].syllabus;
 	    		if(!syllabus) {
+	    			console.log("NO SYLLABUS FOUND");
 	    			res.json({});
-	    		}
-	    		else {
+	    		} else {
 					console.log('here is the syllabus: ' + syllabus);
 					res.json(syllabus);
 				}
