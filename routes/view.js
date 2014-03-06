@@ -266,47 +266,48 @@ exports.viewAddAssignmentPage = function(req, res) {
   //query database - get array of json situations
   var actualUser = models.User.find({"username": user});
   if(actualUser.length != 0) {
-    actualUser.populate("courses")
-    .exec(function(err, doc) {
-      if(err) {console.log(err)};
-      console.log(doc[0]);
-      var results;
-      results = doc[0];
-      var hasCourses;
-      if(doc[0].courses.length) { //false if no courses
-        hasCourses = true;
-      } else {
-        hasCourses = false;
-      }
-      var actualCourse = models.Course.findOne({"_id": courseID});
+      actualUser.populate("courses")
+      .exec(function(err, doc) {
+        if(err) {console.log(err)};
+        console.log(doc[0]);
+        var results;
+        results = doc[0];
+        var hasCourses;
+        if(doc[0].courses.length) { //false if no courses
+          hasCourses = true;
+        } else {
+          hasCourses = false;
+        }
+        var actualCourse = models.Course.findOne({"_id": courseID});
 
-      if(actualCourse.length ==0) {
-        console.log("no course provided");
-        var sessionData = { "userData": results, 
-                            "user": user, 
-                            "hasCourses": hasCourses,
-                            "courseKnown": false};
-        console.log("user data is " + sessionData);
-        res.render('addAssignment',sessionData);
-        return;
-      } else {
-        actualCourse.populate("syllabus")
-        .populate("assignments")
-        .exec(function(err, actualCourse) {
-          if(err) { // There was no user ID provided
-            console.log(err);
-          } else { // There was a user ID provided
-            console.log(actualCourse);
-            var sessionData = { "userData": results, 
-                                "user": user, 
-                                "hasCourses": hasCourses,
-                                "course": actualCourse,
-                                "courseKnown": true};
-            console.log("user data is " + sessionData);
-            res.render('addAssignment',sessionData);
-            return;
-          }
-        });
+        if(actualCourse.length ==0) {
+          console.log("no course provided");
+          var sessionData = { "userData": results, 
+                              "user": user, 
+                              "hasCourses": hasCourses,
+                              "courseKnown": false};
+          console.log("user data is " + sessionData);
+          res.render('addAssignment',sessionData);
+          return;
+        } else {
+          actualCourse.populate("syllabus")
+          .populate("assignments")
+          .exec(function(err, actualCourse) {
+            if(err) { // There was no user ID provided
+              console.log(err);
+            } else { // There was a user ID provided
+              console.log(actualCourse);
+              var sessionData = { "userData": results, 
+                                  "user": user, 
+                                  "hasCourses": hasCourses,
+                                  "course": actualCourse,
+                                  "courseKnown": true};
+              console.log("user data is " + sessionData);
+              res.render('addAssignment',sessionData);
+              return;
+            }
+          });
+      }
     });
   } else {
     console.log('couldnt find user ' + user);
