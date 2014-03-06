@@ -26,7 +26,7 @@
 			<form id="addAssignmentForm" role="form" method="get" action="/add">
         		<div class="form-group">
           			<label for="Course">Course:</label>
-          				<select class="form-control" id="courseSelect">
+          				<select class="form-control" id="courseSelect" name="course">
           					<option value="1"></option>
             				{{#each userData.courses}}
             				<option value="{{this._id}}" id="{{this._id}}">{{this.department}} {{this.number}}: {{this.name}}</option>
@@ -38,8 +38,8 @@
            		{{else}}
             	<div class="form-group" id="typeSelectDiv" style="display:none">
             	{{/if}}
-           			<label for="Type">Type:</label>
-           				<select class="form-control" id="typeSelect">
+           			<label for="Type">Type: <button id="helpBtn" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-question-sign"></span></button></label>
+           				<select class="form-control" id="typeSelect" name="type">
              				<option value="1"></option>
              				
             				{{#each course.syllabus}}

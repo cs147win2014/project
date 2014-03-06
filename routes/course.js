@@ -99,7 +99,7 @@ exports.viewCourseInfo = function(req, res) { 
 
 exports.getCourseSyllabus = function(req,res) {
 	var username = req.session.user;
-	console.log(username);
+	console.log('username is: ' + username);
 	if(!username) {
 		console.log('username undefined we should not do this');
 		res.render('login', {error:"Please sign in first!"});
@@ -109,16 +109,21 @@ exports.getCourseSyllabus = function(req,res) {
 
 	if(actualUser.length != 0) {
     	var courseID = req.params.id;
-    	console.log(courseID);
+    	console.log('heres the course ID: ' + courseID);
     	    	
     	var selectedCourseArray = models.Course.find({"_id":courseID});
     	if (selectedCourseArray.length != 0) {
 	    	selectedCourseArray.populate("syllabus")
 	    	.exec(function(err, populatedCourse) {
 	    		if(err) console.log(err);
-	    		var syllabus = populatedCourse.syllabus;
-				console.log(syllabus);
-				res.json(syllabus);
+	    		var syllabus = selectedCourseArray.syllabus;
+	    		if(!syllabus) {
+	    			res.json({});
+	    		}
+	    		else {
+					console.log('here is the syllabus: ' + syllabus);
+					res.json(syllabus);
+				}
 				return;
 	    	});
     	}
