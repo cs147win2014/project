@@ -69,12 +69,14 @@
           <td>{{total}}</td>
         </tr>
         {{/each}} -->
+        {{#each course.assignments}}
         <tr id="test">
           <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
           <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
           <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
           <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
         </tr>
+        {{/each}}
       </table>
       </div>
     </div>
@@ -86,11 +88,11 @@
         <p>Here is your current syllabus:</p>
         <div>
       <table class="table">
-        <th>Type</th><th>Weighting</th>
+        <th>Type</th><th>Weight (% of final grade)</th>
         {{#each course.syllabus}}
         <tr id="test">
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
+          <td><a href="#" id="typeName" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+          <td><a href="#" id="weight" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
         </tr>
         {{/each}}
       </table>
@@ -109,8 +111,8 @@
   <script src="/js/jquery-1.11.0.js"></script>
   <script src="/js/bootstrap.js"></script>
   <script src="/js/viewAssignments.js"></script>
-  <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
-  <script src="bootstrap-editable/js/bootstrap-editable.js"></script>
+  <link href="/bootstrap3-editable-1.5.1/bootstrap-editable.css" rel="stylesheet">
+  <script src="/bootstrap3-editable-1.5.1/bootstrap-editable.js"></script>
 
 </body>
 </html>
