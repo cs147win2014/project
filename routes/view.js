@@ -307,6 +307,7 @@ exports.viewAddAssignmentPage = function(req, res) {
             return;
           }
         });
+      }
     });
   } else {
     console.log('couldnt find user ' + user);

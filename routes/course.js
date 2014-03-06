@@ -108,51 +108,20 @@ exports.getCourseSyllabus = function(req,res) {
 	var actualUser = models.User.find({"username": username});
 
 	if(actualUser.length != 0) {
-    	var courseName = req.params.id;
-    	console.log(courseName);
-
-		var match = courseName.search(/\d/);
-		if(match === NaN) {
-			// no coursenumber!! eek
-		}
-
-		var department = courseName.substr(0,match);
-		var number = courseName.substr(match);
-
-		// NOW RIGHT HERE IS WHERE I WANT TO GO GET THE COURSE WITH THE DEPARTMENT AND NAME FROM 
-		// THE SERVER... DON'T KNOW HOW TO DO THAT... :( SAD DAY. 
-    	
-    	var selectedCourse = models.Course.find({"department":department,"number":number});
-    	selectedCourse.populate("syllabus");
-    						//myCourses.find({"department":department,"number":number});
-
-
-
-    	// FOR CLIENT SIDE DEBUG PURPOSES IM JUST GONNA RETURN A RANDOM JSON SO I CAN KEEP WORKING
-    	// ON THIS.
-    	testSyllabus = {'exam':'60',
-    				   'pset':'25',
-    				   'lab':'15'};
-    	res.json(testSyllabus);
-    	return;
-    	/*.exec(function(err, doc) {
-      		if(err) {
-      			console.log(err);
-      		}
-      		console.log(doc[0]);
-      		var results;
-      		results = doc[0];
-    		var hasCourses;
-	      	if(doc[0].courses.length) { //false if no courses
-        		hasCourses = true;
-      		} else {
-        		hasCourses = false;
-      		}
-      		var sessionData = { "userData": results, "user": username, "expand": false, "hasCourses": hasCourses};
-      		console.log("user data is " + sessionData);
-      		res.render('index',sessionData);
-      		return;
-    	});*/
+    	var courseID = req.params.id;
+    	console.log(courseID);
+    	    	
+    	var selectedCourseArray = models.Course.find({"_id":courseID});
+    	if (selectedCourseArray.length != 0) {
+	    	selectedCourseArray.populate("syllabus")
+	    	.exec(function(err, populatedCourse) {
+	    		if(err) console.log(err);
+	    		var syllabus = populatedCourse.syllabus;
+				console.log(syllabus);
+				res.json(syllabus);
+				return;
+	    	});
+    	}
   	} 
   	else {
     	console.log('couldnt find user ' + username);
