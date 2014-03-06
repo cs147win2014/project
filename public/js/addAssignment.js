@@ -181,16 +181,17 @@ function showTypeSelectElement(e) {
 
 function populateTypeSelect(syllabus) {
     alert('im gonna populate the types now');
-    alert(syllabus);
+    //alert(syllabus);
     var $selectElement = $('#typeSelect');
+    //alert($selectElement);
     $selectElement.text("");
     // we need to get the courseID so we can make the value the courseID...
     var optionHTML = '<option value="1"></option>'; 
     var optionElement = $(optionHTML);
     $selectElement.append(optionElement);
 
-    for(var key in syllabus) {
-        optionHTML = '<option value="' + key.name + '">' + key.name + '</option>';
+    for(var elem = 0; elem < syllabus.length; elem++) {
+        optionHTML = '<option value="' + syllabus[elem].name + '">' + syllabus[elem].name + '</option>';
         optionElement = $(optionHTML);
         $selectElement.append(optionElement);
     }
