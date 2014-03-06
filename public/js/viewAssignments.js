@@ -145,7 +145,7 @@ function initializePage() {
     //editable stuff
     $.fn.editable.defaults.mode = 'inline';
 
-     $('.weightNumber').editable();
+    $('.weightNumber').editable();
 
     //make type editable
     $('.typeName').editable({
@@ -173,6 +173,27 @@ function initializePage() {
   		e.preventDefault()
   		$(this).tab('show')
 	});
+
+    $("#addSyllabusTypeBtn").click(function(e) {
+        e.preventDefault();
+        var rowText = '<tr id="tableEntry"></tr>';
+        var typeText = '<td><a href="#" class = "typeName" data-type="text" data-pk="1" data-url="/post" data-title="Type">New Type</a></td>';
+        var weightText = '<td><a href="#" class = "weightNumber" data-type="text" data-pk="1" data-url="/post" data-title="Weighting">New Weighting</a></td>';
+    
+        var typeTd = $(typeText);
+        var weightTd = $(weightText);
+
+        typeTd.editable();
+        weightTd.editable();
+
+        var newRow = $(rowText);
+        newRow.append(typeTd);
+        newRow.append(weightTd);
+
+        $("#syllabusTable").append(newRow);
+
+        console.log('i appended');
+    });
 	
 	var next = 1;
     $(".add-more").click(function(e){
