@@ -2,7 +2,6 @@
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
-    console.log("wft is going on");
     initializePage();
     makeCharts();
 });
@@ -142,10 +141,10 @@ function initializePage() {
     });*/
 
     //end stuff for google analytics
-    console.log("here");
-    alert("here");
     //editable stuff
     $.fn.editable.defaults.mode = 'inline';
+    console.log('.type');
+    console.log('.weight');
 
     //make status editable
     $('.type').editable({
