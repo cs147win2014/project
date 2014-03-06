@@ -27,7 +27,10 @@ function removeCourse(e) {
 
 function editCourse(e) {
 	e.preventDefault();
+
 	alert('here i would take you to the /editCourse for the course you just clicked on');
+	// take you to the course/something
+	// set the active tab to be syllabus settings.
 }
 
 function addCourse() {
@@ -180,4 +183,5 @@ function generateChartData() {
     }
     return chartData;
 }
+
 
