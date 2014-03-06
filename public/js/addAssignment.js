@@ -133,7 +133,24 @@ function makeCharts() {
 }
 
 function initializePage() {
-	$('#typeSelectDiv').hide();
+    alert('loading page');
+    
+
+    if($('#typeSelectDiv').is(":visible")) {
+    	// alert('its visible course known');
+        // get course name, select it by default.
+        // alert($("body").attr("value"));
+        var courseID = $("body").attr("value");
+
+        $("#courseSelect option#"+courseID).attr('selected', 'selected');
+
+        var url = "/courses/" + selectedCourse + "/syllabus/";
+        $.get(url, populateTypeSelect);
+    }
+    else {
+        alert('not visible, course not known');
+    }
+    
     $('#courseSelect').on('change', showTypeSelectElement);
     $('#backBtn').click(goBack);
     $('#addAssignmentBtn').click(addAssignment);

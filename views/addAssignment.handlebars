@@ -13,7 +13,7 @@
   	<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>       
 </head>
 
-<body>
+<body value="{{course._id}}">
 	<div class="container">
         {{>navbar}}
         {{#if courseKnown}}
@@ -27,27 +27,28 @@
         		<div class="form-group">
           			<label for="Course">Course:</label>
           				<select class="form-control" id="courseSelect">
-          					{{#if courseKnown}}
-            				<option value="{{course._id}}" id="{{course._id}}">{{course.department}} {{course.number}}: {{course.name}}</option>
-            				{{else}}
-            				<option value="1"></option>
-            				{{/if}}
+          					<option value="1"></option>
             				{{#each userData.courses}}
             				<option value="{{this._id}}" id="{{this._id}}">{{this.department}} {{this.number}}: {{this.name}}</option>
             				{{/each}}
           				</select>
         		</div>
-        		<div class="form-group" id="typeSelectDiv">
+        		{{#if courseKnown}}
+            	<div class="form-group" id="typeSelectDiv">
+           		{{else}}
+            	<div class="form-group" id="typeSelectDiv" style="display:none">
+            	{{/if}}
            			<label for="Type">Type:</label>
            				<select class="form-control" id="typeSelect">
              				<option value="1"></option>
-             				{{#if courseKnown}}
+             				
             				{{#each course.syllabus}}
             				<option value="{{this.name}}">{{this.name}}</option>
             				{{/each}}
-            				{{/if}}
+            				
            				</select>
-         		</div>
+         		</div>			
+            	
 			    <div class="form-group">
 			     	<label for="name">Name:</label>
 			      	<input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name"  required>
