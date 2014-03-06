@@ -61,14 +61,20 @@
       <div>
       <table class="table">
         <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
-        {{#each assignments}}
+        <!--{{#each assignments}}
         <tr id="{{name}}">
           <td>{{name}}</td>
           <td>{{type}}</td>
           <td>{{score}}</td>
           <td>{{total}}</td>
         </tr>
-        {{/each}}
+        {{/each}} -->
+        <tr id="test">
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
+        </tr>
       </table>
       </div>
     </div>
@@ -78,8 +84,21 @@
     <div class="panel panel-default">
       <div class="panel panel-body " id="allFields">
         <p>Here is your current syllabus:</p>
-        <p>This is where we want the editable table!! :D</p>
-              
+        <div>
+      <table class="table">
+        <th>Type</th><th>Weighting</th>
+        {{#each course.syllabus}}
+        <tr id="test">
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
+        </tr>
+        {{/each}}
+      </table>
+      </div>
+
+        
+
+
             
     </div>
     </div>
@@ -90,6 +109,8 @@
   <script src="/js/jquery-1.11.0.js"></script>
   <script src="/js/bootstrap.js"></script>
   <script src="/js/viewAssignments.js"></script>
+  <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+  <script src="bootstrap-editable/js/bootstrap-editable.js"></script>
 
 </body>
 </html>
