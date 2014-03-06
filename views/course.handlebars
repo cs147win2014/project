@@ -71,10 +71,10 @@
         {{/each}} -->
         {{#each course.assignments}}
         <tr id="test">
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type}}</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.score}}</a></td>
+          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a></td>
         </tr>
         {{/each}}
       </table>
