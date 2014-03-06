@@ -90,9 +90,9 @@
       <table class="table">
         <th>Type</th><th>Weight (% of final grade)</th>
         {{#each course.syllabus}}
-        <tr id="test">
-          <td><a href="#" id="typeName" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-          <td><a href="#" id="weight" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
+        <tr id="tableEntry">
+          <td><a href="#" id="type" class = "typeName" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+          <td><a href="#" id="weight" class = "weightNumber" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
         </tr>
         {{/each}}
       </table>
@@ -110,9 +110,9 @@
   
   <script src="/js/jquery-1.11.0.js"></script>
   <script src="/js/bootstrap.js"></script>
-  <script src="/js/viewAssignments.js"></script>
   <link href="/bootstrap3-editable-1.5.1/bootstrap-editable.css" rel="stylesheet">
   <script src="/bootstrap3-editable-1.5.1/bootstrap-editable.js"></script>
+  <script src="/js/viewAssignments.js"></script>
 
 </body>
 </html>
