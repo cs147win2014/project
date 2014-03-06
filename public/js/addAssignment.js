@@ -143,7 +143,9 @@ function initializePage() {
 
 function showTypeSelectElement(e) {
     var elemId = $(this).attr('id');
+    alert(elemId);
     var selectedCourse = $("#"+elemId+" option:selected").attr('value');
+    alert(selectedCourse);
     // now go into the database and get the syllabus types for the class
     // then show a typeSelect element that is populated with all of those syllabus types
     //$.get('/getAssignmentTypes',populateTypeSelect);

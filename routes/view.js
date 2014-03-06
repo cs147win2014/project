@@ -278,19 +278,23 @@ exports.viewAddAssignmentPage = function(req, res) {
       } else {
         hasCourses = false;
       }
-      models.Course.findOne({"_id": courseID})
-        .populate("syllabus")
+      var actualCourse = models.Course.findOne({"_id": courseID});
+
+      if(actualCourse.length ==0) {
+        console.log("no course provided");
+        var sessionData = { "userData": results, 
+                            "user": user, 
+                            "hasCourses": hasCourses,
+                            "courseKnown": false};
+        console.log("user data is " + sessionData);
+        res.render('addAssignment',sessionData);
+        return;
+      } else {
+        actualCourse.populate("syllabus")
         .populate("assignments")
         .exec(function(err, actualCourse) {
           if(err) { // There was no user ID provided
             console.log(err);
-            var sessionData = { "userData": results, 
-                                "user": user, 
-                                "hasCourses": hasCourses,
-                                "courseKnown": false};
-            console.log("user data is " + sessionData);
-            res.render('addAssignment',sessionData);
-            return;
           } else { // There was a user ID provided
             console.log(actualCourse);
             var sessionData = { "userData": results, 
