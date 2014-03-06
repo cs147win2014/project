@@ -108,7 +108,7 @@ exports.getCourseSyllabus = function(req,res) {
 	var actualUser = models.User.find({"username": username});
 
 	if(actualUser.length != 0) {
-    	var courseID = req.params.id;
+    	var courseID = req.params.courseID;
     	console.log('heres the course ID: ' + courseID);
 
     	var selectedCourseArray = models.Course.find({"_id":courseID});

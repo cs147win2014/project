@@ -24,6 +24,7 @@
 		<hr>
 		<div class="row container-fluid">
 			<form id="addAssignmentForm" role="form" method="get" action="/add">
+
         		<div class="form-group">
           			<label for="Course">Course:</label>
           				<select class="form-control" id="courseSelect" name="course">
@@ -33,6 +34,7 @@
             				{{/each}}
           				</select>
         		</div>
+
         		{{#if courseKnown}}
             	<div class="form-group" id="typeSelectDiv">
            		{{else}}
@@ -41,11 +43,6 @@
            			<label for="Type">Type: <button id="helpBtn" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-question-sign"></span></button></label>
            				<select class="form-control" id="typeSelect" name="type">
              				<option value="1"></option>
-             				<!--
-            				{{#each course.syllabus}}
-            				<option value="{{this.name}}">{{this.name}}</option>
-            				{{/each}}
-            				-->
            				</select>
          		</div>			
             	
@@ -53,15 +50,19 @@
 			     	<label for="name">Name:</label>
 			      	<input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name"  required>
 			    </div>
+
 		    	<div class="row">
+
 			    	<div class="form-group col-md-2 col-xs-4">
 			      		<label for="score">Score:</label>
 			      		<input type="text" class="form-control" id="score" placeholder="Ex: 95" name="score" required>
 			    	</div>
+
 			    	<div class="form-group col-md-2 col-xs-4">
 			      		<label for="total">Out of:</label>
 			      		<input type="text" class="form-control" id="total" placeholder="Ex: 100" name="total" required>
 			    	</div>
+			    	
 				</div>
 		    	<hr>
 		    	<div id="{{_id}}">

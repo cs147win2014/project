@@ -103,7 +103,7 @@ app.get('/editCourse',editCourse.view);
 app.get('/index',view.viewIndex);
 app.post('/login',login.checkUsername);
 
-app.get('/courses/:id/syllabus', course.getCourseSyllabus);
+app.get('/courses/:courseID/syllabus', course.getCourseSyllabus);
 app.get('/course/:courseID', view.viewCoursePage);
 app.get('/addAssignment/:courseID', view.viewAddAssignmentPage);
 app.get('/getAssignments',view.getAssignments);

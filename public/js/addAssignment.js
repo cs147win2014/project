@@ -133,7 +133,7 @@ function makeCharts() {
 }
 
 function initializePage() {
-    alert('loading page');
+    //alert('loading page');
 
     $('#courseSelect').on('change', showTypeSelectElement);
     $('#backBtn').click(goBack);
@@ -141,15 +141,15 @@ function initializePage() {
     $("#helpBtn").click(showHelp);    
 
     if($('#typeSelectDiv').is(":visible")) {
-    	alert('its visible course known');
+    	//alert('its visible course known');
         // get course name, select it by default.
-        alert($("body").attr("value"));
+        //alert($("body").attr("value"));
         var courseID = $("body").attr("value");
         //alert(courseID);
         $("#courseSelect option#"+courseID).attr('selected', 'selected');
 
         var url = "/courses/" + courseID + "/syllabus";
-        alert(url);
+        //alert(url);
         $.get(url, populateTypeSelect);
     } else {
         alert('not visible, course not known');
@@ -172,7 +172,7 @@ function showTypeSelectElement(e) {
     // now go into the database and get the syllabus types for the class
     // then show a typeSelect element that is populated with all of those syllabus types
     //$.get('/getAssignmentTypes',populateTypeSelect);
-    alert("GONNA CALL GET FUNCTION");
+    //alert("GONNA CALL GET FUNCTION");
     var url = "/courses/" + selectedCourse + "/syllabus";
     $.get(url, populateTypeSelect);
     $('#typeSelectDiv').show();
@@ -180,7 +180,7 @@ function showTypeSelectElement(e) {
 }
 
 function populateTypeSelect(syllabus) {
-    alert('im gonna populate the types now');
+    //alert('im gonna populate the types now');
     //alert(syllabus);
     var $selectElement = $('#typeSelect');
     //alert($selectElement);
