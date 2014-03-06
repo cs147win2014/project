@@ -91,8 +91,8 @@
         <th>Type</th><th>Weight (% of final grade)</th>
         {{#each course.syllabus}}
         <tr id="tableEntry">
-          <td><a href="#" id="{{this.name}}" class = "typeName" data-type="text" data-pk="1" data-url="/post" data-title="Type">{{this.name}}</a></td>
-          <td><a href="#" id="{{this.name}}Weight" class = "weightNumber" data-type="text" data-pk="1" data-url="/post" data-title="Weighting">{{this.weighting}}</a></td>
+          <td class="row"><a href="#" id="{{this.name}}" class = "typeName col-md-4" data-type="text" data-pk="1" data-url="/post" data-title="Type">{{this.name}}</a></td>
+          <td><a href="#" id="{{this.name}}Weight" class = "weightNumber col-md-4" data-type="text" data-pk="1" data-url="/post" data-title="Weighting">{{this.weighting}}</a></td>
         </tr>
         {{/each}}
       </table>
