@@ -8,8 +8,8 @@ $(document).ready(function() {
 
 function makeCharts() {
     $.get("/getAssignments", function(data) {
-        console.log(data);
-        console.log('now ill try to assign');
+        //console.log(data);
+        //console.log('now ill try to assign');
 
 
         var chart = AmCharts.makeChart("testLine", {
@@ -141,30 +141,24 @@ function initializePage() {
     });*/
 
     //end stuff for google analytics
+    
     //editable stuff
     $.fn.editable.defaults.mode = 'inline';
-    console.log('.type');
-    console.log('.weight');
 
-    //make status editable
-    $('.type').editable({
+     $('.weightNumber').editable();
+
+    //make type editable
+    $('.typeName').editable({
         type: 'select',
-        title: 'Select status',
+        title: 'Select Syllabus Type',
         placement: 'right',
-        value: 2,
         source: [
             {value: 1, text: 'status 1'},
             {value: 2, text: 'status 2'},
             {value: 3, text: 'status 3'}
         ]
-        /*
-        //uncomment these lines to send data on server
-        ,pk: 1
-        ,url: '/post'
-        */
     });
 
-    $('.weight').editable();
 
 	//$('#typeSelect').hide();
     //$('#courseSelect').on('change', function(event) {
