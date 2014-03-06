@@ -87,20 +87,19 @@
       <div class="panel panel-body " id="allFields">
         <p>Here is your current syllabus:</p>
         <div>
-      <table class="table">
+      <table id="syllabusTable" class="table">
         <th>Type</th><th>Weight (% of final grade)</th>
         {{#each course.syllabus}}
         <tr id="tableEntry">
-          <td><a href="#" id="type" class = "typeName" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-          <td><a href="#" id="weight" class = "weightNumber" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.weighting}}</a></td>
+          <td class="row"><a href="#" id="{{this.name}}" class = "typeName col-md-4" data-type="text" data-pk="1" data-url="/post" data-title="Type">{{this.name}}</a></td>
+          <td><a href="#" id="{{this.name}}Weight" class = "weightNumber col-md-4" data-type="text" data-pk="1" data-url="/post" data-title="Weighting">{{this.weighting}}</a></td>
         </tr>
         {{/each}}
       </table>
       </div>
-
-        
-
-
+      <div>
+        <button type="button" id="addSyllabusTypeBtn" class="btn btn-default">Add Type</button>
+      </div>
             
     </div>
     </div>
