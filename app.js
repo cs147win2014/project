@@ -79,7 +79,7 @@ app.get('/signup',function(req, res) {
 app.post('/signup',login.signUp);
 
 // i think we should change the name of these and/or consolidate them
-app.get('/add',add.addAssignment);
+app.get('/addAssignment',add.addAssignment);
 app.post('/editCourse',editCourse.addSyllabusFields);
 app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
 app.post('/deleteCourseAJAX',editCourse.delete_ajax);

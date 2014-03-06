@@ -12,7 +12,9 @@ var AssignmentSchema = new Mongoose.Schema({
   "type": { type: Mongoose.Schema.Types.ObjectId, ref: 'AssignmentType' },
   "score": Number,
   "total": Number,
+  "percent": Number,
   "course": { type: Mongoose.Schema.Types.ObjectId, ref: 'Course' },
+  "shortName": String
 });
 
 

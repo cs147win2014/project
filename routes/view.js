@@ -280,7 +280,7 @@ exports.viewAddAssignmentPage = function(req, res) {
         }
         var actualCourse = models.Course.findOne({"_id": courseID});
 
-        if(actualCourse.length ==0) {
+        if(actualCourse.length == 0) {
           console.log("no course provided");
           var sessionData = { "userData": results, 
                               "user": user, 
