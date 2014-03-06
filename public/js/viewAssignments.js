@@ -2,6 +2,7 @@
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
+    console.log("wft is going on");
     initializePage();
     makeCharts();
 });
@@ -136,11 +137,35 @@ function initializePage() {
 
     //for google analytics
 
-    $(".active").click(function (e) {
+    /*$(".active").click(function (e) {
         ga("send", "event", "tabSwitched", "click");
-    });
+    });*/
 
     //end stuff for google analytics
+    console.log("here");
+    alert("here");
+    //editable stuff
+    $.fn.editable.defaults.mode = 'inline';
+
+    //make status editable
+    $('.type').editable({
+        type: 'select',
+        title: 'Select status',
+        placement: 'right',
+        value: 2,
+        source: [
+            {value: 1, text: 'status 1'},
+            {value: 2, text: 'status 2'},
+            {value: 3, text: 'status 3'}
+        ]
+        /*
+        //uncomment these lines to send data on server
+        ,pk: 1
+        ,url: '/post'
+        */
+    });
+
+    $('.weight').editable();
 
 	//$('#typeSelect').hide();
     //$('#courseSelect').on('change', function(event) {
