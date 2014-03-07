@@ -33,7 +33,7 @@ function initializePage() {
 
 function showHelp(e) {
     e.preventDefault();
-    alert('If you have no types, go to the course page and edit the syllabus!');
+    alert('Can\'t submit the assignment without the assignment types! Add some assignment types to the syllabus, then try again.');
 }
 
 
@@ -70,6 +70,9 @@ function populateTypeSelect(syllabus) {
         optionHTML = '<option value="' + syllabus[elem]._id + '">' + syllabus[elem].name + '</option>';
         optionElement = $(optionHTML);
         $selectElement.append(optionElement);
+    }
+    if(syllabus.length===0) {
+        $("#submitAssignmentBtn").attr("disabled","true");
     }
 }
 
