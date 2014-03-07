@@ -72,7 +72,7 @@ function populateTypeSelect(syllabus) {
         $selectElement.append(optionElement);
     }
     if(syllabus.length===0) {
-        $("#submitAssignmentBtn").attr("disabled","true");
+        $("#submitAssignmentBtn").click("disabled","true");
     }
 }
 

@@ -149,15 +149,9 @@ function initializePage() {
 
     //make type editable
     $('.typeName').editable({
-        type: 'select',
-        title: 'Select Syllabus Type',
-        placement: 'right',
-        source: [
-            {value: 1, text: 'status 1'},
-            {value: 2, text: 'status 2'},
-            {value: 3, text: 'status 3'}
-        ]
+        title: 'Type'
     });
+
 
 
 	//$('#typeSelect').hide();
@@ -177,8 +171,8 @@ function initializePage() {
     $("#addSyllabusTypeBtn").click(function(e) {
         e.preventDefault();
         var rowText = '<tr id="tableEntry"></tr>';
-        var typeText = '<td><a href="#" class = "typeName" data-type="text" data-pk="1" data-url="/post" data-title="Type">new type</a></td>';
-        var weightText = '<td><a href="#" class = "weightNumber" data-type="text" data-pk="1" data-url="/post" data-title="Weighting">new weighting</a></td>';
+        var typeText = '<td><a href="#" class = "typeName" data-type="wysihtml5" data-pk="1" data-title="Type">new type</a></td>';
+        var weightText = '<td><a href="#" class = "weightNumber" data-type="wysihtml5" data-pk="1" data-url="/post" data-title="Weighting">new weighting</a></td>';
     
         var typeTd = $(typeText);
         var weightTd = $(weightText);
@@ -193,6 +187,7 @@ function initializePage() {
         $("#syllabusTable").append(newRow);
 
         console.log('i appended');
+
     });
 	
 	var next = 1;
