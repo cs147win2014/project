@@ -59,7 +59,7 @@
         Here are all your assignments so far:
       </div>
       <div>
-      <table class="table">
+      <table class="table table-bordered table-striped table-condensed">
         <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
         <!--{{#each assignments}}
         <tr id="{{name}}">
@@ -87,8 +87,8 @@
       <div class="panel panel-body " id="allFields">
         <p>Here is your current syllabus:</p>
         <div>
-      <table id="syllabusTable" class="table">
-        <th>Type</th><th>Weight (% of final grade)</th>
+      <table id="syllabusTable" class="table table-bordered table-striped">
+        <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
         {{#each course.syllabus}}
         <tr id="tableEntry">
           <td class="row"><a href="#" id="{{this.name}}" class = "typeName col-md-4" data-type="text" data-pk="1" data-url="/post" data-title="Type">{{this.name}}</a></td>

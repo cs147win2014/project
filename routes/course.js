@@ -44,6 +44,11 @@ exports.addSyllabusFields = function(req, res) {
 	return;
 };
 
+exports.editSyllabus = function(req,res) {
+	console.log(req);
+	res.render('/',data);
+};
+
 exports.add = function(req, res) {    
 	// Your code goes here%
 	var newCourse = {department: req.body.department, 
@@ -55,47 +60,6 @@ exports.add = function(req, res) { 
 	// instead of rendering add screen, rendered data screen
 	res.render('editCourse',data);
  }
-
-exports.viewCourseInfo = function(req, res) {    
-	// Your code goes here%
-	var courseName = req.params.id;
-
-	var match = courseName.search(/\d/);
-	if(match === NaN) {
-		// no coursenumber!! eek
-	}
-
-	var department = courseName.substr(0,match);
-	var number = courseName.substr(match);
-
-	var courseInfo = false;
-
-  	// find the stuff you want inside the JSON and return it
-	allCourses = data[1]['courses'];
-	for(var i = 0; i < allCourses.length; i++) {
-		if(allCourses[i].department.toLowerCase() === department.toLowerCase()) {
-			if(allCourses[i].number.toLowerCase() === number.toLowerCase()) {
-				courseInfo = allCourses[i];
-				break;
-			}
-		}
-	}
-
-	console.log(courseInfo);
-
-	if(!courseInfo) {
-		console.log("Unable to find course " + department.toUpperCase() + " " + number);
-		res.json({"data":"NONE"});
-	}
-	else {
-		console.log(courseInfo);
-		res.json(courseInfo);
-	}
-	
-	// instead of rendering add screen, rendered data screen
-	//res.render('/courses/'+courseName,data);
-	
- };
 
 exports.getCourseSyllabus = function(req,res) {
 	var username = req.session.user;
