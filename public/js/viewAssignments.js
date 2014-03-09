@@ -18,15 +18,18 @@ function initializePage() {
     
     //editable stuff
     $.fn.editable.defaults.mode = 'inline';
-    $.fn.editable.defaults.url = '/post';
-    $.fn.editable.defaults.send = 'always';
+    //$.fn.editable.defaults.success = checkResponse;
+
+        //checkResponse;
 
     //make type editable
     $('.typeName').editable({
         ajaxOptions: {
             type: 'put'
         },
+        name: 'type',
         send: 'always',  
+        success: checkTypeResponse,
         type: 'text',
         title: 'Enter type',
         pk: 1,
@@ -37,7 +40,9 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
+        name: 'weightNum',
         send: 'always',
+        success: checkWeightResponse,
         type: 'text',   
         title: 'Enter weight',
         pk: 2,
@@ -67,14 +72,36 @@ function initializePage() {
     $("#addSyllabusTypeBtn").click(function(e) {
         e.preventDefault();
         var rowText = '<tr id="tableEntry"></tr>';
-        var typeText = '<td><a href="#" data-url = "/post" class = "typeName">new type</a></td>';
-        var weightText = '<td><a href="#" data-url = "/post" class = "weightNumber">new weighting</a></td>';
+        var typeText = '<td><a href="#" data-url = "/post" class="typeName">new type</a></td>';
+        var weightText = '<td><a href="#" data-url = "/post" class="weightNumber">new weighting</a></td>';
     
         var typeTd = $(typeText);
         var weightTd = $(weightText);
 
-        typeTd.editable();
-        weightTd.editable();
+        typeTd.editable({
+            ajaxOptions: {
+                type: 'put'
+            },
+            name: 'type',
+            send: 'always',  
+            type: 'text',
+            title: 'Enter type',
+            success: checkTypeResponse,
+            pk: 1,
+            url: '/post'
+        });
+        weightTd.editable({
+            ajaxOptions: {
+                type: 'put'
+            },
+            name: 'weightNum',
+            send: 'always',
+            success: checkWeightResponse,
+            type: 'text',   
+            title: 'Enter weight',
+            pk: 2,
+            url: '/post'       
+        });
 
         var newRow = $(rowText);
         newRow.append(typeTd);
@@ -127,6 +154,16 @@ function initializePage() {
             //console.log('just deleted, ' + next);
         });
     });
+}
+
+function checkTypeResponse(results) {
+    console.log('hey it got back to the client sideTYPEYPTTYPETYPETYPETYP');
+    console.log(results);
+}
+
+function checkWeightResponse(results) {
+    console.log('hey it got back to the client sideWEIGHTWIEGHWETIWGHEIWTHEIWGHEIWT');
+    console.log(results);
 }
 
 function addAssignment() {

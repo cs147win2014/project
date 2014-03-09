@@ -95,7 +95,7 @@ app.get('/viewAssignments/test', view.viewAssignmentsTest);
 
 
 app.get('/info',view.viewInfo);
-app.post('/post',course.editSyllabus);
+app.put('/post',course.editSyllabus);
 
 //app.get('/viewCourses',viewCourses.view);
 app.post('/addCourse',addCourse.add);

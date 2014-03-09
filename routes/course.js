@@ -47,7 +47,7 @@ exports.addSyllabusFields = function(req, res) {
 exports.editSyllabus = function(req,res) {
 	console.log('okay im editing the syllabus');
 	console.log(req.body);
-	
+	res.json(req.body);
 	return;
 };
 
