@@ -3,7 +3,9 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
     initializePage();
-    makeCharts();
+    var courseID = $("body > div").attr('id');
+    console.log(courseID);
+    makeCharts(courseID);
 });
 
 function initializePage() {
@@ -180,7 +182,7 @@ function goBack(e) {
     window.location.href = "javascript:history.back();";
 }
 
-function makeCharts() {
+function makeCharts(courseID) {
     $.get("/getAssignments", function(data) {
         //console.log(data);
         //console.log('now ill try to assign');
@@ -302,6 +304,44 @@ function makeCharts() {
                     "format": 'png'
                 }]
             }
+        });
+    });
+
+    $.get('/courses/'+courseID+'/syllabus',function(data){
+        if(data.length==0) {
+            $("#testDonutDiv").hide();
+            return;
+        }
+        var donutData = [];
+        var i = 0;
+        for(var index in data) {
+            var item = data[index];
+            console.log(JSON.stringify(item));
+            donutData[i] = {"title":item["name"], "value":item["weighting"]};
+            console.log(item["name"] + " with weighting " + item["weighting"]);
+            i++;
+        }
+        console.log(data);
+        console.log(JSON.stringify(donutData));
+
+        var donutChart = AmCharts.makeChart("testDonutDiv", {
+            "type": "pie",
+            "theme": "none",
+            "dataProvider": donutData,
+            /*[{
+                "title": "New",
+                "value": 4852
+            }, {
+                "title": "Returning",
+                "value": 9899
+            }],*/
+            "titleField": "title",
+            "valueField": "value",
+            "labelRadius": 5,
+
+            "radius": "42%",
+            "innerRadius": "60%",
+            "labelText": "[[title]]"
         });
     });
 }
