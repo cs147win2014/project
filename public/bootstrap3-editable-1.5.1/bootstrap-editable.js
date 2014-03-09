@@ -301,9 +301,13 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
         },
 
         save: function(submitValue) {
+            console.log('im gonna SAVE SOME SHIT RIGHT NOW');
+            console.log(submitValue);
+            console.log(this.options);
             //try parse composite pk defined as json string in data-pk 
             this.options.pk = $.fn.editableutils.tryParseJson(this.options.pk, true); 
-            
+            console.log('i parsed some JSONS in the options');
+            console.log(this.options.pk);
             var pk = (typeof this.options.pk === 'function') ? this.options.pk.call(this.options.scope) : this.options.pk,
             /*
               send on server in following cases:
@@ -312,7 +316,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             */
             send = !!(typeof this.options.url === 'function' || (this.options.url && ((this.options.send === 'always') || (this.options.send === 'auto' && pk !== null && pk !== undefined)))),
             params;
-
+            console.log('what is send????');
+            console.log(send);
+            console.log('url: ');
+            console.log(this.options.url);
+            console.log('send:');
+            console.log(this.options.send);
             if (send) { //send to server
                 this.showLoading();
 
@@ -335,6 +344,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 if(typeof this.options.url === 'function') { //user's function
                     return this.options.url.call(this.options.scope, params);
                 } else {  
+                    console.log('SENDING SHIT TO THE SERVER RIGHT NOW');
                     //send ajax to server and return deferred object
                     return $.ajax($.extend({
                         url     : this.options.url,

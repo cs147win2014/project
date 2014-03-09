@@ -6,6 +6,143 @@ $(document).ready(function() {
     makeCharts();
 });
 
+function initializePage() {
+
+    //for google analytics
+
+    /*$(".active").click(function (e) {
+        ga("send", "event", "tabSwitched", "click");
+    });*/
+
+    //end stuff for google analytics
+    
+    //editable stuff
+    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.url = '/post';
+    $.fn.editable.defaults.send = 'always';
+
+    //make type editable
+    $('.typeName').editable({
+        ajaxOptions: {
+            type: 'put'
+        },
+        send: 'always',  
+        type: 'text',
+        title: 'Enter type',
+        pk: 1,
+        url: '/post'
+    });
+
+    $('.weightNumber').editable({
+        ajaxOptions: {
+            type: 'put'
+        },
+        send: 'always',
+        type: 'text',   
+        title: 'Enter weight',
+        pk: 2,
+        url: '/post'       
+    });
+
+    //ajax emulation
+    /*$.ajax({
+        url: '/post',
+        responseTime: 200,
+        response: function(settings) {
+            alert(JSON.stringify(settings));
+        }
+    }).done(function(e) {
+        console.log('hello i finished teh ajax request');
+    }); */
+
+    $('#addAssignmentBtn').click(addAssignment);
+    $('#backBtn').click(goBack);
+    $('#actualProgressTab').click(makeCharts);
+
+    $('#myTab a').click(function (e) {
+  		e.preventDefault()
+  		$(this).tab('show')
+	});
+
+    $("#addSyllabusTypeBtn").click(function(e) {
+        e.preventDefault();
+        var rowText = '<tr id="tableEntry"></tr>';
+        var typeText = '<td><a href="#" data-url = "/post" class = "typeName">new type</a></td>';
+        var weightText = '<td><a href="#" data-url = "/post" class = "weightNumber">new weighting</a></td>';
+    
+        var typeTd = $(typeText);
+        var weightTd = $(weightText);
+
+        typeTd.editable();
+        weightTd.editable();
+
+        var newRow = $(rowText);
+        newRow.append(typeTd);
+        newRow.append(weightTd);
+
+        $("#syllabusTable").append(newRow);
+
+        console.log('i appended');
+
+    });
+	
+	var next = 1;
+    $(".add-more").click(function(e){
+        e.preventDefault();
+        // the div element selectors
+        var addto = "#field" + next;
+        var addRemove = "#field" + (next);
+
+        next = next + 1;
+        $("#numFields").attr("value", next);
+        //console.log("just added, " + next);
+
+        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
+                        '<div class="row">' + 
+                            '<div class="col-md-6 col-xs-6">' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text"></div>' + 
+                            '<div class="col-md-6 col-xs-6">' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
+                    '</div>';
+        var newInput = $(newIn);
+
+        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br><button class="btn btn-danger remove-me" ><i class="glyphicon glyphicon-minus"></i></button></div></div><div id="field" class="input-append row">';
+        var removeButton = $(removeBtn);
+
+        $(addto).after(newInput);
+        $(addRemove).after(removeButton);
+        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+        $("#count").val(next);  
+        
+        $('.remove-me').click(function(e){
+            //alert('clicked!');
+            e.preventDefault();
+            var $divToRemove = $(this).closest('div'); //.find(".disabled");
+            var fieldNum = ($divToRemove).attr('id').charAt(($divToRemove).attr('id').length-1);
+            var fieldID = "#field" + fieldNum;
+            ($divToRemove).remove();
+            $(fieldID).remove();
+            //next = next-1;
+            //$("#numFields").attr("value", next--);
+            //console.log('just deleted, ' + next);
+        });
+    });
+}
+
+function addAssignment() {
+    console.log("user clicked add assignment button");
+    var courseID = $(this).closest('div').attr('id');
+    console.log(courseID);
+    window.location.href = "/addAssignment/" + courseID; // load the page
+
+    //$.get("/addACourse");
+}
+
+function goBack(e) {
+    e.preventDefault();
+    window.location.href = "javascript:history.back();";
+}
+
 function makeCharts() {
     $.get("/getAssignments", function(data) {
         //console.log(data);
@@ -130,119 +267,4 @@ function makeCharts() {
             }
         });
     });
-}
-
-function initializePage() {
-
-    //for google analytics
-
-    /*$(".active").click(function (e) {
-        ga("send", "event", "tabSwitched", "click");
-    });*/
-
-    //end stuff for google analytics
-    
-    //editable stuff
-    $.fn.editable.defaults.mode = 'inline';
-
-    $('.weightNumber').editable();
-
-    //make type editable
-    $('.typeName').editable({
-        title: 'Type'
-    });
-
-
-
-	//$('#typeSelect').hide();
-    //$('#courseSelect').on('change', function(event) {
-        //$('#typeSelect').show();
-    //});
-
-    $('#addAssignmentBtn').click(addAssignment);
-    $('#backBtn').click(goBack);
-    $('#actualProgressTab').click(makeCharts);
-
-    $('#myTab a').click(function (e) {
-  		e.preventDefault()
-  		$(this).tab('show')
-	});
-
-    $("#addSyllabusTypeBtn").click(function(e) {
-        e.preventDefault();
-        var rowText = '<tr id="tableEntry"></tr>';
-        var typeText = '<td><a href="#" class = "typeName" data-type="wysihtml5" data-pk="1" data-title="Type">new type</a></td>';
-        var weightText = '<td><a href="#" class = "weightNumber" data-type="wysihtml5" data-pk="1" data-url="/post" data-title="Weighting">new weighting</a></td>';
-    
-        var typeTd = $(typeText);
-        var weightTd = $(weightText);
-
-        typeTd.editable();
-        weightTd.editable();
-
-        var newRow = $(rowText);
-        newRow.append(typeTd);
-        newRow.append(weightTd);
-
-        $("#syllabusTable").append(newRow);
-
-        console.log('i appended');
-
-    });
-	
-	var next = 1;
-    $(".add-more").click(function(e){
-        e.preventDefault();
-        // the div element selectors
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-
-        next = next + 1;
-        $("#numFields").attr("value", next);
-        //console.log("just added, " + next);
-
-        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
-                        '<div class="row">' + 
-                            '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text"></div>' + 
-                            '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
-                    '</div>';
-        var newInput = $(newIn);
-
-        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br><button class="btn btn-danger remove-me" ><i class="glyphicon glyphicon-minus"></i></button></div></div><div id="field" class="input-append row">';
-        var removeButton = $(removeBtn);
-
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-        $("#count").val(next);  
-        
-        $('.remove-me').click(function(e){
-            //alert('clicked!');
-            e.preventDefault();
-            var $divToRemove = $(this).closest('div'); //.find(".disabled");
-            var fieldNum = ($divToRemove).attr('id').charAt(($divToRemove).attr('id').length-1);
-            var fieldID = "#field" + fieldNum;
-            ($divToRemove).remove();
-            $(fieldID).remove();
-            //next = next-1;
-            //$("#numFields").attr("value", next--);
-            //console.log('just deleted, ' + next);
-        });
-    });
-}
-
-function addAssignment() {
-    console.log("user clicked add assignment button");
-    var courseID = $(this).closest('div').attr('id');
-    console.log(courseID);
-    window.location.href = "/addAssignment/" + courseID; // load the page
-
-    //$.get("/addACourse");
-}
-
-function goBack(e) {
-    e.preventDefault();
-    window.location.href = "javascript:history.back();";
 }
