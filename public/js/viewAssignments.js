@@ -72,11 +72,13 @@ function initializePage() {
   		$(this).tab('show')
 	});
 
+
+
     $("#addSyllabusTypeBtn").click(function(e) {
         e.preventDefault();
         var rowText = '<tr id="tableEntry"></tr>';
-        var typeText = '<td><a href="#" data-url = "/post" class="typeName">new type</a></td>';
-        var weightText = '<td><a href="#" data-url = "/post" class="weightNumber">new weighting</a></td>';
+        var typeText = '<td><a href="#" data-url = "/post" class="editable editable-click editable-unsaved typeName">new type</a></td>';
+        var weightText = '<td><a href="#" data-url = "/post" class="editable editable-click editable-unsaved weightNumber">new weighting</a></td>';
     
         var typeTd = $(typeText);
         var weightTd = $(weightText);
@@ -116,47 +118,6 @@ function initializePage() {
 
     });
 	
-	var next = 1;
-    $(".add-more").click(function(e){
-        e.preventDefault();
-        // the div element selectors
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-
-        next = next + 1;
-        $("#numFields").attr("value", next);
-        //console.log("just added, " + next);
-
-        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
-                        '<div class="row">' + 
-                            '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text"></div>' + 
-                            '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
-                    '</div>';
-        var newInput = $(newIn);
-
-        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br><button class="btn btn-danger remove-me" ><i class="glyphicon glyphicon-minus"></i></button></div></div><div id="field" class="input-append row">';
-        var removeButton = $(removeBtn);
-
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
-        $("#count").val(next);  
-        
-        $('.remove-me').click(function(e){
-            //alert('clicked!');
-            e.preventDefault();
-            var $divToRemove = $(this).closest('div'); //.find(".disabled");
-            var fieldNum = ($divToRemove).attr('id').charAt(($divToRemove).attr('id').length-1);
-            var fieldID = "#field" + fieldNum;
-            ($divToRemove).remove();
-            $(fieldID).remove();
-            //next = next-1;
-            //$("#numFields").attr("value", next--);
-            //console.log('just deleted, ' + next);
-        });
-    });
 }
 
 function checkTypeResponse(results) {
@@ -318,13 +279,13 @@ function makeCharts(courseID) {
         var i = 0;
         for(var index in data) {
             var item = data[index];
-            console.log(JSON.stringify(item));
+            //console.log(JSON.stringify(item));
             donutData[i] = {"title":item["name"], "value":item["weighting"]};
-            console.log(item["name"] + " with weighting " + item["weighting"]);
+            //console.log(item["name"] + " with weighting " + item["weighting"]);
             i++;
         }
-        console.log(data);
-        console.log(JSON.stringify(donutData));
+        //console.log(data);
+        //console.log(JSON.stringify(donutData));
 
         var donutChart = AmCharts.makeChart("testDonutDiv", {
             "type": "pie",
@@ -344,6 +305,70 @@ function makeCharts(courseID) {
             "radius": "42%",
             "innerRadius": "60%",
             "labelText": "[[title]]"
+        });
+    });
+
+    $.get('/courses/'+courseID+'/assignments',function(data){
+        if(data.length==0) {
+            $("#testAssignDiv").hide();
+            return;
+        }
+        var assignData = [];
+        var i = 0;
+        for(var index in data) {
+            var item = data[index];
+            console.log(JSON.stringify(item));
+            assignData[i] = {"title":item["name"], "value":item["percent"]};
+            console.log(item["name"] + " with score " + item["percent"]);
+            i++;
+        }
+        console.log(data);
+        console.log(JSON.stringify(assignData));
+
+        var lineChart = AmCharts.makeChart("testAssignDiv", {
+            "type": "serial",
+            "theme": "none",
+            "marginLeft": 20,
+            "pathToImages": "http://www.amcharts.com/lib/3/images/",
+            "legend": {
+                "equalWidths": false,
+                "periodValueText": "total: [[value.sum]]",
+                "position": "top",
+                "valueAlign": "left",
+                "valueWidth": 100
+            },
+            "dataProvider": assignData,
+            "valueAxes": [{
+                "axisAlpha": 0,
+                //"inside": true,
+                "position": "left",//,
+                //"ignoreAxisWidth": true
+                "title": "All Assignments"
+            }],
+            "graphs": [
+                {
+                    //"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+                    "bullet": "round",
+                    "bulletSize": 6,
+                    "lineColor": "#99C2FF",
+                    "lineThickness": 2,
+                    "negativeLineColor": "#637bb6",
+                    "type": "smoothedLine",
+                    "valueField": "value"
+                },
+                
+            ],
+            "chartScrollbar": {},
+            "chartCursor": {
+                "cursorAlpha": 0,
+                "cursorPosition": "mouse"
+            },
+            "categoryField": "title",
+            "categoryAxis": {
+                "startOnAxis": true,
+                "minorGridAlpha": 0.1,
+                "minorGridEnabled": true
+            }
         });
     });
 }

@@ -109,6 +109,7 @@ app.get('/courses/:courseID/syllabus', course.getCourseSyllabus);
 app.get('/course/:courseID', view.viewCoursePage);
 app.get('/addAssignment/:courseID', view.viewAddAssignmentPage);
 app.get('/getAssignments',view.getAssignments);
+app.get('/courses/:courseID/assignments',course.getCourseAssignments);
 
 app.post('/addACourse/new',course.add);
 
