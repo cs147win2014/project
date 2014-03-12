@@ -20,21 +20,23 @@
 <body>
   <div id="{{course._id}}" class="container classInfoDiv">
       {{>navbar}}
-      <div class="row container-fluid">
-        <h1 class="col-md-10 col-xs-8">{{course.department}} {{course.number}}</h1>
-        <div class="col-md-2 col-xs-4">
-      </div>
-  </div>
-  <hr>
+
+
+      <div class="row ">
+        <h1 class="col-lg-8 col-md-8 col-xs-7">{{course.department}} {{course.number}}</h1><br>
+        
+      
+ 
 
         
 
   <!-- Nav tabs -->
-<ul class="nav nav-pills">
+<ul class="nav nav-pills pull-right container-fluid">
   <li class="active"><a href="#progressTab" data-toggle="tab"><i class="glyphicon glyphicon-dashboard"></i></a></li>
   <li ><a href="#listTab" data-toggle="tab"><i class="glyphicon glyphicon-list"></i></a></li>
   <li><a href="#syllabusTab" data-toggle="tab"><i class="glyphicon glyphicon-wrench"></i></a></li>
-</ul><br>
+</ul>
+</div>
 
 <!-- Tab panes -->
 <div class="tab-content">
