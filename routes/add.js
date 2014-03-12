@@ -83,15 +83,33 @@ exports.addAssignment = function(req, res) { 
 							  							var actualCourse2 = models.Course.find({"_id": courseID});
 					  									if(actualCourse2.length != 0) {
 	    		  											actualCourse2.populate("syllabus")
-	    		  											.populate("assignments")
+	    		  											//.populate("assignments")
 	    		  											.exec(function(err, coursePage) {
 				        										if(err) {console.log(err)};
 				        										console.log("syllabus/assign populated course???")
 		        												console.log(coursePage[0]);
+		        												var assignmentArray = coursePage[0].assignments;
+		        												var length = assignmentArray.length;
+		        												var finalAssignmentData = [];
+		        												populateAssignmentType(0);
+		        												function populateAssignmentType(index) {
+		        													if(index < length) {
+              															var currAssignID = assignmentArray[index];
+              															models.Assignment.findOne({"_id": currAssignID})
+                															.populate("type")
+                															.exec(function(err, populatedAssignment) {
+                  															if(err) console.log(err);
+                  															console.log(populatedAssignment);
+                  															finalAssignmentData.push(populatedAssignment);
+                  															populateAssignmentType(index + 1);
+                														});
+            														}
+		        												}
 									              				var sessionData = { "userData": sessionUser[0], 
 	        		    	        	        	      							"user": user, 
 	                			        	          								"hasCourses": hasCourses,
-	                    			        	      								"course": coursePage[0]}
+	                    			        	      								"course": coursePage[0],
+	                    			        	      								"assignments": finalAssignmentData}
 	              												console.log("user data is " + sessionData);
 	              												res.render('course',sessionData);
 		              											return;

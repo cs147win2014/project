@@ -29,21 +29,34 @@ exports.viewCoursePage = function(req, res) { 
       }
       models.Course.findOne({"_id": courseID})
         .populate("syllabus")
-        .populate("assignments")
+        //.populate("assignments")
+        //.populate("assignments.type")
         .exec(function(err, actualCourse) {
           if(err) console.log(err);
           console.log(actualCourse);
           var assignmentArray = actualCourse.assignments;
           var length = assignmentArray.length;
-          populateAssignment(0);
+          var finalAssignmentData = [];
+          populateAssignmentType(0);
 
-          function populateAssignment(index) {
-            
+          function populateAssignmentType(index) {
+            if(index < length) {
+              var currAssignID = assignmentArray[index];
+              models.Assignment.findOne({"_id": currAssignID})
+                .populate("type")
+                .exec(function(err, populatedAssignment) {
+                  if(err) console.log(err);
+                  console.log(populatedAssignment);
+                  finalAssignmentData.push(populatedAssignment);
+                  populateAssignmentType(index + 1);
+                });
+            }
           }
           var sessionData = { "userData": results, 
                               "user": user, 
                               "hasCourses": hasCourses,
-                              "course": actualCourse};
+                              "course": actualCourse,
+                              "assignments": finalAssignmentData};
           console.log("user data is " + sessionData);
           res.render('course',sessionData);
           return;
