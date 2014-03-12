@@ -2,122 +2,40 @@
 
 <html>
 <head>
-	<title>Information</title>	
+	<title>Poster stuff</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/flatly.min.css">
-	<link rel="stylesheet" type="text/css" href="css/amcharts.css">
+	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="public/css/flatly.min.css">
+	<link rel="stylesheet" type="text/css" href="/poster.css">
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-	<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+	<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 
+
+	
+	
+            
 </head>
 
 <body>
 	<div class="container">
-		{{>navbar}}
-		<h1>Information</h1>
-		<hr>
+		<h1 class="col-lg-8 col-md-8 col-xs-6">CS 109</h1><br>
 
-
-		<!-- START OF ISABELLE TESTING -->
-		<h1>Add An Assignment for {{course.department}} {{course.number}}</h1>
-		<hr>
-		<div class="row container-fluid">
-					<form id="addAssignmentForm" role="form" method="get" action="/add">
-		<div class="form-group">
-          <label for="Type">Course:</label>
-          <select class="form-control" id="courseSelect">
-            <option value="1"></option>
-            {{#each courses}}
-            <option value="1">{{department}}{{number}}</option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="Type">Type:</label>
-          <select class="form-control" id="typeSelect">
-            <option value="1"></option>
-            {{#each courses}}
-            <option value="1">{{department}}{{number}}</option>
-            {{/each}}
-          </select>
-        </div>
-		    <div class="form-group">
-		      <label for="name">Name:</label>
-		      <input type="text" class="form-control" id="name" placeholder="Ex: RBA" name="name" required>
-		    </div>
-		    <div class="row">
-			    <div class="form-group col-md-2 col-xs-4">
-			      <label for="score">Score:</label>
-			      <input type="text" class="form-control" id="score" placeholder="Ex: 95" name="score" required>
-			    </div>
-			    <div class="form-group col-md-2 col-xs-4">
-			      <label for="total">Out of:</label>
-			      <input type="text" class="form-control" id="total" placeholder="Ex: 100" name="total" required>
-			    </div>
-			</div>
-		    <hr>
-		    <div class="row container-fluid">
-		    <button type="submit" id="submitBtn" class="btn btn-default col-md-2 col-xs-4 pull-right" ><i class="glyphicon glyphicon-plus"></i> Add</button>
-		</form>
-		<!-- END -->
-
-
-		<!-- HERE ARE THE GRAPHS MEREDITH HAD ON THIS PAGE
-		<div id="testLine" class="smoothLineChart"></div><br><br><br><br>
-		<div id="allAssignmentsChartDiv" class="stackedChart"></div>-->				
-	<div class='panel panel-default panel-body'>
-		Welcome! Here is a list of things I think might be useful for our website:<br>
-		<ul>
-			<li>make panel backgrounds more translucent</li>
-			<li>FIGURE OUT HOW TO GENERATE PAGES SO YOU HAVE INFORMATION ON WHAT YOU'RE LOOKING FOR, AS WELL AS THE OBJECT YOU'RE LOOKING THROUGH. so I want to look for like all assignments that are in ee 102a, how do i get both the data with the assignments as well as the fact that i'm looking for stuff in ee 102a? i'm totally at a loss with this. we need it for both course view (syllabus changing) as well as adding or modifying an assignment.</li>
-			<li><a href="http://vitalets.github.io/x-editable/demo-bs3.html">editable tables</a></li>
-			<li><a href="http://d.bootstrapcheatsheets.com/glyphicons/">Glyphicon cheatsheet</a></li>
-			<li>when you click on a class, it brings you to the pie chart representing how you're doing and stuff. </li>
-			<li>how do you add a grade? change settings? where on the page?</li>
-			<li>for midterms have option next to assignment list to like add curve or something</li>
-			<li>Adding things to a table eek</li>
-			<li>generate navbar</li>
-			<li>Fix the text on the navbar</li>
-			<li>have clicking on the courses take you to the info page</li>
-			<li>have a better way of adding classes and courses</li>
-			<li>format the input of hte course. shouldn't have to input the title/prof if you don't want</li>
-			<li>nav dropdown for all the courses you're in</li>
-		</ul>
-		<br><br>
-		Icons to use:<br>
-		<i class="glyphicon glyphicon-remove"></i> For delete<br>
-		<i class="glyphicon glyphicon-pencil"></i> For edit<br>
-		<i class="glyphicon glyphicon-stats"></i> For viewing stats?</br>
-		<i class="glyphicon glyphicon-wrench"></i> For changing syllabus?</br>
-
-		<br><br>
-		Feature creep:
-		<ul>
-			<li>filter assignments by type</li>
-			<li>customizable types of assignments (pset, lab, exam)</li>
-			<li>count some assignments instead of others (without midterm, you're at...)</li>
-		</ul>
-
-		<br><br>
+		<div class="panel panel-default">
+			<div class="panel panel-body">Insights:</div>
+			<div id="testDonutDiv" class="donutChart panel panel-body"></div>
+			<div id="typeassignmentdiv" class="donutChart panel panel-body"></div>
+		</div>
 	</div>
-		
-	<script src="js/jquery-1.11.0.js"></script>
-	<script src="js/bootstrap.js"></script>
 	
 
-	<script src="/js/info.js"></script>
-
-
 </body>
-
+<script src="public/js/jquery-1.11.0.js"></script>
+<script src="public/js/bootstrap.js"></script>
+<script src="/poster.js"></script>
 
 </html>
+
