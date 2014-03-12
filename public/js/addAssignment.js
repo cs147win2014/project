@@ -77,6 +77,26 @@ function populateTypeSelect(syllabus) {
 }
 
 
+function submitAssignmentForm(e) {
+    e.preventDefault();
+    // get all the values of all the inputs.
+    var $allInputs = $('div#field input.form-control');
+    console.log($allInputs.length);
+    console.log($allInputs[0]);
+    var data = {};
+
+    for(var i=0; i<$allInputs.length; i++) {
+        var name = $($allInputs[i]).attr('name');
+        var val = $($allInputs[i]).val();
+        data[name] = val;
+    }
+    
+    console.log(data);
+
+    $.post('/editCourseAJAX',data,callback);
+}
+
+
 
 function addAssignment() {
 	console.log("user clicked add assignment button");
