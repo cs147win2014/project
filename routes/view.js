@@ -33,6 +33,13 @@ exports.viewCoursePage = function(req, res) { 
         .exec(function(err, actualCourse) {
           if(err) console.log(err);
           console.log(actualCourse);
+          var assignmentArray = actualCourse.assignments;
+          var length = assignmentArray.length;
+          populateAssignment(0);
+
+          function populateAssignment(index) {
+            
+          }
           var sessionData = { "userData": results, 
                               "user": user, 
                               "hasCourses": hasCourses,
