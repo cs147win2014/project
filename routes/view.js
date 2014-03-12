@@ -30,15 +30,19 @@ exports.viewCoursePage = function(req, res) { 
       models.Course.findOne({"_id": courseID})
         .populate("syllabus")
         .populate("assignments")
+        .populate("assignments.type")
         .exec(function(err, actualCourse) {
           if(err) console.log(err);
           console.log(actualCourse);
           var assignmentArray = actualCourse.assignments;
           var length = assignmentArray.length;
-          populateAssignment(0);
+          populateAssignmentType(0);
 
-          function populateAssignment(index) {
-            
+          function populateAssignmentType(index) {
+            if(index < length) {
+              var currAssign = assignmentArray[index];
+
+            }
           }
           var sessionData = { "userData": results, 
                               "user": user, 
