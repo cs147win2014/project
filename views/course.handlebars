@@ -7,10 +7,8 @@
   <!--<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">-->
   <link rel="stylesheet" type="text/css" href="../css/flatly.min.css">
   <link rel="stylesheet" type="text/css" href="../css/amcharts.css">
-  <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-  <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
-  <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
-  <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+  <link rel="stylesheet" type="text/css" href="/bootstrap3-editable-1.5.1/bootstrap-editable.css" >
+
   
   
 
@@ -55,6 +53,7 @@
         </div>
         <div class="row">
           <div id="testDonutDiv" class="donutChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+          <div id="testAssignDiv" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
           <div id="testLine" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
         </div>
         <div id="allAssignmentsChartDiv" class="stackedChart"></div><br><br>
@@ -108,7 +107,7 @@
           <table id="syllabusTable" class="table table-responsive table-bordered table-striped">
             <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
             {{#each course.syllabus}}
-            <tr id="tableEntry">
+            <tr class="tableEntry">
               <td class="row"><a href="#" id="{{this.name}}" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">{{this.name}}</a></td>
               <td><a href="#" id="{{this.name}}Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">{{this.weighting}}</a></td>
             </tr>
@@ -127,9 +126,13 @@
   
   <script src="/js/jquery-1.11.0.js"></script>
   <script src="/js/bootstrap.js"></script>
-  <link href="/bootstrap3-editable-1.5.1/bootstrap-editable.css" rel="stylesheet">
   <script src="/bootstrap3-editable-1.5.1/bootstrap-editable.js"></script>
   <script src="/js/viewAssignments.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
+  <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+
 
 </body>
 </html>

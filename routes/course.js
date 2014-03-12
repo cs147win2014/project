@@ -100,3 +100,41 @@ exports.getCourseSyllabus = function(req,res) {
     	return;
   	}
 };
+
+exports.getCourseAssignments = function(req,res) {
+	var username = req.session.user;
+	console.log('username is: ' + username);
+	if(!username) {
+		console.log('username undefined we should not do this');
+		res.render('login', {error:"Please sign in first!"});
+		return;
+	}
+	var actualUser = models.User.find({"username": username});
+
+	if(actualUser.length != 0) {
+    	var courseID = req.params.courseID;
+    	console.log('heres the course ID: ' + courseID);
+
+    	var selectedCourseArray = models.Course.find({"_id":courseID});
+    	if (selectedCourseArray.length != 0) {
+	    	selectedCourseArray.populate("assignments")
+	    	.exec(function(err, populatedCourse) {
+	    		if(err) console.log(err);
+	    		var assignments = populatedCourse[0].assignments;
+	    		if(!assignments) {
+	    			console.log("NO ASSIGNMENTS FOUND");
+	    			res.json({});
+	    		} else {
+					console.log('here is ALL the assignments: ' + assignments);
+					res.json(assignments);
+				}
+				return;
+	    	});
+    	}
+  	} 
+  	else {
+    	console.log('couldnt find user ' + username);
+    	res.render('login',{error:"Could not find user " + username});
+    	return;
+  	}
+};
