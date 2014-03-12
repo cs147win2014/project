@@ -62,7 +62,8 @@ function initializePage() {
         console.log('hello i finished teh ajax request');
     }); */
 
-    $('#addAssignmentBtn').click(addAssignment);
+    
+    $('button.showUpOnActivePane').click(addAssignment);
     $('#backBtn').click(goBack);
     $('#actualProgressTab').click(makeCharts);
 
@@ -170,7 +171,8 @@ function checkWeightResponse(results) {
 
 function addAssignment() {
     console.log("user clicked add assignment button");
-    var courseID = $(this).closest('div').attr('id');
+    var courseID = $(this).closest('div').attr('name');
+    alert(courseID);
     console.log(courseID);
     window.location.href = "/addAssignment/" + courseID; // load the page
 

@@ -23,19 +23,16 @@
       <div class="row container-fluid">
         <h1 class="col-md-10 col-xs-8">{{course.department}} {{course.number}}</h1>
         <div class="col-md-2 col-xs-4">
-        <br>
-        <div id="{{course._id}}">
-          <button id="addAssignmentBtn" class="btn btn-default pull-right"><i class="glyphicon glyphicon-plus"></i> Assignment</button>
-        </div>
       </div>
   </div>
   <hr>
 
+        
 
   <!-- Nav tabs -->
 <ul class="nav nav-tabs">
   <li class="active"><a href="#progressTab" data-toggle="tab"><i class="glyphicon glyphicon-dashboard"></i>  Progress</a></li>
-  <li ><a href="#listTab" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> List View</a></li>
+  <li ><a href="#listTab" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> List</a></li>
   <li><a href="#syllabusTab" data-toggle="tab"><i class="glyphicon glyphicon-wrench"></i> Syllabus</a></li>
 </ul>
 
@@ -45,56 +42,77 @@
   <div class="tab-pane active" id="progressTab"> 
     <div class="panel panel-default">  
       <div class="panel panel-body">   
+      
+        <div class="row ">
+          <div name="{{course._id}}" class="col-md-12">
+            <button id="addAssignmentBtn" class="btn btn-default pull-right showUpOnActivePane"><i class="glyphicon glyphicon-plus"></i> Assignment</button>
+          </div>
+        </div>
+        <div class="row">
+          <div id="testDonutDiv" class="donutChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+          <div id="testLine" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+        </div>
+        <div id="allAssignmentsChartDiv" class="stackedChart"></div><br><br>
       </div>
-      <div class="row">
-        <div id="testDonutDiv" class="donutChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
-        <div id="testLine" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
-      </div>
-      <div id="allAssignmentsChartDiv" class="stackedChart"></div><br><br>
-
     </div>
   </div>
 
   <div class="tab-pane" id="listTab">
     <div class="panel panel-default">
-      <div class="panel panel-body " id="allFields">
-        Here are all your assignments so far:
-      </div>
-      <div>
-      <table class="table table-responsive table-bordered table-striped table-condensed">
-        <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
+      <div class="panel panel-body " id="listViewBody">
+        <div class="row ">
+          <div class="col-md-8">
+            Here are all your assignments so far:
+          </div>
+          <div name="{{course._id}}" class="col-md-4">
+            <button id="addAssignmentBtn" class="btn btn-default pull-right showUpOnActivePane"><i class="glyphicon glyphicon-plus"></i> Assignment</button>
+          </div>
+        </div>
+        <hr>
+        <div>
+          <table class="table table-responsive table-bordered table-striped table-condensed">
+            <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
 
-        {{#each course.assignments}}
-        <tr id="test">
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type}}</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.score}}</a></td>
-          <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a></td>
-        </tr>
-        {{/each}}
-      </table>
+            {{#each course.assignments}}
+            <tr id="test">
+              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type}}</a></td>
+              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.score}}</a></td>
+              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a></td>
+            </tr>
+            {{/each}}
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="tab-pane" id="syllabusTab">
     <div class="panel panel-default">
-      <div class="panel panel-body " id="allFields">
-        <p>Here is your current syllabus:</p>
+      <div class="panel panel-body " id="syllabusViewBody">
+        <div class="row">
+          <div class="col-md-8">
+            Below is the course syllabus we're basing our calculations on. Click any field to edit!
+          </div>
+          <div name="{{course._id}}" class="col-md-4">
+            <button id="addAssignmentBtn" class="btn btn-default pull-right showUpOnActivePane"><i class="glyphicon glyphicon-plus"></i> Assignment</button>
+          </div>
+        </div>
+        <hr>
         <div>
-      <table id="syllabusTable" class="table table-responsive table-bordered table-striped">
-        <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
-        {{#each course.syllabus}}
-        <tr id="tableEntry">
-          <td class="row"><a href="#" id="{{this.name}}" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">{{this.name}}</a></td>
-          <td><a href="#" id="{{this.name}}Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">{{this.weighting}}</a></td>
-        </tr>
-        {{/each}}
-      </table>
-      </div>
-      <div>
-        <button type="button" id="addSyllabusTypeBtn" class="btn btn-default">Add Type</button>
-      </div>
+          <table id="syllabusTable" class="table table-responsive table-bordered table-striped">
+            <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
+            {{#each course.syllabus}}
+            <tr id="tableEntry">
+              <td class="row"><a href="#" id="{{this.name}}" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">{{this.name}}</a></td>
+              <td><a href="#" id="{{this.name}}Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">{{this.weighting}}</a></td>
+            </tr>
+            {{/each}}
+          </table>
+        </div>
+        <div>
+          <button type="button" id="addSyllabusTypeBtn" class="btn btn-default">Add Type</button>
+        </div>
             
     </div>
     </div>
