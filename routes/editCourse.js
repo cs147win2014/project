@@ -104,7 +104,7 @@ exports.addSyllabusFields_ajax = function(req, res) {
 				function addToDatabase(index) {
 					if(index < count) {
 						type = keys[index];
-						weighting = newSyllabus[type];
+						//weighting = newSyllabus[type];
 						var newAssignmentTypeInfo = {"name": type, "weighting": weighting};
 						var newAssignmentType = new models.AssignmentType(newAssignmentTypeInfo);
 						newAssignmentType.save(function(err) {
@@ -115,6 +115,7 @@ exports.addSyllabusFields_ajax = function(req, res) {
     							if(err) {
 	                  				console.log('Error: ' + err);
  				               	}
+ 				               	newSyllabus[newAssignmentType._id] = newAssignmentTypeInfo;
 	    						addToDatabase(index + 1);
  		   					});
 						});
