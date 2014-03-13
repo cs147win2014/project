@@ -49,7 +49,8 @@ exports.editSyllabus = function(req,res) {
 	console.log(req.body);
 	var name = req.body.name;
 	var value = req.body.value;
-	var typeID = req.body.typeID;
+	var typeID = req.body.extraInfo;
+	console.log(typeID);
 
 	models.AssignmentType.findOne({"_id": typeID})
 		.exec(function(err, elem) {

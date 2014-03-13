@@ -31,7 +31,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        typeID: $(this).closest('tr').attr('id'),
+        
         name: 'name',
         send: 'always',  
         success: checkTypeResponse,
@@ -45,7 +45,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        typeID: $(this).closest('tr').attr('id'),
+        
         name: 'weighting',
         send: 'always',
         success: checkWeightResponse,
@@ -198,7 +198,7 @@ function callback(results) {
             ajaxOptions: {
                 type: 'put'
             },
-            typeID: key,
+            defaultValue: key,
             name: 'type',
             send: 'always',  
             success: checkTypeResponse,
