@@ -31,7 +31,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        defaultValue: $(this).closest('tr').attr('id'),
+        
         name: 'name',
         send: 'always',  
         success: checkTypeResponse,
@@ -45,7 +45,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        defaultValue: $(this).closest('tr').attr('id'),
+        
         name: 'weighting',
         send: 'always',
         success: checkWeightResponse,

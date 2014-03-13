@@ -326,19 +326,23 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                 this.showLoading();
                 console.log("DEfault value");
                 console.log(this.options.defaultValue);
+                console.log('first params');
+                console.log(this.options.params);
 
                 //standard params
                 params = {
                     name: this.options.name || '',
                     value: submitValue,
                     pk: pk,
-                    defaultValue: this.options.defaultValue
+                    extraInfo: this.options.params
+                    //defaultValue: this.options.defaultValue
                 };
-                return $.ajax($.extend({
+
+                /*return $.ajax($.extend({
                     url     : this.options.url,
                     data    : params,
                     type    : 'POST'
-                }, this.options.ajaxOptions));
+                }, this.options.ajaxOptions));*/
 
                 //additional params
                 if(typeof this.options.params === 'function') {
@@ -347,8 +351,11 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                     params = this.options.params.call(this.options.scope, params);  
                 } else {
                     //try parse json in single quotes (from data-params attribute)
-                    this.options.params = $.fn.editableutils.tryParseJson(this.options.params, true);   
-                    $.extend(params, this.options.params);
+                    // Whitney and Meredith removed this because it was parsing strings to be an array
+                    // of characters which was super annoying. instead we just added the param right
+                    // into params (as seen above)
+                    //this.options.params = $.fn.editableutils.tryParseJson(this.options.params, true);   
+                    //$.extend(params, this.options.params);
                 }
 
                 if(typeof this.options.url === 'function') { //user's function
