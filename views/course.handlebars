@@ -51,12 +51,25 @@
             <button id="addAssignmentBtn" class="btn btn-default pull-right showUpOnActivePane"><i class="glyphicon glyphicon-plus"></i> Assignment</button>
           </div>
         </div>
-        <div class="row">
-          <div id="testDonutDiv" class="donutChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
-          <div id="testAssignDiv" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
-          <div id="testLine" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+        <hr>
+        <ul class="nav nav-pills container-fluid">
+          <li class="active remakeChartsOnClick"><a href="#wholeCourseTab" data-toggle="tab">At a glance</a></li>
+          <li class="remakeChartsOnClick"><a href="#breakDownTab" data-toggle="tab">Breakdown</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="wholeCourseTab">
+            <div class="row">
+              <div id="testDonutDiv" class="donutChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+            </div>
+          </div>
+          <div class="tab-pane" id="breakDownTab">
+            <div class="row">
+              <div id="testAssignDiv" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+              <div id="testLine" class="smoothLineChart col-lg-6 col-md-6 col-xs-12"></div><br><br><br><br>
+            </div>
+            <div id="allAssignmentsChartDiv" class="stackedChart"></div><br><br>
+          </div>
         </div>
-        <div id="allAssignmentsChartDiv" class="stackedChart"></div><br><br>
       </div>
     </div>
   </div>
