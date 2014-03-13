@@ -32,8 +32,15 @@ function removeType(e) {
 function initializePage() {
     $('.removeButton').click(removeType);
     var courseID = $("body > div").attr('id');
-    console.log(courseID);
+    console.log('initializing page');
     makeCharts(courseID);
+    console.log('made charts for first time');
+    //$('[class="active"').click(alert('i fucking clicked this')); //makeCharts(courseID));
+    $(".remakeChartsOnClick").click(function(e) {
+        e.preventDefault(e);
+        makeCharts(courseID);
+    });
+    console.log('set click listener');
     //for google analytics
 
     /*$(".active").click(function (e) {
@@ -92,13 +99,7 @@ function initializePage() {
     
     $('button.showUpOnActivePane').click(addAssignment);
     $('#backBtn').click(goBack);
-    
-    $('.remakeChartsOnClick').click(makeCharts(courseID));
 
-    $('#myTab a').click(function (e) {
-  		e.preventDefault()
-  		$(this).tab('show');
-	});
 
     next = 1;
     $(".add-more").click(function(e){
@@ -155,11 +156,15 @@ function initializePage() {
 function checkTypeResponse(results) {
     console.log('hey it got back to the client sideTYPEYPTTYPETYPETYPETYP');
     console.log(results);
+    var courseID = $("body>div").attr('id');
+    //makeCharts(courseID);
 }
 
 function checkWeightResponse(results) {
     console.log('hey it got back to the client sideWEIGHTWIEGHWETIWGHEIWTHEIWGHEIWT');
     console.log(results);
+    var courseID = $("body>div").attr('id');
+    //makeCharts(courseID);
 }
 
 function addAssignment() {
@@ -242,6 +247,8 @@ function callback(results) {
 }
 
 function makeCharts(courseID) {
+    console.log("making the charts!!!");
+
     $.get("/getAssignments/" + courseID, function(data) {
         //console.log(data);
         //console.log('now ill try to assign');
