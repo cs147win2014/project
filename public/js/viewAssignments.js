@@ -288,6 +288,8 @@ function makeCharts(courseID) {
             },
             "dataProvider": data,
             "valueAxes": [{
+                "minimum": 0,
+                "maximum": 100,
                 "axisAlpha": 0,
                 //"inside": true,
                 "position": "left",//,
@@ -346,6 +348,8 @@ function makeCharts(courseID) {
             "dataProvider": data,
 
             "valueAxes": [{
+                "minimum": 0,
+                "maximum": 100, 
                 "axisAlpha": 0,
                 "gridAlpha": 0.07,
                 "position": "left",
