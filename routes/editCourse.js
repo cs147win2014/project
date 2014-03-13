@@ -151,6 +151,23 @@ exports.deleteType_ajax = function(req, res) {
 }
 
 
+exports.deleteAssignment_ajax = function(req, res) {
+	var assignID = req.body.ID;
+	console.log("CALLING THE DLETE ASSIGNMENT FUNCTION");
+	console.log(assignID);
+	
+	//Find the corresponding type in the database, delete it
+	models.Assignment
+		.findOne({"_id": assignID})
+		.remove()
+		.exec(function(err) {
+      		if(err) console.log(err);
+			res.send();
+		});
+}
+
+
+
 exports.delete_ajax = function(req, res) {
 	var courseID = req.body.ID;
 	console.log("CALLING THE DLETE FUNCTION");

@@ -84,6 +84,7 @@ app.post('/editCourse',editCourse.addSyllabusFields);
 app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
 app.post('/deleteCourseAJAX',editCourse.delete_ajax);
 app.post('/deleteTypeAJAX',editCourse.deleteType_ajax);
+app.post('/deleteAssignmentAJAX',editCourse.deleteAssignment_ajax);
 
 app.get('/viewAssignments',view.viewAssignments);
 app.get('/viewAssignments/test', view.viewAssignmentsTest);

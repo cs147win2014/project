@@ -103,16 +103,17 @@ exports.addAssignment = function(req, res) { 
                   															finalAssignmentData.push(populatedAssignment);
                   															populateAssignmentType(index + 1);
                 														});
+            														} else {
+									              						var sessionData = { "userData": sessionUser[0], 
+	        		    	        	        	      									"user": user, 
+	                			        	          										"hasCourses": hasCourses,
+	                    			        	      										"course": coursePage[0],
+	                    			        	      										"assignments": finalAssignmentData}
+	              														console.log("user data is " + sessionData);
+	              														res.render('course',sessionData);
+		              													return;
             														}
 		        												}
-									              				var sessionData = { "userData": sessionUser[0], 
-	        		    	        	        	      							"user": user, 
-	                			        	          								"hasCourses": hasCourses,
-	                    			        	      								"course": coursePage[0],
-	                    			        	      								"assignments": finalAssignmentData}
-	              												console.log("user data is " + sessionData);
-	              												res.render('course',sessionData);
-		              											return;
 		              										});
 	    		  										}
 		              								});

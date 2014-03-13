@@ -95,7 +95,11 @@
               <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
               <td><a href="#" id="typename" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type.name}}</a></td>
               <td><a href="#" id="score" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.score}}</a></td>
-              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a></td>
+              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a>
+              <div class="btn-group pull-right">
+              <button type="button" id="removeButton{{this._id}}" class="btn assignRemoveButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+              </div></td>
+
             </tr>
             {{/each}}
           </table>
@@ -127,7 +131,7 @@
               </td>
               <td><a href="#" id="{{this.name}}Weight" data-params="{{this._id}}" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">{{this.weighting}}</a>              
               <div class="btn-group pull-right">
-              <button type="button" id="removeButton{{this._id}}" class="btn removeButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+              <button type="button" id="removeButton{{this._id}}" class="btn typeRemoveButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
               </div>
               </td>
 

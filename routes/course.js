@@ -4,7 +4,6 @@ var models = require('../models');
 
 exports.addSyllabusFields = function(req, res) {
 	allFields = req.body;
-
 	var syllabus = {};
 	var type = "";
 	var weighting = "";
@@ -27,6 +26,7 @@ exports.addSyllabusFields = function(req, res) {
 	res.render('/index',data);
 	return;
 };
+
 
 exports.editSyllabus = function(req,res) {
 	console.log('okay im editing the syllabus');
@@ -56,6 +56,8 @@ exports.editSyllabus = function(req,res) {
 	return;
 };
 
+
+
 exports.add = function(req, res) {    
 	// Your code goes here%
 	var newCourse = {department: req.body.department, 
@@ -67,6 +69,8 @@ exports.add = function(req, res) { 
 	// instead of rendering add screen, rendered data screen
 	res.render('editCourse',data);
  }
+
+
 
 exports.getCourseSyllabus = function(req,res) {
 	var username = req.session.user;

@@ -28,9 +28,30 @@ function removeType(e) {
 }
 
 
+function removeAssignment(e) {
+    e.preventDefault();
+    var assignID = $(this).closest('tr').attr('id');
+    var data = {};
+    data["ID"] = assignID;
+    console.log(assignID);
+    //console.log(courseName);
+    var check = confirm("Are you sure you want to delete this assignment?");
+    if(check) {
+        $.post('/deleteAssignmentAJAX',data, function(e) {
+            $('#' + assignID).remove();
+            //window.location.href = "/index";
+        });
+        //$.post('/editCourseAJAX',courseID,callback);
+
+    }
+    //alert('i now have the course name ' + courseID + ' and then we have to go into database and remove it');
+}
+
+
 
 function initializePage() {
-    $('.removeButton').click(removeType);
+    $('.typeRemoveButton').click(removeType);
+    $('.assignRemoveButton').click(removeAssignment);
     var courseID = $("body > div").attr('id');
     console.log('initializing page');
     makeCharts(courseID);
