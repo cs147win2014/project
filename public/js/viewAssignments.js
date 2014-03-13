@@ -64,69 +64,60 @@ function initializePage() {
         console.log('hello i finished teh ajax request');
     }); */
 
+    $('#submitBtn').click(submitAssignmentForm);
     
     $('button.showUpOnActivePane').click(addAssignment);
     $('#backBtn').click(goBack);
     
-    $('.remakeChartsOnClick').click(function(e) {
-        e.preventDefault();
-        var courseID = $("body > div").attr('id');
-        makeCharts(courseID);
-    });
+    $('.remakeChartsOnClick').click(makeCharts(courseID));
 
     $('#myTab a').click(function (e) {
   		e.preventDefault()
-  		$(this).tab('show')
+  		$(this).tab('show');
 	});
 
-
-
-    $("#addSyllabusTypeBtn").click(function(e) {
+    var next = 1;
+    $(".add-more").click(function(e){
         e.preventDefault();
-        var rowText = '<tr id="tableEntry"></tr>';
-        var typeText = '<td><a href="#" data-url = "/post" class="editable editable-click editable-unsaved typeName">new type</a></td>';
-        var weightText = '<td><a href="#" data-url = "/post" class="editable editable-click editable-unsaved weightNumber">new weighting</a></td>';
-    
-        var typeTd = $(typeText);
-        var weightTd = $(weightText);
+        // the div element selectors
+        var addto = "#field" + next;
+        var addRemove = "#field" + (next);
 
-        typeTd.editable({
-            ajaxOptions: {
-                type: 'put'
-            },
-            defaultValue: courseID,
-            name: 'type',
-            send: 'always',  
-            type: 'text',
-            title: 'Enter type',
-            success: checkTypeResponse,
-            pk: 1,
-            url: '/post'
+        next = next + 1;
+        $("#numFields").attr("value", next);
+        //console.log("just added, " + next);
+
+        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
+                        '<div class="row">' + 
+                            '<div class="col-md-6 col-xs-6">' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus></div>' + 
+                            '<div class="col-md-6 col-xs-6">' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
+                    '</div>';
+        var newInput = $(newIn);
+
+        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br><button class="btn btn-danger remove-me" ><i class="glyphicon glyphicon-minus"></i></button></div></div><div id="field" class="input-append row">';
+        var removeButton = $(removeBtn);
+
+        $(addto).after(newInput);
+        $(addRemove).after(removeButton);
+        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+        $("#count").val(next);
+        console.log('got here');
+        
+        $('.remove-me').click(function(e){
+            //alert('clicked!');
+            e.preventDefault();
+            var $divToRemove = $(this).closest('div'); //.find(".disabled");
+            var fieldNum = ($divToRemove).attr('id').charAt(($divToRemove).attr('id').length-1);
+            var fieldID = "#field" + fieldNum;
+            ($divToRemove).remove();
+            $(fieldID).remove();
+            //next = next-1;
+            //$("#numFields").attr("value", next--);
+            //console.log('just deleted, ' + next);
         });
-        weightTd.editable({
-            ajaxOptions: {
-                type: 'put'
-            },
-            defaultValue: courseID,
-            name: 'weightNum',
-            send: 'always',
-            success: checkWeightResponse,
-            type: 'text',   
-            title: 'Enter weight',
-            pk: 2,
-            url: '/post'       
-        });
-
-        var newRow = $(rowText);
-        newRow.append(typeTd);
-        newRow.append(weightTd);
-
-        $("#syllabusTable").append(newRow);
-
-        console.log('i appended');
-
-    });
-	
+    });	
 }
 
 function checkTypeResponse(results) {
@@ -152,6 +143,63 @@ function addAssignment() {
 function goBack(e) {
     e.preventDefault();
     window.location.href = "javascript:history.back();";
+}
+
+function submitAssignmentForm(e) {
+    e.preventDefault();
+    // get all the values of all the inputs.
+    var $allInputs = $('div#field input.form-control');
+    console.log($allInputs.length);
+    console.log($allInputs[0]);
+    var data = {};
+
+    for(var i=0; i<$allInputs.length; i++) {
+        var name = $($allInputs[i]).attr('name');
+        var val = $($allInputs[i]).val();
+        data[name] = val;
+    }
+    
+    console.log(data);
+    console.log("calling AJAX NOW!");
+    $.post('/editCourseAJAX',data,callback);
+}
+
+function callback(results) {
+    console.log('i made it back!');
+    console.log('here are the results: ' + results);
+
+    var courseID = $("body > div").attr('id');
+    var department = results.department;
+    var number = results.number;
+    var syllabus = results.syllabus;
+    for(var key in syllabus) {
+        //now we should add a tr.
+        var tdText = '<tr class="tableEntry">' + 
+                        '<td class="row"><a href="#" id="' + key + '" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">' + key + '</a></td>' +
+                        '<td><a href="#" id="' + key + 'Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key] + '</a></td>' +
+                    '</tr>';
+
+        var tdElement = $(tdText);
+        tdElement.editable({
+            ajaxOptions: {
+                type: 'put'
+            },
+            defaultValue: courseID,
+            name: 'type',
+            send: 'always',  
+            success: checkTypeResponse,
+            type: 'text',
+            title: 'Enter type',
+            pk: 1,
+            url: '/post'
+        });
+        $("#syllabusTable").append(tdElement);
+    }
+    
+    $("#successMessageDiv").text("Success!");
+    // now display everything. so on the server side you want to make sure you remove all duplicates
+    // so basically 'results' should only be what the server doesn't already contain
+    // like you should change everything that isn't already the same as what's on the servers.
 }
 
 function makeCharts(courseID) {
