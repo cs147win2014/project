@@ -136,10 +136,10 @@ function initializePage() {
         var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4 syllabusDataDiv"><br>' + 
                         '<div class="row">' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus>' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4 typeInput" name="type' + next + '" type="text" autofocus>' + 
                             '</div>' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text">' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4 weightInput" name="weighting' + next + '" type="text">' + 
                             '</div>' + 
                         '</div>' + 
                     '</div>';
@@ -282,6 +282,11 @@ function callback(results) {
     }
     
     //here i wanna delete all the divs and reset them.
+    $('.removeButton').remove();
+    $('.extraFormatDiv').remove();
+    $('.syllabusDataDiv').remove();
+    $('.typeInput').val("");
+    $('.weightInput').val("");
     
 
     $("#successMessageDiv").text("Success!");
