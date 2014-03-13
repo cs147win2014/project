@@ -166,15 +166,17 @@ function submitAssignmentForm(e) {
 
 function callback(results) {
     console.log('i made it back!');
-    console.log('here are the results: ' + results);
+    console.log('here are the results: ');
+    console.log(results);
 
     var courseID = $("body > div").attr('id');
     var department = results.department;
     var number = results.number;
     var syllabus = results.syllabus;
     for(var key in syllabus) {
+        console.log('this is the syllabus id: ' + syllabus["_id"]);
         //now we should add a tr.
-        var tdText = '<tr class="tableEntry">' + 
+        var tdText = '<tr class="tableEntry" id="' + syllabus["_id"] + '">' + 
                         '<td class="row"><a href="#" id="' + key + '" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">' + key + '</a></td>' +
                         '<td><a href="#" id="' + key + 'Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key] + '</a></td>' +
                     '</tr>';

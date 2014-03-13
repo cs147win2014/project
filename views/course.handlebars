@@ -122,7 +122,7 @@
           <table id="syllabusTable" class="table table-responsive table-bordered table-striped">
             <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
             {{#each course.syllabus}}
-            <tr class="tableEntry">
+            <tr class="tableEntry" id="{{this._id}}">
               <td class="row"><a href="#" id="{{this.name}}" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">{{this.name}}</a></td>
               <td><a href="#" id="{{this.name}}Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">{{this.weighting}}</a></td>
             </tr>
