@@ -282,9 +282,8 @@ function callback(results) {
     }
     
     //here i wanna delete all the divs and reset them.
-    $('.removeButton').remove();
-    $('.extraFormatDiv').remove();
-    $('.syllabusDataDiv').remove();
+    $('.remove-me').click();
+    
     $('.typeInput').val("");
     $('.weightInput').val("");
     
