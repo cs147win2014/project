@@ -1,6 +1,8 @@
 'use strict';
 
 // Call this function when the page loads (the "ready" event)
+
+var next;
 $(document).ready(function() {
     initializePage();
     
@@ -76,7 +78,7 @@ function initializePage() {
   		$(this).tab('show');
 	});
 
-    var next = 1;
+    next = 1;
     $(".add-more").click(function(e){
         e.preventDefault();
         // the div element selectors
@@ -87,16 +89,24 @@ function initializePage() {
         $("#numFields").attr("value", next);
         //console.log("just added, " + next);
 
-        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
+        var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4 syllabusDataDiv"><br>' + 
                         '<div class="row">' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus></div>' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus>' + 
+                            '</div>' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text">' + 
+                            '</div>' + 
+                        '</div>' + 
                     '</div>';
         var newInput = $(newIn);
 
-        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br><button class="btn btn-danger remove-me" ><i class="glyphicon glyphicon-minus"></i></button></div></div><div id="field" class="input-append row">';
+        var removeBtn = '<div id="remove' + (next - 1) + '" class="col-xs-3 col-md-4 removeButton"><br>' + 
+                            '<button class="btn btn-danger remove-me" >' + 
+                                '<i class="glyphicon glyphicon-minus"></i>' + 
+                            '</button>' + 
+                        '</div>' + 
+                    '</div><div class="input-append row extraFormatDiv">';
         var removeButton = $(removeBtn);
 
         $(addto).after(newInput);
@@ -158,6 +168,7 @@ function submitAssignmentForm(e) {
         var val = $($allInputs[i]).val();
         data[name] = val;
     }
+    data["courseId"] = $("body > div").attr('id');
     
     console.log(data);
     console.log("calling AJAX NOW!");
@@ -199,10 +210,13 @@ function callback(results) {
         $("#syllabusTable").append(tdElement);
     }
     
+    //here i wanna delete all the divs and reset them.
+    
+    $("div.removeButton").hide();
+    $("div.extraFormatDiv").hide();
+    $("div.syllabusDataDiv").hide();
     $("#successMessageDiv").text("Success!");
-    // now display everything. so on the server side you want to make sure you remove all duplicates
-    // so basically 'results' should only be what the server doesn't already contain
-    // like you should change everything that isn't already the same as what's on the servers.
+    
 }
 
 function makeCharts(courseID) {
