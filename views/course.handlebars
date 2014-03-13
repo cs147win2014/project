@@ -116,7 +116,6 @@
           </div>
         </div>
         <hr>
-        <div id="successMessageDiv" class="text-success"></div>
         <div>
           <table id="syllabusTable" class="table table-responsive table-bordered table-striped">
             <th><h4><b>Type</b></h4></th><th><h4><b>Weight (% of final grade)</b></h4></th>
@@ -128,34 +127,8 @@
             {{/each}}
           </table>
         </div>
-        
-        <div id="profs"> 
-          <form id="addAssignmentTypes" role="form" >
-                      <div id="field" class="input-append row">
-                        <div id="field1" class="col-xs-9 col-md-4"><br>
-                          <div class="row">
-                                <div class="col-md-6 col-xs-6"> 
-                                    <input autocomplete="off" placeholder="Ex: 'Exam'" class="form-control col-xs-4 col-md-4" name="type1" type="text">
-                                  </div> 
-                                <div class="col-md-6 col-xs-6">
-                                    <input autocomplete="off" placeholder="Ex: 60" class="form-control col-xs-4 col-md-4" name="weighting1" type="text">
-                                  </div>
-                                <div class="col-md-6 col-xs-6">                                 
-                                    <input autocomplete="off" class="hidden form-control" name="courseId" id="courseId" type="hidden" value="{{course._id}}"/>
-                                  </div>
-                              </div>
-                        </div>
-                      </div>
-
-                      <br>
-            <div class="row container-fluid"> 
-              
-              <button id="b1" class="btn btn-default add-more col-md-3 col-xs-4"  type="button"><i class="glyphicon glyphicon-plus"></i> Type</button></input>
-              
-            
-              <button type="submit" id="submitBtn" class="btn btn-default pull-right col-md-2 col-lg-2 col-xs-4" ><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
-            </div>
-          </form>
+        <div>
+          <button type="button" id="addSyllabusTypeBtn" class="btn btn-default">Add Type</button>
         </div>
             
     </div>
@@ -168,7 +141,6 @@
   <script src="/js/bootstrap.js"></script>
   <script src="/bootstrap3-editable-1.5.1/bootstrap-editable.js"></script>
   <script src="/js/viewAssignments.js"></script>
-  
   <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
   <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
   <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
