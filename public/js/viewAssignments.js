@@ -133,7 +133,7 @@ function checkWeightResponse(results) {
 function addAssignment() {
     console.log("user clicked add assignment button");
     var courseID = $(this).closest('div').attr('name');
-    alert(courseID);
+    //alert(courseID);
     console.log(courseID);
     window.location.href = "/addAssignment/" + courseID; // load the page
 
