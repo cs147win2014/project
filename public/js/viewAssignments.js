@@ -33,7 +33,7 @@ function removeAssignment(e) {
     var assignID = $(this).closest('tr').attr('id');
     var data = {};
     data["ID"] = assignID;
-    console.log(assignID);
+    //console.log(assignID);
     //console.log(courseName);
     var check = confirm("Are you sure you want to delete this assignment?");
     if(check) {
@@ -53,15 +53,15 @@ function initializePage() {
     $('.typeRemoveButton').click(removeType);
     $('.assignRemoveButton').click(removeAssignment);
     var courseID = $("body > div").attr('id');
-    console.log('initializing page');
+    
     makeCharts(courseID);
-    console.log('made charts for first time');
+    
     //$('[class="active"').click(alert('i fucking clicked this')); //makeCharts(courseID));
     $(".remakeChartsOnClick").click(function(e) {
         e.preventDefault(e);
         makeCharts(courseID);
     });
-    console.log('set click listener');
+    
     //for google analytics
 
     /*$(".active").click(function (e) {
@@ -136,10 +136,10 @@ function initializePage() {
         var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4 syllabusDataDiv"><br>' + 
                         '<div class="row">' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus>' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4 typeInput" name="type' + next + '" type="text" autofocus>' + 
                             '</div>' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text">' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4 weightInput" name="weighting' + next + '" type="text">' + 
                             '</div>' + 
                         '</div>' + 
                     '</div>';
@@ -157,7 +157,7 @@ function initializePage() {
         $(addRemove).after(removeButton);
         $("#field" + next).attr('data-source',$(addto).attr('data-source'));
         $("#count").val(next);
-        console.log('got here');
+        // console.log('got here');
         
         $('.remove-me').click(function(e){
             //alert('clicked!');
@@ -167,32 +167,30 @@ function initializePage() {
             var fieldID = "#field" + fieldNum;
             ($divToRemove).remove();
             $(fieldID).remove();
-            //next = next-1;
-            //$("#numFields").attr("value", next--);
-            //console.log('just deleted, ' + next);
+
         });
     });	
 }
 
 function checkTypeResponse(results) {
-    console.log('hey it got back to the client sideTYPEYPTTYPETYPETYPETYP');
-    console.log(results);
-    var courseID = $("body>div").attr('id');
-    //makeCharts(courseID);
+    // console.log('hey it got back to the client sideTYPEYPTTYPETYPETYPETYP');
+    // console.log(results);
+    // var courseID = $("body>div").attr('id');
+    // makeCharts(courseID);
 }
 
 function checkWeightResponse(results) {
-    console.log('hey it got back to the client sideWEIGHTWIEGHWETIWGHEIWTHEIWGHEIWT');
-    console.log(results);
-    var courseID = $("body>div").attr('id');
-    //makeCharts(courseID);
+    // console.log('hey it got back to the client sideWEIGHTWIEGHWETIWGHEIWTHEIWGHEIWT');
+    // console.log(results);
+    // var courseID = $("body>div").attr('id');
+    // makeCharts(courseID);
 }
 
 function addAssignment() {
-    console.log("user clicked add assignment button");
+    // console.log("user clicked add assignment button");
     var courseID = $(this).closest('div').attr('name');
-    //alert(courseID);
-    console.log(courseID);
+    
+    // console.log(courseID);
     window.location.href = "/addAssignment/" + courseID; // load the page
 
     //$.get("/addACourse");
@@ -207,8 +205,8 @@ function submitAssignmentForm(e) {
     e.preventDefault();
     // get all the values of all the inputs.
     var $allInputs = $('div#field input.form-control');
-    console.log($allInputs.length);
-    console.log($allInputs[0]);
+    // console.log($allInputs.length);
+    // console.log($allInputs[0]);
     var data = {};
 
     for(var i=0; i<$allInputs.length; i++) {
@@ -218,24 +216,25 @@ function submitAssignmentForm(e) {
     }
     data["courseId"] = $("body > div").attr('id');
     
-    console.log(data);
-    console.log("calling AJAX NOW!");
+    // console.log(data);
+    // console.log("calling AJAX NOW!");
     $.post('/editCourseAJAX',data,callback);
 }
 
 function callback(results) {
-    console.log('i made it back!');
-    console.log('here are the results: ');
-    console.log(results);
-    console.log(results["syllabus"]);
+    // console.log('i made it back!');
+    // console.log('here are the results: ');
+    // console.log(results);
+    // console.log(results["syllabus"]);
 
     var courseID = $("body > div").attr('id');
     var department = results.department;
     var number = results.number;
     var syllabus = results.syllabus;
     for(var key in syllabus) {
-        console.log('this is the syllabus id: ' + key);
-        //now we should add a tr.
+        // console.log('this is the syllabus id: ' + key);
+        
+        // now we should add a tr.
         var trText = '<tr class="tableEntry" id="' + key + '"></tr>';
         var trElement = $(trText); 
         var tdTypeText = '<td class="row"><a href="#" id="' + syllabus[key].name + '" data-url = "/post" data-params="' + key + '" class = "editable editable-click editable-unsaved typeName col-md-4">' + syllabus[key].name + '</a></td>';
@@ -278,40 +277,44 @@ function callback(results) {
         });
 
         trElement.append(tdType);
-        console.log('appended type');
+        // console.log('appended type');
         trElement.append(tdWeight);
-        console.log("appended weight");
+        //console.log("appended weight");
         trElement.append(divButton);
-        console.log("appended button");
+        //console.log("appended button");
+        // console.log("appended weight");
 
         $("#syllabusTable").append(trElement);
-        console.log('appended to table');
+        // console.log('appended to table');
     }
     
     //here i wanna delete all the divs and reset them.
-    
-
+    $('.remove-me').click();
+    // now you have one input left, reset the value to null
+    $('.typeInput').val("");
+    $('.weightInput').val("");
+    // tell user it worked!
     $("#successMessageDiv").text("Success!");
     
 }
 
 function makeCharts(courseID) {
-    console.log("making the charts!!!");
+    //console.log("making the charts!!!");
 
-
+    // first get the assignments from the database
     $.get("/getAssignments/" + courseID, function(data) {
-        console.log(data);
-        console.log('now ill try to assign');
+        // console.log(data);
+        // console.log('now ill try to assign');
         
         var chartDivs = [];
         var clusterChartData = [];
         
         var counter = 0;
         for(var type in data) {
-            console.log('heres a thing i ndata');
-            console.log(type);
-            console.log('try get the ID now');
-            console.log($('#'+type+'breakdownChart').attr('id'));
+            // console.log('heres a thing i ndata');
+            // console.log(type);
+            // console.log('try get the ID now');
+            // console.log($('#'+type+'breakdownChart').attr('id'));
 
             var clusterChartVal = {};
             clusterChartVal["type"] = type;
@@ -337,12 +340,6 @@ function makeCharts(courseID) {
             
             else {
             
-                /*breakdownLineChartTemplate.dataProvider = data[type];
-                breakdownLineChartTemplate.valueAxes[0].maximum = '[[value.sum]]';
-                console.log('making ' + type + 'with data: ');
-                console.log(breakdownLineChartTemplate.dataProvider);
-                chartDivs[counter] = AmCharts.makeChart(chartdivID, breakdownLineChartTemplate);*/
-
                 chartDivs[counter] = AmCharts.makeChart(chartdivID, {
                     "type": "serial",
                     "theme": "none",
@@ -402,7 +399,7 @@ function makeCharts(courseID) {
                 });            
 
                 counter++;
-                console.log('clustercharts stuff:');
+                //console.log('clustercharts stuff:');
                 console.log(clusterChartData);
             }
         }
