@@ -237,7 +237,6 @@ exports.viewAddAssignmentPage = function(req, res) {
 
 assignmentsByType = function(courseID) {
   console.log("retrieving assignments by type");
-  var courseID = req.params.courseID; 
   console.log(courseID);
   var course = models.Course.findOne({"_id": courseID});
   if(course.length == 0) {

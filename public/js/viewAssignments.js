@@ -242,7 +242,12 @@ function callback(results) {
         var tdType = $(tdTypeText);
         var tdWeightText = '<td><a href="#" id="' + syllabus[key].name + 'Weight" data-url = "/post" data-params="' + key + '" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key].weighting + '</a></td>';
         var tdWeight = $(tdWeightText);
-        
+        var divButtonText = '<td><div class="btn-group"></div></td>';
+        var myButtonText = '<button type="button" id="removeButton' + key + '" class="btn typeRemoveButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>'
+        var divButton = $(divButtonText);
+        var myButton = $(myButtonText);
+        divButton.append(myButton);
+        myButton.click(removeType);
 
         tdType.editable({
             ajaxOptions: {
@@ -276,6 +281,8 @@ function callback(results) {
         console.log('appended type');
         trElement.append(tdWeight);
         console.log("appended weight");
+        trElement.append(divButton);
+        console.log("appended button");
 
         $("#syllabusTable").append(trElement);
         console.log('appended to table');
