@@ -65,7 +65,12 @@ function initializePage() {
     
     $('button.showUpOnActivePane').click(addAssignment);
     $('#backBtn').click(goBack);
-    $('#actualProgressTab').click(makeCharts);
+    
+    $('.remakeChartsOnClick').click(function(e) {
+        e.preventDefault();
+        var courseID = $("body > div").attr('id');
+        makeCharts(courseID);
+    });
 
     $('#myTab a').click(function (e) {
   		e.preventDefault()
