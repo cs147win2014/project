@@ -427,13 +427,6 @@ function makeCharts(courseID) {
                 "title": "Expenses",
                 "type": "column",
                 "valueField": "possible"
-            }, {
-                "balloonText": "Percentage:[[value]]",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "percent"
             }],
             "rotate": false,
             "categoryField": "type",
