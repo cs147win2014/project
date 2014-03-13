@@ -325,6 +325,7 @@ function makeCharts(courseID) {
 
             if(data[type].length==0) {
                 $('#'+chartdivID).hide();
+                $('#'+chartdivID).closest('div.chartDescriptionDiv').hide();
             }
             
             else {
@@ -417,14 +418,14 @@ function makeCharts(courseID) {
                 "balloonText": "Actual:[[value]]",
                 "fillAlphas": 0.8,
                 "lineAlpha": 0.2,
-                "title": "Income",
+                "title": "Actual",
                 "type": "column",
                 "valueField": "actual"
             }, {
                 "balloonText": "Possible:[[value]]",
                 "fillAlphas": 0.8,
                 "lineAlpha": 0.2,
-                "title": "Expenses",
+                "title": "Possible",
                 "type": "column",
                 "valueField": "possible"
             }],
