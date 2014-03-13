@@ -297,7 +297,7 @@ function makeCharts(courseID) {
             "dataProvider": data,
 
             "valueAxes": [{
-                //"stackType": "regular",
+                "axisAlpha": 0,
                 "gridAlpha": 0.07,
                 "position": "left",
                 "title": "Test plot! :D"
