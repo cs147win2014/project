@@ -136,6 +136,22 @@ exports.addSyllabusFields_ajax = function(req, res) {
 };
 
 
+exports.deleteType_ajax = function(req, res) {
+	var typeID = req.body.ID;
+	console.log("CALLING THE DLETE TYPE FUNCTION");
+	console.log(typeID);
+	
+	//Find the corresponding type in the database, delete it
+	models.AssignmentType
+		.findOne({"_id": typeID})
+		.remove()
+		.exec(function(err) {
+      		if(err) console.log(err);
+			res.send();
+		});
+}
+
+
 exports.delete_ajax = function(req, res) {
 	var courseID = req.body.ID;
 	console.log("CALLING THE DLETE FUNCTION");
