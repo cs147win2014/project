@@ -29,8 +29,8 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        defaultValue: courseID,
-        name: 'type',
+        typeID: $(this).closest('tr').attr('id'),
+        name: 'name',
         send: 'always',  
         success: checkTypeResponse,
         type: 'text',
@@ -43,8 +43,8 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
-        defaultValue: courseID,
-        name: 'weightNum',
+        typeID: $(this).closest('tr').attr('id'),
+        name: 'weighting',
         send: 'always',
         success: checkWeightResponse,
         type: 'text',   
@@ -187,7 +187,7 @@ function callback(results) {
             ajaxOptions: {
                 type: 'put'
             },
-            defaultValue: courseID,
+            typeID: key,
             name: 'type',
             send: 'always',  
             success: checkTypeResponse,

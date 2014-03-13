@@ -49,7 +49,24 @@ exports.editSyllabus = function(req,res) {
 	console.log(req.body);
 	var name = req.body.name;
 	var value = req.body.value;
-	var courseID = req.body.defaultValue;
+	var typeID = req.body.typeID;
+
+	models.AssignmentType.findOne({"_id": typeID})
+		.exec(function(err, elem) {
+			if(err) console.log(err);
+			if(name === "name") {
+				elem.name = value;
+			} else if (name === "weighting") {
+				elem.weighting = value;
+			} else {
+				console.log("WHAT THE HECK IS GOING ON");
+			}
+			elem.save(function(err) {
+				if(err) console.log(err);
+				res.json(req.body);
+				return;
+			});
+		});
 	res.json(req.body);
 	return;
 };
