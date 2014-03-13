@@ -115,14 +115,17 @@ exports.addSyllabusFields_ajax = function(req, res) {
     							if(err) {
 	                  				console.log('Error: ' + err);
  				               	}
+ 				               	console.log("id is " + newAssignmentType._id);
+ 				               	console.log("new assignment type info is " + newAssignmentTypeInfo);
  				               	syllabusInfo[newAssignmentType._id] = newAssignmentTypeInfo;
 	    						addToDatabase(index + 1);
  		   					});
 						});
 					} else {
-						var returnData = {"syllabus": newSyllabus, "department": course.department, "number": course.number};
+						var returnData = {"syllabus": syllabusInfo, "department": course.department, "number": course.number};
 						console.log("OUT");
 						console.log(course);
+						console.log(syllabusInfo);
 						res.json(returnData);
 						return;
 					}
