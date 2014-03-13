@@ -47,6 +47,9 @@ exports.addSyllabusFields = function(req, res) {
 exports.editSyllabus = function(req,res) {
 	console.log('okay im editing the syllabus');
 	console.log(req.body);
+	var name = req.body.name;
+	var value = req.body.value;
+	var courseID = req.body.courseID;
 	res.json(req.body);
 	return;
 };
