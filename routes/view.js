@@ -72,48 +72,7 @@ exports.viewCoursePage = function(req, res) { 
 
 
 
-
-
 exports.viewAssignments = function(req, res){
-  // var user = req.session.user;
-  // console.log(user);
-  // if(!user) {
-  //   console.log('username undefined we should not do this');
-  //   res.render('login', {error:"Please sign in first!"});
-  //   return;
-  // }
-  
-  // //query database - get array of json situations
-  // var actualUser = models.User.find({"username": user});
-  // if(actualUser.length != 0) {
-  //   actualUser.populate("courses")
-  //   .exec(function(err, doc) {
-  //     if(err) {console.log(err)};
-  //     console.log(doc[0]);
-  //     var results;
-  //     results = doc[0];
-  //     var hasCourses;
-  //     if(doc[0].courses.length) { //false if no courses
-  //       hasCourses = true;
-  //     } else {
-  //       hasCourses = false;
-  //     }
-  //     var sessionData = { "userData": results,
-  //                         "department": department,
-  //                         "number": number,
-  //                         "user": user, 
-  //                         "progressTabFirst": false,
-  //                         "hasCourses": hasCourses};
-  //     console.log("user data is " + sessionData);
-  //     res.render('viewAssignments',sessionData);
-  //     return;
-  //   });
-  // } 
-  // else {
-  //   console.log('couldnt find user ' + username);
-  //   res.render('login',{error:"Could not find user " + username});
-  //   return;
-  // }
   console.log(data);
   data["progressTabFirst"] = false;
   res.render('viewAssignments',data);
@@ -121,50 +80,7 @@ exports.viewAssignments = function(req, res){
 };
 
 
-
-
-
-
 exports.viewAssignmentsTest = function(req, res){
-  // var user = req.session.user;
-  // console.log(user);
-  // if(!user) {
-  //   console.log('username undefined we should not do this');
-  //   res.render('login', {error:"Please sign in first!"});
-  //   return;
-  // }
-  
-  // //query database - get array of json situations
-  // var actualUser = models.User.find({"username": user});
-  // if(actualUser.length != 0) {
-  //   actualUser.populate("courses")
-  //   .exec(function(err, doc) {
-  //     if(err) {console.log(err)};
-  //     console.log(doc[0]);
-  //     var results;
-  //     results = doc[0];
-  //     var hasCourses;
-  //     if(doc[0].courses.length) { //false if no courses
-  //       hasCourses = true;
-  //     } else {
-  //       hasCourses = false;
-  //     }
-  //     var sessionData = { "userData": results,
-  //                         "department": department,
-  //                         "number": number,
-  //                         "user": user, 
-  //                         "progressTabFirst": true,
-  //                         "hasCourses": hasCourses};
-  //     console.log("user data is " + sessionData);
-  //     res.render('viewAssignments',sessionData);
-  //     return;
-  //   });
-  // } 
-  // else {
-  //   console.log('couldnt find user ' + username);
-  //   res.render('login',{error:"Could not find user " + username});
-  //   return;
-  // }
   console.log(data);
   data["progressTabFirst"] = true;
   res.render('viewAssignments',data);
@@ -172,15 +88,10 @@ exports.viewAssignmentsTest = function(req, res){
 
 
 
-
-
-
 exports.viewInfo = function(req, res){
   console.log(data);
   res.render('info',data);
 };
-
-
 
 
 
@@ -217,17 +128,6 @@ exports.viewIndex = function(req, res){
     return;
   }
 };
-
-
-
-
-
-exports.viewInfo = function(req, res){
-  console.log(data);
-  res.render('index',data);
-};
-
-
 
 
 
@@ -268,10 +168,6 @@ exports.viewAddCoursePage = function(req, res) {
 }
 
 
-
-
-
-
 exports.viewAddAssignmentPage = function(req, res) {
   var courseID = req.params.courseID; 
   console.log(courseID);
@@ -286,7 +182,7 @@ exports.viewAddAssignmentPage = function(req, res) {
   //query database - get array of json situations
   var actualUser = models.User.find({"username": user});
   if(actualUser.length != 0) {
-      actualUser.populate("courses")
+    actualUser.populate("courses")
       .exec(function(err, doc) {
         if(err) {console.log(err)};
         console.log(doc[0]);
@@ -327,7 +223,7 @@ exports.viewAddAssignmentPage = function(req, res) {
               return;
             }
           });
-      }
+        }
     });
   } else {
     console.log('couldnt find user ' + user);
@@ -338,13 +234,60 @@ exports.viewAddAssignmentPage = function(req, res) {
 
 
 
-
-
-
 exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
   // sorted by type
-  //console.log(data[2]["assignments"]);
-  res.json(data[2]["assignments"]);
+  var courseID = req.params.courseID; 
+  console.log(courseID);
+  var course = models.Course.findOne({"_id": courseID});
+  if(course.length == 0) {
+    console.log("no course provided");
+    res.json({});
+    return;
+  } else {
+    course.populate("assignments")
+      .populate("syllabus")
+      .exec(function(err, actualCourse) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(actualCourse);
+          var assignmentData = actualCourse.assignments;
+          var syllabusData = actualCourse.syllabus;
+          var syllength = syllabusData.length;
+          var assignlength = assignmentData.length;
+          var typeNameToAssignArray = {};
+          var typeIDToName = {};
+          for (var i = 0; i < syllength; i++) {
+            var currType = syllabusData[i];
+            var currName = currType.name;
+            typeNameToAssignArray[currName] = [];
+            typeIDToName[currType._id] = currName;
+          }
+          for (var i = 0; i < assignlength; i++) {
+            var currAssign = assignmentData[i];
+            var typeID = currAssign._id;
+            var typeName = typeIDToName[typeID];
+            typeNameToAssignArray[typeName].push(currAssign);
+          }
+          res.json(typeNameToAssignArray);
+          return;
+        }
+      });
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

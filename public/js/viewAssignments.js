@@ -155,7 +155,7 @@ function goBack(e) {
 }
 
 function makeCharts(courseID) {
-    $.get("/getAssignments", function(data) {
+    $.get("/getAssignments/" + courseID, function(data) {
         //console.log(data);
         //console.log('now ill try to assign');
 
