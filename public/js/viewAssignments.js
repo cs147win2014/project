@@ -341,7 +341,7 @@ function makeCharts(courseID) {
             }
             
             else {
-                $('#'+type+"chartTitle h3").text(type + " cumulative score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
+                $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
                 
 
                 //var h3text = "<h3>" + type + " cumulative score: " + clusterChartVal["percent"]*100 + "%</h3>";
