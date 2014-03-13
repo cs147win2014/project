@@ -168,17 +168,18 @@ function callback(results) {
     console.log('i made it back!');
     console.log('here are the results: ');
     console.log(results);
+    console.log(results["syllabus"]);
 
     var courseID = $("body > div").attr('id');
     var department = results.department;
     var number = results.number;
     var syllabus = results.syllabus;
     for(var key in syllabus) {
-        console.log('this is the syllabus id: ' + syllabus["_id"]);
+        console.log('this is the syllabus id: ' + key);
         //now we should add a tr.
-        var tdText = '<tr class="tableEntry" id="' + syllabus["_id"] + '">' + 
-                        '<td class="row"><a href="#" id="' + key + '" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">' + key + '</a></td>' +
-                        '<td><a href="#" id="' + key + 'Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key] + '</a></td>' +
+        var tdText = '<tr class="tableEntry" id="' + key + '">' + 
+                        '<td class="row"><a href="#" id="' + syllabus[key]["name"] + '" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">' + syllabus[key]["name"] + '</a></td>' +
+                        '<td><a href="#" id="' + syllabus[key]["name"] + 'Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key]["weighting"] + '</a></td>' +
                     '</tr>';
 
         var tdElement = $(tdText);
