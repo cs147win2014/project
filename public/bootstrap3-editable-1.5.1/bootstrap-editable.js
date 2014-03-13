@@ -324,17 +324,26 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
             console.log(this.options.send);
             if (send) { //send to server
                 this.showLoading();
+                console.log("DEfault value");
+                console.log(this.options.defaultValue);
 
                 //standard params
                 params = {
                     name: this.options.name || '',
                     value: submitValue,
                     pk: pk,
-                    typeID: this.options.typeID
+                    defaultValue: this.options.defaultValue
                 };
+                return $.ajax($.extend({
+                    url     : this.options.url,
+                    data    : params,
+                    type    : 'POST'
+                }, this.options.ajaxOptions));
 
                 //additional params
                 if(typeof this.options.params === 'function') {
+                    console.log('WAS A FUNCTION');
+
                     params = this.options.params.call(this.options.scope, params);  
                 } else {
                     //try parse json in single quotes (from data-params attribute)
