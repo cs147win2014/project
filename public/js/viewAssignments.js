@@ -8,7 +8,29 @@ $(document).ready(function() {
     
 });
 
+
+function removeType(e) {
+    e.preventDefault();
+    var typeID = $(this).closest('tr').attr('id');
+    var data = {};
+    data["ID"] = typeID;
+    //console.log(courseName);
+    var check = confirm("Are you sure you want to delete this type?");
+    if(check) {
+        $.post('/deleteTypeAJAX',data, function(e) {
+            $('#' + typeID).remove();
+            //window.location.href = "/index";
+        });
+        //$.post('/editCourseAJAX',courseID,callback);
+
+    }
+    //alert('i now have the course name ' + courseID + ' and then we have to go into database and remove it');
+}
+
+
+
 function initializePage() {
+    $('.removeButton').click(removeType);
     var courseID = $("body > div").attr('id');
     console.log('initializing page');
     makeCharts(courseID);
