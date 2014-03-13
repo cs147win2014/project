@@ -224,7 +224,6 @@ function makeCharts(courseID) {
         //console.log(data);
         //console.log('now ill try to assign');
 
-
         var chart = AmCharts.makeChart("testLine", {
             "type": "serial",
             "theme": "none",
@@ -379,70 +378,6 @@ function makeCharts(courseID) {
             "radius": "42%",
             "innerRadius": "60%",
             "labelText": "[[title]]"
-        });
-    });
-
-    $.get('/courses/'+courseID+'/assignments',function(data){
-        if(data.length==0) {
-            $("#testAssignDiv").hide();
-            return;
-        }
-        var assignData = [];
-        var i = 0;
-        for(var index in data) {
-            var item = data[index];
-            console.log(JSON.stringify(item));
-            assignData[i] = {"title":item["name"], "value":item["percent"]};
-            console.log(item["name"] + " with score " + item["percent"]);
-            i++;
-        }
-        console.log(data);
-        console.log(JSON.stringify(assignData));
-
-        var lineChart = AmCharts.makeChart("testAssignDiv", {
-            "type": "serial",
-            "theme": "none",
-            "marginLeft": 20,
-            "pathToImages": "http://www.amcharts.com/lib/3/images/",
-            "legend": {
-                "equalWidths": false,
-                "periodValueText": "total: [[value.sum]]",
-                "position": "top",
-                "valueAlign": "left",
-                "valueWidth": 100
-            },
-            "dataProvider": assignData,
-            "valueAxes": [{
-                "axisAlpha": 0,
-                //"inside": true,
-                "position": "left",//,
-                //"ignoreAxisWidth": true
-                "title": "All Assignments"
-            }],
-            "graphs": [
-                {
-                    //"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
-                    "bullet": "round",
-                    "bulletSize": 6,
-                    "lineColor": "#99C2FF",
-                    "lineThickness": 2,
-                    "negativeLineColor": "#637bb6",
-                    "type": "smoothedLine",
-                    "valueField": "value"
-                },
-                
-            ],
-            "chartScrollbar": {},
-            "chartCursor": {
-                "cursorAlpha": 0,
-                "cursorPosition": "mouse"
-            },
-            "categoryField": "title",
-            "categoryAxis": {
-                "startOnAxis": true,
-                "minorGridAlpha": 0.1,
-                "minorGridEnabled": true
-            }
         });
     });
 }
