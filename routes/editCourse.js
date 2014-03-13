@@ -17,7 +17,6 @@ exports.addAssignment = function(req, res) { 
  };
 
 exports.view = function(req, res){
-	
 	console.log(data);
 	res.render('editCourse',data);
 };

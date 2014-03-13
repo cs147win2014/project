@@ -50,16 +50,17 @@ exports.viewCoursePage = function(req, res) { 
                   finalAssignmentData.push(populatedAssignment);
                   populateAssignmentType(index + 1);
                 });
-            }
-          }
-          var sessionData = { "userData": results, 
+            } else {
+              var sessionData = { "userData": results, 
                               "user": user, 
                               "hasCourses": hasCourses,
                               "course": actualCourse,
                               "assignments": finalAssignmentData};
-          console.log("user data is " + sessionData);
-          res.render('course',sessionData);
-          return;
+              console.log("user data is " + sessionData);
+              res.render('course',sessionData);
+              return;
+            }
+          }
         });
     });
   } 
