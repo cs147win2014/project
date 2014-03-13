@@ -236,18 +236,20 @@ function callback(results) {
     for(var key in syllabus) {
         console.log('this is the syllabus id: ' + key);
         //now we should add a tr.
-        var tdText = '<tr class="tableEntry" id="' + key + '">' + 
-                        '<td class="row"><a href="#" id="' + syllabus[key].name + '" data-url = "/post" class = "editable editable-click editable-unsaved typeName col-md-4">' + syllabus[key].name + '</a></td>' +
-                        '<td><a href="#" id="' + syllabus[key].name + 'Weight" data-url = "/post" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key].weighting + '</a></td>' +
-                    '</tr>';
+        var trText = '<tr class="tableEntry" id="' + key + '"></tr>';
+        var trElement = $(trText); 
+        var tdTypeText = '<td class="row"><a href="#" id="' + syllabus[key].name + '" data-url = "/post" data-params="' + key + '" class = "editable editable-click editable-unsaved typeName col-md-4">' + syllabus[key].name + '</a></td>';
+        var tdType = $(tdTypeText);
+        var tdWeightText = '<td><a href="#" id="' + syllabus[key].name + 'Weight" data-url = "/post" data-params="' + key + '" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key].weighting + '</a></td>';
+        var tdWeight = $(tdWeightText);
+        
 
-        var tdElement = $(tdText);
-        tdElement.editable({
+        tdType.editable({
             ajaxOptions: {
                 type: 'put'
             },
-            defaultValue: key,
-            name: 'type',
+            
+            name: 'name',
             send: 'always',  
             success: checkTypeResponse,
             type: 'text',
@@ -255,14 +257,33 @@ function callback(results) {
             pk: 1,
             url: '/post'
         });
-        $("#syllabusTable").append(tdElement);
+
+        tdWeight.editable({
+            ajaxOptions: {
+                type: 'put'
+            },
+            
+            name: 'weighting',
+            send: 'always',
+            success: checkWeightResponse,
+            type: 'text',   
+            title: 'Enter weight',
+            pk: 2,
+            url: '/post'       
+        });
+
+        trElement.append(tdType);
+        console.log('appended type');
+        trElement.append(tdWeight);
+        console.log("appended weight");
+
+        $("#syllabusTable").append(trElement);
+        console.log('appended to table');
     }
     
     //here i wanna delete all the divs and reset them.
     
-    $("div.removeButton").hide();
-    $("div.extraFormatDiv").hide();
-    $("div.syllabusDataDiv").hide();
+
     $("#successMessageDiv").text("Success!");
     
 }
@@ -288,6 +309,8 @@ function makeCharts(courseID) {
             },
             "dataProvider": data,
             "valueAxes": [{
+                "minimum": 0,
+                "maximum": 100,
                 "axisAlpha": 0,
                 //"inside": true,
                 "position": "left",//,
@@ -346,6 +369,8 @@ function makeCharts(courseID) {
             "dataProvider": data,
 
             "valueAxes": [{
+                "minimum": 0,
+                "maximum": 100, 
                 "axisAlpha": 0,
                 "gridAlpha": 0.07,
                 "position": "left",
