@@ -3,13 +3,13 @@
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
     initializePage();
-    var courseID = $("body > div").attr('id');
-    console.log(courseID);
-    makeCharts(courseID);
+    
 });
 
 function initializePage() {
-
+    var courseID = $("body > div").attr('id');
+    console.log(courseID);
+    makeCharts(courseID);
     //for google analytics
 
     /*$(".active").click(function (e) {
@@ -19,7 +19,7 @@ function initializePage() {
     //end stuff for google analytics
     
     //editable stuff
-    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.mode = 'popup';
     //$.fn.editable.defaults.success = checkResponse;
 
         //checkResponse;
@@ -29,6 +29,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
+        defaultValue: courseID,
         name: 'type',
         send: 'always',  
         success: checkTypeResponse,
