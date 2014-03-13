@@ -267,11 +267,13 @@ exports.getAssignments = function(req,res) {
           }
           for (var i = 0; i < assignlength; i++) {
             var currAssign = assignmentData[i];
-            var typeID = currAssign._id;
+            var typeID = currAssign.type;
             var typeName = typeIDToName[typeID];
             typeNameToAssignArray[typeName].push(currAssign);
           }
+          console.log(typeNameToAssignArray);
           res.json(typeNameToAssignArray);
+          //res.json(data[2]["assignments"]);
           return;
         }
       });
