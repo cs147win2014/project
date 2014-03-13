@@ -220,7 +220,7 @@ function callback(results) {
         var tdTypeText = '<td class="row"><a href="#" id="' + syllabus[key].name + '" data-url = "/post" data-params="' + key + '" class = "editable editable-click editable-unsaved typeName col-md-4">' + syllabus[key].name + '</a></td>';
         var tdType = $(tdTypeText);
         var tdWeightText = '<td><a href="#" id="' + syllabus[key].name + 'Weight" data-url = "/post" data-params="' + key + '" class = "weightNumber col-md-4 editable editable-click editable-unsaved">' + syllabus[key].weighting + '</a></td>';
-        var tdWeight = $(tdWeight);
+        var tdWeight = $(tdWeightText);
         
 
         tdType.editable({
@@ -252,7 +252,9 @@ function callback(results) {
         });
 
         trElement.append(tdType);
+        console.log('appended type');
         trElement.append(tdWeight);
+        console.log("appended weight");
 
         $("#syllabusTable").append(trElement);
         console.log('appended to table');
