@@ -25,7 +25,10 @@ function removeCourse(e) {
 	//console.log(courseName);
 	var check = confirm("Are you sure you want to delete this class?");
     if(check) {
-    	$.post('/deleteCourseAJAX',data, callback);
+    	$.post('/deleteCourseAJAX',data, function(e) {
+			$('#' + courseID).remove();
+			//window.location.href = "/index";
+		});
     	//$.post('/editCourseAJAX',courseID,callback);
 
     }
@@ -33,9 +36,6 @@ function removeCourse(e) {
 }
 
 
-function callback(e) {
-	window.location.href = "/index";
-}
 
 function editCourse(e) {
 	e.preventDefault();

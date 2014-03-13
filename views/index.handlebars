@@ -37,22 +37,20 @@
   			<ul class="list-group">
 				{{#each userData.courses}}
 					<li id="{{_id}}" class="list-group-item">
-            			<div class="row">
+            			<div class="row" id="classDiv{{_id}}">
             				<div class="col-xs-8">
 								<a href="course/{{_id}}">
 									{{this.department}} {{this.number}}: {{this.name}}
 								</a>
 							</div>
-						<div class="col-xs-4">
-							<div class="btn-group pull-right">
-								<!--<button type="button" id="viewButton{{department}}{{number}}" class="btn syllabusButton btn-xs btn-default "><span class="glyphicon glyphicon-info-sign"></span></button>-->
-								<button type="button" id="editButton{{department}}{{number}}" class="btn editButton btn-xs btn-default "><span class="glyphicon glyphicon-wrench"></span></button>
-								<button type="button" id="removeButton{{department}}{{number}}" class="btn removeButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+							<div class="col-xs-4">
+								<div class="btn-group pull-right">
+									<!--<button type="button" id="viewButton{{department}}{{number}}" class="btn syllabusButton btn-xs btn-default "><span class="glyphicon glyphicon-info-sign"></span></button>-->
+									<button type="button" id="editButton{{department}}{{number}}" class="btn editButton btn-xs btn-default "><span class="glyphicon glyphicon-wrench"></span></button>
+									<button type="button" id="removeButton{{department}}{{number}}" class="btn removeButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+								</div>
 							</div>
 						</div>
-
-					</div>
-						
 					</li>
 				{{/each}}
 				{{#if hasCourses}}
