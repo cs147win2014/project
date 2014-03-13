@@ -235,6 +235,53 @@ exports.viewAddAssignmentPage = function(req, res) {
 
 
 
+assignmentsByType = function(courseID) {
+  console.log("retrieving assignments by type");
+  var courseID = req.params.courseID; 
+  console.log(courseID);
+  var course = models.Course.findOne({"_id": courseID});
+  if(course.length == 0) {
+    console.log("no course provided");
+    res.json({});
+    return;
+  } else {
+    course.populate("assignments")
+      .populate("syllabus")
+      .exec(function(err, actualCourse) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(actualCourse);
+          var assignmentData = actualCourse.assignments;
+          var syllabusData = actualCourse.syllabus;
+          var syllength = syllabusData.length;
+          var assignlength = assignmentData.length;
+          var typeNameToAssignArray = {};
+          var typeIDToName = {};
+          for (var i = 0; i < syllength; i++) {
+            var currType = syllabusData[i];
+            var currName = currType.name;
+            typeNameToAssignArray[currName] = [];
+            typeIDToName[currType._id] = currName;
+          }
+          for (var i = 0; i < assignlength; i++) {
+            var currAssign = assignmentData[i];
+            var typeID = currAssign.type;
+            var typeName = typeIDToName[typeID];
+            typeNameToAssignArray[typeName].push(currAssign);
+          }
+          console.log(typeNameToAssignArray);
+          res.json(typeNameToAssignArray);
+          //res.json(data[2]["assignments"]);
+          return;
+        }
+      });
+  }
+}
+
+
+
+
 exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
