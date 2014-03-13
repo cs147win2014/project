@@ -49,7 +49,7 @@ exports.editSyllabus = function(req,res) {
 	console.log(req.body);
 	var name = req.body.name;
 	var value = req.body.value;
-	var courseID = req.body.courseID;
+	var courseID = req.body.defaultValue;
 	res.json(req.body);
 	return;
 };

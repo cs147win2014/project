@@ -43,6 +43,7 @@ function initializePage() {
         ajaxOptions: {
             type: 'put'
         },
+        defaultValue: courseID,
         name: 'weightNum',
         send: 'always',
         success: checkWeightResponse,
