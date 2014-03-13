@@ -20,12 +20,21 @@ function initializePage() {
 function removeCourse(e) {
 	e.preventDefault();
 	var courseID = $(this).closest('li').attr('id');
+	var data = {};
+	data["ID"] = courseID;
 	//console.log(courseName);
 	var check = confirm("Are you sure you want to delete this class?");
     if(check) {
-    	$.post('/deleteCourseAJAX',courseName, callback);
+    	$.post('/deleteCourseAJAX',data, callback);
+    	//$.post('/editCourseAJAX',courseID,callback);
+
     }
 	//alert('i now have the course name ' + courseID + ' and then we have to go into database and remove it');
+}
+
+
+function callback(e) {
+	window.location.href = "/index";
 }
 
 function editCourse(e) {
