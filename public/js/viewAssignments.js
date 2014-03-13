@@ -94,6 +94,7 @@ function initializePage() {
             ajaxOptions: {
                 type: 'put'
             },
+            defaultValue: courseID,
             name: 'type',
             send: 'always',  
             type: 'text',
