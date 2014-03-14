@@ -94,19 +94,34 @@
         <hr>
         <div>
           <table class="table table-responsive table-bordered table-striped table-condensed">
-            <th>Name</th><th>Type</th><th>Score</th><th>Out of</th>
+            <th>Name</th><th>Type</th><th>Score</th><th>Out of</th><th></th>
 
-            {{#each assignments}}
+            {{#each types}}
+            <tr id="{{this.name}}">
+              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
+              <td><a href="#" id="typename" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
+              <td><a href="#" id="score" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
+              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
+              <td>
+              </td>
+            </tr>
+
+
+            {{#each this.assignments}}
             <tr id="{{this._id}}">
               <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-              <td><a href="#" id="typename" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type.name}}</a></td>
+              <!--<td><a href="#" id="typename" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.type.name}}</a></td>-->
               <td><a href="#" id="score" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.score}}</a></td>
-              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a>
+              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.total}}</a></td>
+              <td>
               <div class="btn-group pull-right">
               <button type="button" id="removeButton{{this._id}}" class="btn assignRemoveButton btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
-              </div></td>
-
+              </div>
+              </td>
             </tr>
+            {{/each}}
+
+
             {{/each}}
           </table>
         </div>

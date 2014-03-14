@@ -29,42 +29,75 @@ exports.viewCoursePage = function(req, res) { 
       }
       models.Course.findOne({"_id": courseID})
         .populate("syllabus")
-        //.populate("assignments")
+        .populate("assignments")
         //.populate("assignments.type")
         .exec(function(err, actualCourse) {
           if(err) console.log(err);
           console.log(actualCourse);
-          var assignmentArray = actualCourse.assignments;
-          var length = assignmentArray.length;
-          var finalAssignmentData = [];
-          populateAssignmentType(0);
+          //var assignmentArray = actualCourse.assignments;
+          //var length = assignmentArray.length;
+          //var finalAssignmentData = [];
+          console.log("POPULATED COURSE data is.........");
+          console.log(actualCourse);
+          console.log("atual TABLE data is.........");
+          var assignmentData = actualCourse.assignments;
+          var syllabusData = actualCourse.syllabus;
+          var syllength = syllabusData.length;
+          var assignlength = assignmentData.length;
+          var typeArray = [];
+          var typeIDToName = {};
+          for (var i = 0; i < syllength; i++) {
+            var currTypeData = {};
+            var currType = syllabusData[i];
+            var currName = currType.name;
+            var currTypeID = currType._id;
+            currTypeData["name"] = currName;
+            typeIDToName[currType._id] = currName;
+            currTypeData["assignments"] = [];
+            typeArray.push(currTypeData);
+          }
+          for (var j = 0; j < assignlength; j++) {
+            var currAssign = assignmentData[j];
+            var testTypeID = currAssign.type;
+            var testName = typeIDToName[testTypeID];
+            for (var k = 0; k < syllength; k++) {
+              var currTypeData = typeArray[k];
+              var typeName = currTypeData.name;
+              if (typeName === testName) {
+                typeArray[k].assignments.push(currAssign);
+              }
+            }
+          }
+          console.log("TYPE ARRAY IS=============");
+          console.log(typeArray);
+//var finalAssignmentData = [];
+          // populateAssignmentType(0);
 
-          function populateAssignmentType(index) {
-            if(index < length) {
-              var currAssignID = assignmentArray[index];
-              models.Assignment.findOne({"_id": currAssignID})
-                .populate("type")
-                .exec(function(err, populatedAssignment) {
-                  if(err) console.log(err);
-                  console.log(populatedAssignment);
-                  finalAssignmentData.push(populatedAssignment);
-                  populateAssignmentType(index + 1);
-                });
-            } else {
+          // function populateAssignmentType(index) {
+          //   if(index < length) {
+          //     var currAssignID = assignmentArray[index];
+          //     models.Assignment.findOne({"_id": currAssignID})
+          //       .populate("type")
+          //       .exec(function(err, populatedAssignment) {
+          //         if(err) console.log(err);
+          //         console.log(populatedAssignment);
+          //         finalAssignmentData.push(populatedAssignment);
+          //         populateAssignmentType(index + 1);
+          //       });
+          //   } else {
               var sessionData = { "userData": results, 
                               "user": user, 
                               "hasCourses": hasCourses,
                               "course": actualCourse,
-                              "assignments": finalAssignmentData};
-              console.log("user data is " + sessionData);
+                              "types": typeArray};
+              //console.log("user data is " + sessionData);
               res.render('course',sessionData);
               return;
-            }
-          }
+          //   }
+          // }
         });
     });
-  } 
-  else {
+  } else {
     console.log('couldnt find user ' + username);
     res.render('login',{error:"Could not find user " + username});
     return;
@@ -235,52 +268,6 @@ exports.viewAddAssignmentPage = function(req, res) {
 
 
 
-assignmentsByType = function(courseID) {
-  console.log("retrieving assignments by type");
-  console.log(courseID);
-  var course = models.Course.findOne({"_id": courseID});
-  if(course.length == 0) {
-    console.log("no course provided");
-    res.json({});
-    return;
-  } else {
-    course.populate("assignments")
-      .populate("syllabus")
-      .exec(function(err, actualCourse) {
-        if(err) {
-          console.log(err);
-        } else {
-          console.log(actualCourse);
-          var assignmentData = actualCourse.assignments;
-          var syllabusData = actualCourse.syllabus;
-          var syllength = syllabusData.length;
-          var assignlength = assignmentData.length;
-          var typeNameToAssignArray = {};
-          var typeIDToName = {};
-          for (var i = 0; i < syllength; i++) {
-            var currType = syllabusData[i];
-            var currName = currType.name;
-            typeNameToAssignArray[currName] = [];
-            typeIDToName[currType._id] = currName;
-          }
-          for (var i = 0; i < assignlength; i++) {
-            var currAssign = assignmentData[i];
-            var typeID = currAssign.type;
-            var typeName = typeIDToName[typeID];
-            typeNameToAssignArray[typeName].push(currAssign);
-          }
-          console.log(typeNameToAssignArray);
-          res.json(typeNameToAssignArray);
-          //res.json(data[2]["assignments"]);
-          return;
-        }
-      });
-  }
-}
-
-
-
-
 exports.getAssignments = function(req,res) {
   console.log('heres all your assignments');
   // query the database for all assignments
@@ -299,6 +286,7 @@ exports.getAssignments = function(req,res) {
         if(err) {
           console.log(err);
         } else {
+          console.log("atual course is.........");
           console.log(actualCourse);
           var assignmentData = actualCourse.assignments;
           var syllabusData = actualCourse.syllabus;
@@ -320,7 +308,6 @@ exports.getAssignments = function(req,res) {
           }
           console.log(typeNameToAssignArray);
           res.json(typeNameToAssignArray);
-          //res.json(data[2]["assignments"]);
           return;
         }
       });
