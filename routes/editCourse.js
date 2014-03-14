@@ -148,6 +148,14 @@ exports.deleteType_ajax = function(req, res) {
       		if(err) console.log(err);
 			res.send();
 		});
+
+	models.Assignment
+		.find({"type": typeID})
+		.remove()
+		.exec(function(err) {
+			if(err) console.log(err);
+			res.send();
+		});
 }
 
 

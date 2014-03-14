@@ -91,7 +91,8 @@ exports.viewCoursePage = function(req, res) { 
                               "user": user, 
                               "hasCourses": hasCourses,
                               "course": actualCourse,
-                              "types": typeArray};
+                              "types": typeArray,
+                              "assignPage": false};
               //console.log("user data is " + sessionData);
               res.render('course',sessionData);
               return;
