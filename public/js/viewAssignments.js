@@ -403,6 +403,7 @@ function makeCharts(courseID) {
         
         var chartDivs = [];
         var clusterChartData = [];
+        boolean hasAddedAtLeastOneAssignment = false;
         
         var counter = 0;
         for(var type in data) {
@@ -423,6 +424,7 @@ function makeCharts(courseID) {
             }
             
             else {
+                hasAddedAtLeastOneAssignment = true;
                 var clusterChartVal = {};
                 clusterChartVal["type"] = type;
                 clusterChartVal["actual"] = 0;
@@ -438,7 +440,7 @@ function makeCharts(courseID) {
 
                 clusterChartData[counter] = clusterChartVal;
 
-                
+
                 $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
                 
 
@@ -513,54 +515,58 @@ function makeCharts(courseID) {
                 console.log(clusterChartData);
             }
         }
-
-        var clusterChart = AmCharts.makeChart("clusterChartDiv", {
-            "type": "serial",
-            "theme": "none",
-            "columnWidth:": 0.6,
-            "columnSpacing": 5,
-            "legend": {
-                "equalWidths": false,
-                "periodValueText": "Total: [[value.sum]]",
-                "position": "top",
-                "valueAlign": "left",
-                "valueWidth": 100
-            },
-            "dataProvider": clusterChartData,
-            "valueAxes": [{
-                "minimum": 0
-            }],
-            "startDuration": 1,
-            "graphs": [{
-                "balloonText": "Actual:[[value]]",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-                "title": "Actual",
-                "type": "column",
-                "valueField": "actual"
-            }, {
-                "balloonText": "Possible:[[value]]",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-                "title": "Possible",
-                "type": "column",
-                "valueField": "possible"
-            }],
-            "rotate": false,
-            "categoryField": "type",
-            "categoryAxis": {
-                "gridPosition": "start",
-                "position": "left"
-            },
-            "exportConfig":{
-                "menuBottom":"20px",
-                "menuRight":"20px",
-                "menuItems": [{
-                "icon": '/lib/3/images/export.png',
-                "format": 'png'   
-                }]  
-            }
-        });
+        if(hasAddedAtLeastOneAssignment) {
+            var clusterChart = AmCharts.makeChart("clusterChartDiv", {
+                "type": "serial",
+                "theme": "none",
+                "columnWidth:": 0.6,
+                "columnSpacing": 5,
+                "legend": {
+                    "equalWidths": false,
+                    "periodValueText": "Total: [[value.sum]]",
+                    "position": "top",
+                    "valueAlign": "left",
+                    "valueWidth": 100
+                },
+                "dataProvider": clusterChartData,
+                "valueAxes": [{
+                    "minimum": 0
+                }],
+                "startDuration": 1,
+                "graphs": [{
+                    "balloonText": "Actual:[[value]]",
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "title": "Actual",
+                    "type": "column",
+                    "valueField": "actual"
+                }, {
+                    "balloonText": "Possible:[[value]]",
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "title": "Possible",
+                    "type": "column",
+                    "valueField": "possible"
+                }],
+                "rotate": false,
+                "categoryField": "type",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "position": "left"
+                },
+                "exportConfig":{
+                    "menuBottom":"20px",
+                    "menuRight":"20px",
+                    "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'   
+                    }]  
+                }
+            });
+        }
+        else {
+            $("#clusterChartDiv").hide();
+        }
     });
 
     $.get('/courses/'+courseID+'/syllabus',function(data){
