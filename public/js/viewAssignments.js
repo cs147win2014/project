@@ -54,7 +54,6 @@ function initializePage() {
     $('.assignRemoveButton').click(removeAssignment);
     var courseID = $("body > div").attr('id');
     
-    findGrade(courseID);
     makeCharts(courseID);
     
     //$('[class="active"').click(alert('i fucking clicked this')); //makeCharts(courseID));
@@ -396,7 +395,7 @@ function findGrade(courseID){
 
 function makeCharts(courseID) {
     //console.log("making the charts!!!");
-
+    findGrade(courseID);
     // first get the assignments from the database
     $.get("/getAssignments/" + courseID, function(data) {
         // console.log(data);
