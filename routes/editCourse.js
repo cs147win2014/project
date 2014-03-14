@@ -121,7 +121,7 @@ exports.addSyllabusFields_ajax = function(req, res) {
  		   					});
 						});
 					} else {
-						var returnData = {"syllabus": syllabusInfo, "department": course.department, "number": course.number};
+						var returnData = {"syllabus": syllabusInfo, "department": course.department, "number": course.number, "id": course._id};
 						console.log("OUT");
 						console.log(course);
 						console.log(syllabusInfo);

@@ -18,9 +18,9 @@ $(document).ready(function(){
         var newIn = '<div id="field' + next + '" class="col-xs-9 col-md-4"><br>' + 
                         '<div class="row">' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4" name="type' + next + '" type="text" autofocus></div>' + 
+                                '<input autocomplete="off" placeholder="Ex: Homework" class="form-control col-xs-4 col-md-4 typeInput" name="type' + next + '" type="text" autofocus></div>' + 
                             '<div class="col-md-6 col-xs-6">' + 
-                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4" name="weighting' + next + '" type="text"></div></div>' + 
+                                '<input autocomplete="off" placeholder="Ex: 25" class="form-control col-xs-4 col-md-4 weightInput" name="weighting' + next + '" type="text"></div></div>' + 
                     '</div>';
         var newInput = $(newIn);
 
@@ -69,7 +69,13 @@ function submitAssignmentForm(e) {
 function callback(results) {
     console.log('i made it back!');
     
-    $("#successMessageDiv").text("Success!");
+    //here i wanna delete all the divs and reset them.
+    $('.remove-me').click();
+    // now you have one input left, reset the value to null
+    $('.typeInput').val("");
+    $('.weightInput').val("");
+    // tell user it worked!
+    window.location.href = "/course/" + results.id;
     // now display everything. so on the server side you want to make sure you remove all duplicates
     // so basically 'results' should only be what the server doesn't already contain
     // like you should change everything that isn't already the same as what's on the servers.
