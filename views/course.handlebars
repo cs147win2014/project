@@ -30,16 +30,28 @@
 
   <!-- Nav tabs -->
 <ul class="nav nav-pills pull-right container-fluid">
+  {{#if assignPage}}
+
+  <li class="remakeChartsOnClick"><a href="#progressTab" data-toggle="tab"><i class="glyphicon glyphicon-dashboard "></i></a></li>
+  <li class="active"><a href="#listTab" data-toggle="tab"><i class="glyphicon glyphicon-list"></i></a></li>
+  
+  {{else}}
+  
   <li class="active remakeChartsOnClick"><a href="#progressTab" data-toggle="tab"><i class="glyphicon glyphicon-dashboard "></i></a></li>
   <li ><a href="#listTab" data-toggle="tab"><i class="glyphicon glyphicon-list"></i></a></li>
+  
+  {{/if}}
   <li><a href="#syllabusTab" data-toggle="tab"><i class="glyphicon glyphicon-wrench"></i></a></li>
 </ul>
 </div>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  
+  {{#if assignPage}}
+  <div class="tab-pane" id="progressTab">   
+  {{else}}
   <div class="tab-pane active" id="progressTab"> 
+  {{/if}}
     <div class="panel panel-default">  
       <div class="panel panel-body">   
       
@@ -80,7 +92,11 @@
     </div>
   </div>
 
-  <div class="tab-pane" id="listTab">
+  {{#if assignPage}}
+  <div class="tab-pane active" id="listTab">   
+  {{else}}
+  <div class="tab-pane" id="listTab"> 
+  {{/if}}
     <div class="panel panel-default">
       <div class="panel panel-body " id="listViewBody">
         <div class="row ">
