@@ -429,6 +429,9 @@ function makeCharts(courseID) {
                 "valueWidth": 100
             },
             "dataProvider": clusterChartData,
+            "valueAxes": [{
+                "minimum": 0
+            }],
             "startDuration": 1,
             "graphs": [{
                 "balloonText": "Actual:[[value]]",
