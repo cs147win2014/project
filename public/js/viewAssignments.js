@@ -440,7 +440,7 @@ function makeCharts(courseID) {
 
                 clusterChartData[counter] = clusterChartVal;
 
-
+                console.log("setting text of header for " + type);
                 $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
                 
 
