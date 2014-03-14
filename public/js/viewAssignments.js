@@ -403,7 +403,7 @@ function makeCharts(courseID) {
         
         var chartDivs = [];
         var clusterChartData = [];
-        boolean hasAddedAtLeastOneAssignment = false;
+        var hasAddedAtLeastOneAssignment = 0;
         
         var counter = 0;
         for(var type in data) {
@@ -424,7 +424,7 @@ function makeCharts(courseID) {
             }
             
             else {
-                hasAddedAtLeastOneAssignment = true;
+                hasAddedAtLeastOneAssignment = 1;
                 var clusterChartVal = {};
                 clusterChartVal["type"] = type;
                 clusterChartVal["actual"] = 0;
@@ -515,7 +515,8 @@ function makeCharts(courseID) {
                 console.log(clusterChartData);
             }
         }
-        if(hasAddedAtLeastOneAssignment) {
+        
+        if(hasAddedAtLeastOneAssignment==1) {
             var clusterChart = AmCharts.makeChart("clusterChartDiv", {
                 "type": "serial",
                 "theme": "none",
@@ -563,10 +564,10 @@ function makeCharts(courseID) {
                     }]  
                 }
             });
-        }
-        else {
+        } else {
             $("#clusterChartDiv").hide();
         }
+        
     });
 
     $.get('/courses/'+courseID+'/syllabus',function(data){
