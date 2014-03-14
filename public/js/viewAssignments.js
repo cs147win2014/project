@@ -15,7 +15,7 @@ function removeType(e) {
     var data = {};
     data["ID"] = typeID;
     //console.log(courseName);
-    var check = confirm("Are you sure you want to delete this type?");
+    var check = confirm("Are you sure you want to delete this type and all corresponding assignments?");
     if(check) {
         $.post('/deleteTypeAJAX',data, function(e) {
             $('#' + typeID).remove();
