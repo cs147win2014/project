@@ -388,7 +388,7 @@ function findGrade(courseID){
             }
             console.log('final grade' + finalGrade);
             finalGrade = finalGrade*100;
-            $("#yourCurrentGrade").text(finalGrade.toString().substr(0,5)+"%");
+            $("h1.yourCurrentGrade").text(finalGrade.toString().substr(0,5)+"%");
         });
     });
 }
