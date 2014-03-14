@@ -411,20 +411,7 @@ function makeCharts(courseID) {
             // console.log('try get the ID now');
             // console.log($('#'+type+'breakdownChart').attr('id'));
 
-            var clusterChartVal = {};
-            clusterChartVal["type"] = type;
-            clusterChartVal["actual"] = 0;
-            clusterChartVal["possible"] = 0;
-
-            for(var item in data[type]) {
-                //console.log('clustercharts stuff:');
-                //console.log(data[type][item]);
-                clusterChartVal["actual"] += data[type][item].score;
-                clusterChartVal["possible"] += data[type][item].total;
-            }
-            clusterChartVal["percent"] = clusterChartVal["actual"]/clusterChartVal["possible"];
-
-            clusterChartData[counter] = clusterChartVal;
+            
 
             
 
@@ -436,6 +423,22 @@ function makeCharts(courseID) {
             }
             
             else {
+                var clusterChartVal = {};
+                clusterChartVal["type"] = type;
+                clusterChartVal["actual"] = 0;
+                clusterChartVal["possible"] = 0;
+
+                for(var item in data[type]) {
+                    //console.log('clustercharts stuff:');
+                    //console.log(data[type][item]);
+                    clusterChartVal["actual"] += data[type][item].score;
+                    clusterChartVal["possible"] += data[type][item].total;
+                }
+                clusterChartVal["percent"] = clusterChartVal["actual"]/clusterChartVal["possible"];
+
+                clusterChartData[counter] = clusterChartVal;
+
+                
                 $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
                 
 
