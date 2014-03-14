@@ -54,7 +54,6 @@ function initializePage() {
     $('.assignRemoveButton').click(removeAssignment);
     var courseID = $("body > div").attr('id');
     
-    findGrade(courseID);
     makeCharts(courseID);
     
     //$('[class="active"').click(alert('i fucking clicked this')); //makeCharts(courseID));
@@ -300,22 +299,16 @@ function callback(results) {
 }
 
 function findGrade(courseID){
+    console.log('hihihi findgrade');
+    var gradeInCourse = {};
+    var totalWeight = 1.0;
     $.get("/getAssignments/" + courseID, function(data) {
-        // console.log(data);
-        // console.log('now ill try to assign');
+        // get the assignment data
         
-        var chartDivs = [];
-        var clusterChartData = [];
-
-        var gradeInCourse = [];
-        var totalWeight = 1.0;
         
         var counter = 0;
         for(var type in data) {
-            // console.log('heres a thing i ndata');
-            // console.log(type);
-            // console.log('try get the ID now');
-            // console.log($('#'+type+'breakdownChart').attr('id'));
+            
             var gradeVal = {};
             gradeVal["actual"] = 0.0;
             gradeVal["possible"] = 0.0;
@@ -328,7 +321,6 @@ function findGrade(courseID){
             }
             gradeVal["percent"] = (gradeVal["actual"]/gradeVal["possible"])*100;
             
-
             if(data[type].length==0) {
                 //$('#'+type+"breakdownChart").hide();
                 // console.log("hiding" + type+"chartTitle")
@@ -339,14 +331,71 @@ function findGrade(courseID){
             else {
                 //$('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
             }
-        }
-        });
 
+            gradeInCourse[type] = gradeVal;
+        }
+        console.log("grade in course");
+        console.log(gradeInCourse);
+
+
+        var syllabus = {};
+        $.get('/courses/'+courseID+'/syllabus',function(data){
+            if(data.length==0) {
+                $("#testDonutDiv").hide();
+                return;
+            }
+            var syllabusDict = {};
+            var totalPoints = 0;
+            for(var index in data) {
+                var item = data[index];
+                //console.log(JSON.stringify(item));
+                syllabusDict[item["name"]] = item["weighting"];
+                totalPoints += item["weighting"];
+            }
+            console.log('syllabus from db');
+            console.log(data);
+            console.log(syllabusDict);
+            
+            var weightedScores = {};
+            var relevantTotalPoints = totalPoints;
+            console.log('starting to calculate grade');
+            for(var type in gradeInCourse) {
+                //console.log(type);
+                var pointsYouScored = gradeInCourse[type]["actual"];
+                var weight = syllabusDict[type];
+                //console.log(gradeInCourse[type]);
+                if(pointsYouScored > 0) {
+                    // include it in calculations
+                    // you want to add up all the actuals,
+                    // divide by total possibles
+                    // multiply by 'weight'
+                    // then divide by relevant total points.
+                    var yourPercentageForAssignmentType = pointsYouScored/gradeInCourse[type]["possible"];
+                    console.log(type + ": " + yourPercentageForAssignmentType)
+                    weightedScores[type] = yourPercentageForAssignmentType*weight;
+                    
+                } 
+                else {
+                    relevantTotalPoints -= weight;
+                }
+            }
+            var finalGrade = 0;
+            for(var type in weightedScores) {
+                console.log('current weighted score: ' + weightedScores[type]);
+                weightedScores[type] = weightedScores[type]/relevantTotalPoints;
+                console.log(weightedScores[type]);
+                finalGrade += weightedScores[type];
+            }
+            console.log('final grade' + finalGrade);
+            finalGrade = finalGrade*100;
+            $("#yourCurrentGrade").text(finalGrade.toString().substr(0,5)+"%");
+        });
+    });
 }
 
 function makeCharts(courseID) {
     //console.log("making the charts!!!");
-
+    findGrade(courseID);
     // first get the assignments from the database
     $.get("/getAssignments/" + courseID, function(data) {
         // console.log(data);
@@ -354,6 +403,7 @@ function makeCharts(courseID) {
         
         var chartDivs = [];
         var clusterChartData = [];
+        var hasAddedAtLeastOneAssignment = 0;
         
         var counter = 0;
         for(var type in data) {
@@ -362,20 +412,7 @@ function makeCharts(courseID) {
             // console.log('try get the ID now');
             // console.log($('#'+type+'breakdownChart').attr('id'));
 
-            var clusterChartVal = {};
-            clusterChartVal["type"] = type;
-            clusterChartVal["actual"] = 0;
-            clusterChartVal["possible"] = 0;
-
-            for(var item in data[type]) {
-                //console.log('clustercharts stuff:');
-                //console.log(data[type][item]);
-                clusterChartVal["actual"] += data[type][item].score;
-                clusterChartVal["possible"] += data[type][item].total;
-            }
-            clusterChartVal["percent"] = clusterChartVal["actual"]/clusterChartVal["possible"];
-
-            clusterChartData[counter] = clusterChartVal;
+            
 
             
 
@@ -387,6 +424,23 @@ function makeCharts(courseID) {
             }
             
             else {
+                hasAddedAtLeastOneAssignment = 1;
+                var clusterChartVal = {};
+                clusterChartVal["type"] = type;
+                clusterChartVal["actual"] = 0;
+                clusterChartVal["possible"] = 0;
+
+                for(var item in data[type]) {
+                    //console.log('clustercharts stuff:');
+                    //console.log(data[type][item]);
+                    clusterChartVal["actual"] += data[type][item].score;
+                    clusterChartVal["possible"] += data[type][item].total;
+                }
+                clusterChartVal["percent"] = clusterChartVal["actual"]/clusterChartVal["possible"];
+
+                clusterChartData[counter] = clusterChartVal;
+
+
                 $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
                 
 
@@ -461,54 +515,59 @@ function makeCharts(courseID) {
                 console.log(clusterChartData);
             }
         }
-
-        var clusterChart = AmCharts.makeChart("clusterChartDiv", {
-            "type": "serial",
-            "theme": "none",
-            "columnWidth:": 0.6,
-            "columnSpacing": 5,
-            "legend": {
-                "equalWidths": false,
-                "periodValueText": "Total: [[value.sum]]",
-                "position": "top",
-                "valueAlign": "left",
-                "valueWidth": 100
-            },
-            "dataProvider": clusterChartData,
-            "valueAxes": [{
-                "minimum": 0
-            }],
-            "startDuration": 1,
-            "graphs": [{
-                "balloonText": "Actual:[[value]]",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-                "title": "Actual",
-                "type": "column",
-                "valueField": "actual"
-            }, {
-                "balloonText": "Possible:[[value]]",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-                "title": "Possible",
-                "type": "column",
-                "valueField": "possible"
-            }],
-            "rotate": false,
-            "categoryField": "type",
-            "categoryAxis": {
-                "gridPosition": "start",
-                "position": "left"
-            },
-            "exportConfig":{
-                "menuBottom":"20px",
-                "menuRight":"20px",
-                "menuItems": [{
-                "icon": '/lib/3/images/export.png',
-                "format": 'png'   
-                }]  
-            }
-        });
+        
+        if(hasAddedAtLeastOneAssignment==1) {
+            var clusterChart = AmCharts.makeChart("clusterChartDiv", {
+                "type": "serial",
+                "theme": "none",
+                "columnWidth:": 0.6,
+                "columnSpacing": 5,
+                "legend": {
+                    "equalWidths": false,
+                    "periodValueText": "Total: [[value.sum]]",
+                    "position": "top",
+                    "valueAlign": "left",
+                    "valueWidth": 100
+                },
+                "dataProvider": clusterChartData,
+                "valueAxes": [{
+                    "minimum": 0
+                }],
+                "startDuration": 1,
+                "graphs": [{
+                    "balloonText": "Actual:[[value]]",
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "title": "Actual",
+                    "type": "column",
+                    "valueField": "actual"
+                }, {
+                    "balloonText": "Possible:[[value]]",
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "title": "Possible",
+                    "type": "column",
+                    "valueField": "possible"
+                }],
+                "rotate": false,
+                "categoryField": "type",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "position": "left"
+                },
+                "exportConfig":{
+                    "menuBottom":"20px",
+                    "menuRight":"20px",
+                    "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'   
+                    }]  
+                }
+            });
+        } else {
+            $("#clusterChartDiv").hide();
+        }
+        
     });
 
     $.get('/courses/'+courseID+'/syllabus',function(data){
