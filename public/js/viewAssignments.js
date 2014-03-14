@@ -331,16 +331,28 @@ function makeCharts(courseID) {
 
             clusterChartData[counter] = clusterChartVal;
 
-            var chartdivID = type+'breakdownChart';
+            
 
             if(data[type].length==0) {
-                $('#'+chartdivID).hide();
-                $('#'+chartdivID).closest('div.chartDescriptionDiv').hide();
+                //$('#'+type+"breakdownChart").hide();
+                // console.log("hiding" + type+"chartTitle")
+                //$('#'+type+"chartTitle").hide();
+                $('#'+type+"breakdownChart").parent().hide();
             }
             
             else {
-            
-                chartDivs[counter] = AmCharts.makeChart(chartdivID, {
+                $('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
+                
+
+                //var h3text = "<h3>" + type + " cumulative score: " + clusterChartVal["percent"]*100 + "%</h3>";
+                //var h3 = $(h3text);   
+                //console.log(type + " cumulative score: " + clusterChartVal["percent"]*100 + "%");
+                //console.log($('#'+chartdivID).closest('div.chartDescriptionDiv'));
+
+                //chartDesc.append(h3);
+
+
+                chartDivs[counter] = AmCharts.makeChart(type+"breakdownChart", {
                     "type": "serial",
                     "theme": "none",
                     "marginLeft": 20,
@@ -417,6 +429,9 @@ function makeCharts(courseID) {
                 "valueWidth": 100
             },
             "dataProvider": clusterChartData,
+            "valueAxes": [{
+                "minimum": 0
+            }],
             "startDuration": 1,
             "graphs": [{
                 "balloonText": "Actual:[[value]]",
