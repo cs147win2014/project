@@ -31,7 +31,9 @@ console.log("heyyyy");
 // Step 2: Remove all existing documents
 models.User.find().remove().exec(function(err) {
   models.Course.find().remove().exec(function(err) {
-    models.AssignmentType.find().remove().exec(onceClear);  
+    models.AssignmentType.find().remove().exec(function(err) {
+      models.Assignment.find().remove().exec(onceClear);
+    });  
   });
 }); 
  
