@@ -54,6 +54,7 @@ function initializePage() {
     $('.assignRemoveButton').click(removeAssignment);
     var courseID = $("body > div").attr('id');
     
+    findGrade(courseID);
     makeCharts(courseID);
     
     //$('[class="active"').click(alert('i fucking clicked this')); //makeCharts(courseID));
@@ -296,6 +297,51 @@ function callback(results) {
     // tell user it worked!
     $("#successMessageDiv").text("Success!");
     
+}
+
+function findGrade(courseID){
+    $.get("/getAssignments/" + courseID, function(data) {
+        // console.log(data);
+        // console.log('now ill try to assign');
+        
+        var chartDivs = [];
+        var clusterChartData = [];
+
+        var gradeInCourse = [];
+        var totalWeight = 1.0;
+        
+        var counter = 0;
+        for(var type in data) {
+            // console.log('heres a thing i ndata');
+            // console.log(type);
+            // console.log('try get the ID now');
+            // console.log($('#'+type+'breakdownChart').attr('id'));
+            var gradeVal = {};
+            gradeVal["actual"] = 0.0;
+            gradeVal["possible"] = 0.0;
+
+            for(var item in data[type]) {
+                //console.log('clustercharts stuff:');
+                //console.log(data[type][item]);
+                gradeVal["actual"] += data[type][item].score;
+                gradeVal["possible"] += data[type][item].total;
+            }
+            gradeVal["percent"] = (gradeVal["actual"]/gradeVal["possible"])*100;
+            
+
+            if(data[type].length==0) {
+                //$('#'+type+"breakdownChart").hide();
+                // console.log("hiding" + type+"chartTitle")
+                //$('#'+type+"chartTitle").hide();
+                $('#'+type+"breakdownChart").parent().hide();
+            }
+            
+            else {
+                //$('#'+type+"chartTitle h3").text(type + " overall score: " + (clusterChartVal["percent"]*100).toString().substr(0,5) + "%");
+            }
+        }
+        });
+
 }
 
 function makeCharts(courseID) {
