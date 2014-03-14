@@ -94,16 +94,13 @@
         <hr>
         <div>
           <table class="table table-responsive table-bordered table-striped table-condensed">
-            <th>Name</th><th>Type</th><th>Score</th><th>Out of</th><th></th>
+            <th>Name</th><th>Score</th><th>Out of</th><th></th>
 
             {{#each types}}
             <tr id="{{this.name}}">
-              <td><a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">{{this.name}}</a></td>
-              <td><a href="#" id="typename" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
-              <td><a href="#" id="score" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
-              <td><a href="#" id="total" data-type="text" data-pk="1" data-url="/post" data-title="Enter username"></a></td>
-              <td>
-              </td>
+              {{#if this.hasAssigns}}
+              <td>{{this.name}}</td>
+              {{/if}}
             </tr>
 
 

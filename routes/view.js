@@ -54,6 +54,7 @@ exports.viewCoursePage = function(req, res) { 
             currTypeData["name"] = currName;
             typeIDToName[currType._id] = currName;
             currTypeData["assignments"] = [];
+            currTypeData["hasAssigns"] = false;
             typeArray.push(currTypeData);
           }
           for (var j = 0; j < assignlength; j++) {
@@ -65,6 +66,7 @@ exports.viewCoursePage = function(req, res) { 
               var typeName = currTypeData.name;
               if (typeName === testName) {
                 typeArray[k].assignments.push(currAssign);
+                typeArray[k].hasAssigns = true;
               }
             }
           }
