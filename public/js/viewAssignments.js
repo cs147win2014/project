@@ -30,6 +30,7 @@ function removeType(e) {
 
 function removeAssignment(e) {
     e.preventDefault();
+    console.log('this');
     var assignID = $(this).closest('tr').attr('id');
     var data = {};
     data["ID"] = assignID;
