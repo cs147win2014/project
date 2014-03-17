@@ -1,31 +1,31 @@
-var data = require("../data.json");
+//var data = require("../data.json");
 var models = require('../models');
 
 
-exports.addSyllabusFields = function(req, res) {
-	allFields = req.body;
-	var syllabus = {};
-	var type = "";
-	var weighting = "";
-	console.log(allFields);
-	for(var key in allFields) {
-		if(key.match(/type/gi) != null) {
-			type = allFields[key];
-			console.log("TYPE: " + type);
-		} else {
-			weighting = allFields[key];
-			console.log("WEIGHTING: " + weighting + " and the type is: " + type);
-			if(isNaN(parseFloat(weighting))) {
-				console.log("UGH ITS NOT A NUMBER U SUCK");
-			} else {
-				syllabus[type] = weighting;
-			}
-		}
-	}
-	console.log(syllabus);
-	res.render('/index',data);
-	return;
-};
+// exports.addSyllabusFields = function(req, res) {
+// 	allFields = req.body;
+// 	var syllabus = {};
+// 	var type = "";
+// 	var weighting = "";
+// 	console.log(allFields);
+// 	for(var key in allFields) {
+// 		if(key.match(/type/gi) != null) {
+// 			type = allFields[key];
+// 			console.log("TYPE: " + type);
+// 		} else {
+// 			weighting = allFields[key];
+// 			console.log("WEIGHTING: " + weighting + " and the type is: " + type);
+// 			if(isNaN(parseFloat(weighting))) {
+// 				console.log("UGH ITS NOT A NUMBER U SUCK");
+// 			} else {
+// 				syllabus[type] = weighting;
+// 			}
+// 		}
+// 	}
+// 	console.log(syllabus);
+// 	res.render('/index',data);
+// 	return;
+// };
 
 
 exports.editSyllabus = function(req,res) {
@@ -72,7 +72,7 @@ exports.add = function(req, res) { 
 
 
 
-exports.getCourseSyllabus = function(req,res) {
+exports.getCourseSyllabus = function(req, res) {
 	var username = req.session.user;
 	console.log('username is: ' + username);
 	if(!username) {
@@ -102,8 +102,7 @@ exports.getCourseSyllabus = function(req,res) {
 				return;
 	    	});
     	}
-  	} 
-  	else {
+  	} else {
     	console.log('couldnt find user ' + username);
     	res.render('login',{error:"Could not find user " + username});
     	return;

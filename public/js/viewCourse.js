@@ -25,11 +25,11 @@ function checkClick(e) {
 function viewCourse(e) {
 	e.preventDefault();
 	// Get the div ID, e.g., "project3"
-	var courseName = $(this).closest("li").attr('id');
+	var courseID = $(this).closest("li").attr('id');
 	//alert(courseName);
 	// get rid of 'project' from the front of the id 'project3'
 	
-	var url = "/courses/" + courseName;
+	var url = "/courses/" + courseID;
 	$.get(url, showCourseInfo);
 } 
 

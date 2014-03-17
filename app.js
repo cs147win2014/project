@@ -1,41 +1,24 @@
-
-/**
- * Module dependencies.
- */
-
+//Module dependencies.
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
 
-//var addACourse = require('./routes/addACourse');
-//var index = require('./routes/index');
+//Routes
 var add = require ('./routes/add');
-//var viewAssignments = require('./routes/viewAssignments');
-//var info = require('./routes/info');
-//var viewCourses = require('./routes/viewCourses');
-var addCourse = require ('./routes/addCourse');
+var course = require('./routes/course');
 var editCourse = require ('./routes/editCourse');
 var login = require ('./routes/login');
-// var signup = require('./routes/signup');
-var course = require('./routes/course');
-//var assignment = require('./routes/assignment');
-
 var view = require('./routes/view');
 
-// Example route
-// var user = require('./routes/user');
-
 // Connect to the Mongo database, whether locally or on Heroku
-// MAKE SURE TO CHANGE THE NAME FROM 'lab7' TO ... IN OTHER PROJECTS
 var local_database_name = 'project';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 
 var app = express();
-//var MongoStore = require('connect-mongo')(express);
 
 
 // all environments
@@ -49,18 +32,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-//COOKIES!!
+//COOKIES
 app.use(express.cookieParser('Intro HCI secret key'));
 app.use(express.session());
-
-// {
-// 	//FROM THE INTERNETS
-//   store: new MongoStore({
-//     url: 'mongodb://root:myPassword@mongo.onmodulus.net:27017/3xam9l3'
-//   }),
-//   secret: '1234567890QWERTY'
-// })
-
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -69,41 +43,26 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// ADD ROUTES HERE
+//Routes - Getting and Posting
     //Routes we definitely use
-app.get('/',login.view);
-app.get('/login', login.view);
-app.get('/signup',function(req, res) {
-  res.render('signup');
-});
-app.post('/signup',login.signUp);
+app.get('/',login.viewLogin);
+app.get('/login', login.viewLogin);
+app.get('/signup', login.viewSignup);
+app.post('/signup', login.verifySignup);
 
 // i think we should change the name of these and/or consolidate them
 app.get('/addAssignment',add.addAssignment);
-app.post('/editCourse',editCourse.addSyllabusFields);
 app.post('/editCourseAJAX',editCourse.addSyllabusFields_ajax);
-app.post('/deleteCourseAJAX',editCourse.delete_ajax);
+app.post('/deleteCourseAJAX',editCourse.deleteCourse_ajax);
 app.post('/deleteTypeAJAX',editCourse.deleteType_ajax);
 app.post('/deleteAssignmentAJAX',editCourse.deleteAssignment_ajax);
 
-app.get('/viewAssignments',view.viewAssignments);
-app.get('/viewAssignments/test', view.viewAssignmentsTest);
-
-//app.get('/viewAssignments/test2', view.viewAssignmentsTest2);
-
-
-
     //Do we use these?
 
-
-app.get('/info',view.viewInfo);
 app.put('/post',course.editSyllabus);
-
-//app.get('/viewCourses',viewCourses.view);
-app.post('/addCourse',addCourse.add);
+app.post('/addCourse', add.addCourse);
 app.get('/addACourse',view.viewAddCoursePage);
-//app.get('/addAssignment',view.viewAddAssignmentPage);
-app.get('/editCourse',editCourse.view);
+//app.get('/editCourse', view.viewEditCourse);
 app.get('/index',view.viewIndex);
 app.post('/login',login.checkUsername);
 
@@ -112,10 +71,8 @@ app.get('/course/:courseID', view.viewCoursePage);
 app.get('/addAssignment/:courseID', view.viewAddAssignmentPage);
 app.get('/getAssignments/:courseID',view.getAssignments);
 
-app.post('/addACourse/new',course.add);
+//app.post('/addACourse/new',course.add);
 
-// Example route
-// app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

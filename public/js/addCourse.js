@@ -10,26 +10,26 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$('#backBtn').click(backToIndex);
-	$('#submitBtn').click(addCourse);
+	//$('#submitBtn').click(addCourse);
 
 }
 
-function addCourse() {
-	console.log('clicked');
-	var name = $('#new-course-form #name').val();
-	var department = $('#new-course-form #department').val();
-	var number = $('#new-course-form #number').val();
-	var syllabus = $('#new-course-form #syllabus').val();
-	var json = {
-		'name': title,
-		'department': image_url,
-		'number':  date,
-		'syllabus': summary
-	};
-	$.post('/addACourse/new', json, function() {
-		window.location.href = 'index'; // reload the page
-	});
-}
+// function addCourse() {
+// 	console.log('clicked');
+// 	var name = $('#new-course-form #name').val();
+// 	var department = $('#new-course-form #department').val();
+// 	var number = $('#new-course-form #number').val();
+// 	var syllabus = $('#new-course-form #syllabus').val();
+// 	var json = {
+// 		'name': title,
+// 		'department': image_url,
+// 		'number':  date,
+// 		'syllabus': summary
+// 	};
+// 	$.post('/addACourse/new', json, function() {
+// 		window.location.href = 'index'; // reload the page
+// 	});
+// }
 
 function backToIndex(e) {
 	e.preventDefault();
