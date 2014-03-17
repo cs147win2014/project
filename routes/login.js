@@ -33,13 +33,11 @@ exports.checkUsername = function(req, res) { 
   		} else {
   			error = "Username not found!";
   		}
-	});
-
-	console.log("Username or password incorrect");
-	error = "Username or password incorrect";
-	//console.log("The error is: " + error);
-	res.render('login',{error:error});
-	
+  		console.log("Username or password incorrect");
+		//error = "Username or password incorrect";
+		//console.log("The error is: " + error);
+		res.render('login',{error:error});
+	});	
  };
 
 exports.signUp = function(req, res) {    
